@@ -1,12 +1,12 @@
 ---
-title: "ETC5521 Assignment "
-subtitle: "How sustainable is the energy production in Europe? "
+title: "Exploration of the History of Black Slavery"
+subtitle: "This project explores the history of black slavery around the world with a focus on the US written for ETC5521: Exploratory Data Analysis "
 description: |
-  This explores
+  This project explores the history of black slavery around the world with a focus on the US written for ETC5521: Exploratory Data Analysis
 author:
   - name: Vinny Vu, Dea Avega Editya, Siyi Li, Aryan Jain
     url: https://www.linkedin.com/in/vinny-vu-809bb1139/
-date: 11-23-2020
+date: 09-18-2020
 output:
   distill::distill_article:
     self_contained: false

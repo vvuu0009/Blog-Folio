@@ -20,7 +20,7 @@ corona_cont <- coronavirus %>%
     drop_na()
 
 cum <- coronavirus %>%
-    filter(type == "confirmed") %>%
+    dplyr::filter(type == "confirmed") %>%
     group_by(country, date) %>%
     summarise(cases = sum(cases)) %>%
     group_by(country) %>%
@@ -35,7 +35,7 @@ tab <- coronavirus %>%
     mutate('Total Confirmed' = cumsum(confirmed),
            'Total Deaths' = cumsum(death),
            'Total Recovered' = cumsum(recovered)) %>%
-    filter(date == "2020-07-31") %>%
+    dplyr::filter(date == "2020-07-31") %>%
     select(-date,-confirmed,-death,-recovered) %>%
     arrange(-`Total Confirmed`) %>%
     rename(Country = country) %>%
@@ -47,7 +47,7 @@ tab <- coronavirus %>%
            `Total Recovered` = scales::comma(`Total Recovered`,1))
 
 p1_data <- cum %>%
-    filter(country %in% c("US","Brazil","India","Russia","South Africa","Mexico")) 
+    dplyr::filter(country %in% c("US","Brazil","India","Russia","South Africa","Mexico")) 
 
 p1_data$country <- p1_data$country %>% factor(levels = c("US","Brazil","India","Russia","South Africa","Mexico"))
 
@@ -116,8 +116,8 @@ server <- function(input, output) {
     
     output$cases <- renderPlot(
         corona_cont %>%
-            filter(type == input$type) %>%
-            filter(continent == input$continent) %>%
+            dplyr::filter(type == input$type) %>%
+            dplyr::filter(continent == input$continent) %>%
             ggplot(aes(x = date, 
                        y = cases,
                        colour = continent)) +
@@ -144,7 +144,7 @@ server <- function(input, output) {
             mutate('Total confirmed' = cumsum(confirmed),
                    'Total death' = cumsum(death),
                    'Total recovered' = cumsum(recovered)) %>%
-            filter(date == "2020-07-31") %>%
+            dplyr::filter(date == "2020-07-31") %>%
             select(-date,-confirmed,-death,-recovered) %>%
             arrange(-`Total confirmed`) %>%
             rename(Country = country) %>%
@@ -154,7 +154,7 @@ server <- function(input, output) {
             mutate(continent = countrycode(sourcevar = Country, 
                                            origin = "country.name",
                                            destination = "continent")) %>%
-            filter(continent == input$continent)
+            dplyr::filter(continent == input$continent)
         
         datatable(tab2, 
                   options = list(columnDefs = list(list(
@@ -191,8 +191,8 @@ server <- function(input, output) {
     
     output$p2 <- renderPlotly({
         p2 <- p1_data %>%
-            filter(country %in% c("Brazil","India","Russia","South Africa", "Mexico")) %>%
-            filter(date <= "2020-06-30" & date >= "2020-04-01") %>%
+            dplyr::filter(country %in% c("Brazil","India","Russia","South Africa", "Mexico")) %>%
+            dplyr::filter(date <= "2020-06-30" & date >= "2020-04-01") %>%
             ggplot(aes(x = date,
                        y = `total confirmed`,
                        colour = country)) +

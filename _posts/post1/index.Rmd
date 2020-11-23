@@ -1,12 +1,12 @@
 ---
-title: "ETC5521 Assignment 1"
-subtitle: "How sustainable is the energy production in Europe? "
+title: "How sustainable is the energy production in Europe?"
+subtitle: "This project explores the current state of sustainable energy production in Europe written for ETC5521: Exploratory Data Analysis"
 description: |
-  This explores
+  This project explores the current state of sustainable energy production in Europe written for ETC5521: Exploratory Data Analysis
 author:
-  - name: Vinny Vu 
+  - name: Vinny Vu, Putu Saputra  
     url: https://www.linkedin.com/in/vinny-vu-809bb1139/
-date: 11-23-2020
+date: 08-28-2020
 output:
   distill::distill_article:
     self_contained: false
@@ -138,15 +138,17 @@ average_production_plot <- energy_types %>%
              y = value, 
              fill = `Energy Type`)) +
   geom_col() +
+  theme_bw() +
   theme(axis.text.x = element_text(angle = 90)) + #rotating x axis to values do not overlap 
   labs(title = "Average Renewable vs Non-Renewable Energy Production from 2016-2018",
        x = "",
-       y = "Energy in GWh(Gigawatt hours)")
+       y = "Energy in GWh(Gigawatt hours)") 
 
 ```
 
 ```{r average-production-plotly, fig.cap= "Average Renewable vs Non-Renewable Energy Production from 2016-2018" }
-ggplotly(average_production_plot)
+ggplotly(average_production_plot) %>% 
+config(displayModeBar = F)
 ```
 
 
@@ -167,6 +169,7 @@ yearly_production_plot <- energy_types %>%
              fill = type)) +
   geom_col() +
   facet_wrap(~year) +
+  theme_bw() +
   theme(axis.text.x = element_text(angle = 90), #rotating the x axis to prevent values overlapping 
         axis.title.y = element_text(vjust=1),
         legend.position = "none") + #moving the y axis labels to prevent the text overlapping the y axis values 
@@ -183,7 +186,8 @@ To look closer at European energy production across the 3 years the plot in \@re
 y <- list(title = "Total energy production in GWh (Gigawatt hours)", titlefont = list(size=14), automargin = TRUE) 
 
 ggplotly(yearly_production_plot) %>% #outputting yearly_production_plot as a plotly 
-  layout(yaxis = y)
+  layout(yaxis = y)%>% 
+config(displayModeBar = F)
 ```
 
 
@@ -214,10 +218,14 @@ export_import_plot <- country_totals %>%
                fill = Type)) +
   geom_point(aes(y = net_import_export, #adding a point for the next export import
                  size = `Total net production`)) + #changing the size of points to represent the total net production 
-  theme(axis.text.x = element_text(angle = 90)) + # rotating the x axis text to prevent text to overlap 
+  theme_bw() +
+  #theme(axis.text.x = element_text(angle = 90)) + # rotating the x axis text to prevent text to overlap 
   labs(x = "",
        y = "Energy in GWh (Gigawatt hours)",
-       title = "Average Export and Imports by Country 2016-2018")
+       title = "Average Export and Imports by Country 2016-2018") +
+  coord_flip() + 
+  scale_y_continuous(labels = scales::comma) +
+  scale_size_continuous(labels = scales::comma)
 
 export_import_plot
 ```
@@ -383,7 +391,8 @@ p <- contribute_to_europe %>%
         plot.title = element_text(size = 10, face = "bold"),
         plot.subtitle = element_text(size = 9, face = "bold"))
 
-ggplotly(a, tooltip = c("fill","y"))
+ggplotly(a, tooltip = c("fill","y"))%>% 
+config(displayModeBar = F)
 ```
 
 Now let us look at the presentation of the energy types for each country in Figure \@ref(fig:plot-contribution-country-3y) In general, the majority of countries in Europe rely on thermal energy as the leading supplier of energy needs in their country. However, it is interesting that Albania relies almost mostly on hydropower. The same situation occurs in Norway and Georgia which rely on hydro over than 80%.
@@ -418,7 +427,8 @@ df_tbl %>%
 ```
 
 ```{r plot-contribution-country-3y, echo=FALSE, warning=FALSE, message=FALSE, fig.cap="The proportion of each energy type to the total energy production in each country in 3 years"}
-ggplotly(create_plot(en_contribution_3y))
+ggplotly(create_plot(en_contribution_3y))%>% 
+config(displayModeBar = F)
 ```
 
 The interesting part if we look at Malta, who did not get a full production of energy. After we check the dataset, found out that the total amount of net production is not equal by sum of energy types production in observation year. As seen in Table \@ref(tab:tbl-malta), Malta did not list any energy type in 2018 except Conventional Thermal. So that there is an insufficient value when we calculate the contributions.

@@ -22,4 +22,4 @@ knitr::opts_chunk$set(echo = FALSE)
 # Corona Shiny Application 
 
 
-[link](https://vinny-vu.shinyapps.io/coronavirus-shiny-app/)
+[link](https://vinny-vu.shinyapps.io/Application/)
