@@ -1,5 +1,21 @@
 [
   {
+    "path": "posts/post1/",
+    "title": "ETC5521 Assignment 1",
+    "description": "This explores",
+    "author": [
+      {
+        "name": "Vinny Vu",
+        "url": "https://www.linkedin.com/in/vinny-vu-809bb1139/"
+      }
+    ],
+    "date": "2020-11-23",
+    "categories": [],
+    "preview": "posts/post1/index_files/figure-html5/export-import-plot-1.png",
+    "last_modified": "2020-11-23T11:52:26+11:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/welcome/",
     "title": "Welcome to My Blog",
     "description": "Welcome to my new blog. This blog aims to display the works and projects I have undertaken through my post graduate studies and personal projects",
@@ -11,8 +27,8 @@
     ],
     "date": "2020-11-23",
     "categories": [],
-    "preview": "posts/welcome/image.PNG",
-    "last_modified": "2020-11-23T11:35:32+11:00",
-    "input_file": "welcome.utf8.md"
+    "preview": "posts/welcome/image.png",
+    "last_modified": "2020-11-23T11:41:23+11:00",
+    "input_file": {}
   }
 ]

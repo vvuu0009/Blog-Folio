@@ -1,0 +1,451 @@
+---
+title: "ETC5521 Assignment 1"
+subtitle: "How sustainable is the energy production in Europe? "
+description: |
+  This explores
+author:
+  - name: Vinny Vu 
+    url: https://www.linkedin.com/in/vinny-vu-809bb1139/
+date: 11-23-2020
+output:
+  distill::distill_article:
+    self_contained: false
+bibliography: references.bib  
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+
+
+
+
+
+```{r libraries, include = FALSE, message = FALSE, warning = FALSE}
+library(tidytuesdayR)
+library(tidyverse)
+library(knitr)
+library(ggplot2)
+library(kableExtra)
+library(bookdown)
+library(plotly)
+```
+
+# Introduction and motivation
+
+In today's day and age there has been a strong push for the reduction in production and use of fossil fuels. Per Peninsula Energy fossil fuels "produce a significant amount of greenhouse gas emissions, including carbon dioxide methane," @peninsula_2018 These greenhouse gas emissions are known to be a main contributor to the ‘greenhouse effect’ “the warming of climate that results when the atmosphere traps heat radiating from Earth towards space,” @twardy_greenhouse_2007 Not only does thermal power produced by fossil fuels emit greenhouse gases, it is not renewable, meaning it cannot be “replaced naturally in a short period of time” resulting in long-term price volatility and unsustainability.
+
+Per Our World Data Europe is currently the 3rd highest consumer of primary energy behind Asia pacific and North America making up approximately 15% of the total World Energy Consumption @ritchie_energy_2014.  
+
+As a result, the European power sector currently plays a crucial role in attaining targets to “cut green-house gases by 40% by 2030, compared to 1990” @energiewende_european_2018 in favor cleaner, renewable energy sources. For the purposes of this analysis we will be using Eurostat European Energy data (Eurostat, 2020) assess how successful they currently are and answer the question:  
+
+
+How sustainable is the energy production in Europe? 
+
+Specifically:
+
+1. Which countries have the highest production of sustainable energy based on energy types? 
+2. How do energy imports vs exports compare between countries in Europe from 2016-2018?
+3. How the contributions of the sources to the production of electricity?
+
+
+# Data description
+
+```{r, include = FALSE}
+energy_types <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-08-04/energy_types.csv')
+country_totals <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-08-04/country_totals.csv')
+
+energy_types <- energy_types %>%
+  replace_na(list(country_name = "United Kingdom")) %>%
+    pivot_longer(cols = starts_with("20"),
+               names_to = "year",
+               values_to = "energy")
+energy_types$year <- as.numeric(energy_types$year)
+
+country_totals <- country_totals %>% 
+  replace_na(list(country_name = "United Kingdom")) %>%
+  pivot_longer(cols = starts_with("20"),
+               names_to = "year",
+               values_to = "energy")
+country_totals$year <- as.numeric(country_totals$year)
+```
+
+The data in the tidytuesday package is taken from Eurostat that contains the electricity production of the countries in the European Union.  The data is given in tabular form in two tables, `country_totals` and `energy_types`. The `energy_types` table containing the types of energy produced by each country. The `country_totals` table contains the brake down energy supplied by each country.
+
+The variables in the `energy_types` table are included below in Table \@ref(tab:energy-tab-vr):
+
+```{r,include = FALSE}
+variables_1 <- energy_types %>% names()
+class_1 <- sapply(energy_types, class)
+desc_1 <- c("Country ID",
+           "Country name",
+           "Type of energy production",
+           "Level - either total, level 1 or level 2. Where level 2 makes up level 1 that makes up the total",
+           "Year of observation",
+           "Energy in GWh (Gigawatt hours)")
+```
+
+```{r energy-tab-vr, echo=FALSE}
+tibble(variables_1,class_1,desc_1) %>%
+  kable(col.names = c("variable","class","description"), caption ="Energy types variables") %>%
+  kable_styling(bootstrap_options = "hover")
+```
+
+The variables in the `country_totals` table are included below in Table \@ref(tab:country-tab-vr): 
+
+```{r, include = FALSE}
+variables_2 <- country_totals %>% names()
+class_2 <- sapply(country_totals, class)
+desc_2 <- c("Country ID",
+           "Country name",
+           "Type of energy production",
+           "Level - either total, level 1 or level 2. Where level 2 makes up level 1 that makes up the total",
+           "Year of observation",
+           "Energy in GWh (Gigawatt hours)")
+```
+
+```{r country-tab-vr, echo=FALSE}
+tibble(variables_2,class_2,desc_2) %>%
+  kable(col.names = c("variable","class","description"), caption ="Country total variables") %>%
+  kable_styling(bootstrap_options = "hover")
+```
+
+The data in the tidytuesday package only contains yearly totals from 2016-2018. @tidytuesday However, monthly data can be found on the Eurostat website including data from 2010 until May 2020 as at 14-08-20. The statistics are collected and compiled by Member States. Eurostat prepared a template to gather this information. @methodology_eurostat
+
+
+# Analysis and findings
+
+##  Which countries have the highest production of sustainable energy based on energy types? 
+
+To assess which countries lead in renewable energy production we have used the energy_types table to make a bar plot in Figure \@ref(fig:average-production-plotly).  The bar plot shows the average production of renewable energy in the positive y-axis and average conventional thermal energy on the negative y-axis. The average across the 3 years was used as the individual plots for 2016-2018 did not show much variation due to the relatively short period of time. From the plot we can see France, Germany, Spain, Norway and Sweden lead Europe in the production of renewable energy, with France producing almost an average 500,000 GWh a year with Nuclear making up the majority of the renewable energy production. France also has a significantly small level of conventional thermal energy production compared to renewable energy. Although Germany is second leading producer of renewable energy, they are also the leading European producer of conventional thermal energy producing almost 363,000 GWh of energy per year.   
+
+
+```{r average_production_plot }
+average_production_plot <- energy_types %>%
+  filter(type != "Pumped hydro power") %>% # filtering out pumped hydro power which is already included as hydro power 
+  group_by(country_name,type) %>%
+  summarise(average_energy = mean(energy)) %>% # calculating the mean energy production across the 3 years 
+  pivot_wider(id_cols = country_name,
+              names_from = type,
+              values_from = average_energy) %>% # making the energy types into separate columns to allow manipulation of variables
+  mutate(Total_Renewable = Nuclear + Hydro + Wind + Solar + Geothermal + Other) %>% # calculating the total renewable energy production 
+  mutate(`Conventional thermal` = -`Conventional thermal`) %>% # making conventional thermal energy into a negative value 
+  pivot_longer(cols = -c(country_name,Total_Renewable),
+               names_to = "Energy Type",
+               values_to = "value") %>% #converting the tibble back into long form to allow plotting 
+  ggplot(aes(x = reorder(country_name,-Total_Renewable), # reordering the country names by total renewable energy production 
+             y = value, 
+             fill = `Energy Type`)) +
+  geom_col() +
+  theme(axis.text.x = element_text(angle = 90)) + #rotating x axis to values do not overlap 
+  labs(title = "Average Renewable vs Non-Renewable Energy Production from 2016-2018",
+       x = "",
+       y = "Energy in GWh(Gigawatt hours)")
+
+```
+
+```{r average-production-plotly, fig.cap= "Average Renewable vs Non-Renewable Energy Production from 2016-2018" }
+ggplotly(average_production_plot)
+```
+
+
+```{r yearly_production_plot}
+yearly_production_plot <- energy_types %>%
+  filter(level != "Level 2") %>% # filtering out pumped hydro power which is already included as hydro power 
+  group_by(type,year) %>%
+  summarise(total = sum(energy)) %>% # calculating total energy production 
+  pivot_wider(id_cols = year,
+              names_from = type,
+              values_from = total) %>% # making energy types into columns to allow manipulation of values 
+  mutate(`Total Renewable` = Geothermal + Hydro + Nuclear + Other + Solar + Wind) %>% # calculating total renewable energy 
+  pivot_longer(cols = -year,
+               names_to = "type",
+               values_to = "total") %>% # converting back to long form to allow plotting 
+  ggplot(aes(x = reorder(type,-total),
+             y = total,
+             fill = type)) +
+  geom_col() +
+  facet_wrap(~year) +
+  theme(axis.text.x = element_text(angle = 90), #rotating the x axis to prevent values overlapping 
+        axis.title.y = element_text(vjust=1),
+        legend.position = "none") + #moving the y axis labels to prevent the text overlapping the y axis values 
+  labs(title = "Total Energy Production by Type and Year",
+       x = "",
+       y = "")
+
+```
+
+To look closer at European energy production across the 3 years the plot in \@ref(fig:yearly-production-plotly) shows the breakdown of the total production of each energy type for each year. For comparability between total renewable and non-renewable energy production a total renewable column is added. From the graph we can see the production of renewable energy exceeds the production thermal energy across all years. Notably nuclear energy leads the production of renewable energy with France being a leading producer. Conventional thermal energy still however contributes to just under 50% of energy production. From \@ref(fig:average-production-plotly), although there are several countries with renewable energy greatly exceeding fossil fuels several countries such as Germany, United Kingdom, Italy and Turkey show high levels of conventional thermal energy production.   
+
+
+```{r yearly-production-plotly, fig.cap= "Total Energy Production by Type and Year"}
+y <- list(title = "Total energy production in GWh (Gigawatt hours)", titlefont = list(size=14), automargin = TRUE) 
+
+ggplotly(yearly_production_plot) %>% #outputting yearly_production_plot as a plotly 
+  layout(yaxis = y)
+```
+
+
+## How do energy imports vs exports compare between countries in Europe from 2016-2018?
+
+Per Our World Data Europe only makes up 15% of the total World Energy Consumption @ritchie_energy_2014. Therefore, to assess the global impact of Europe's renewable energy production we are interested in assessing the energy imports and exports of each country. Using the country_totals we have created the plot in Figure \@ref(fig:export-import-plot) showing the average exports on the positive y-axis and imports on the negative y-axis for each country across 2016-2018. Further points were added to visualize the net export less imports with the size of the point representing the total net production. We have decided to use the average across 2016-2018 as there is not a significant change in energy exports and imports across the 3 years.
+
+From the visualization we can see Germany, France, Sweden, Norway and Czechia are the leading 5 countries in net exports less imports. Furthermore from the first visualization Figure \@ref(fig:average-production-plotly) these countries lead Europe in the production of renewable energy with Germany and France being Europe's largest total net producer of energy showing signs of not only the production of renewable energy for local use but net exportation of renewable energy also. Further, from the visualization we can see Italy, Finland, United, Kingdom, Hungry and Belgium lead in net imports (imports greater than exports) in Europe.
+
+
+
+```{r export-import-plot, fig.cap= "Average Export and Imports by Country 2016-2018"}
+export_import_plot <- country_totals %>%
+  replace_na(list(energy = 0)) %>% #replacing NA values with 0 
+  group_by(country_name,type) %>%
+  summarise(average = mean(energy)) %>% # calculating the average production levels for each year 
+  pivot_wider(id_cols = country_name,
+              names_from = type,
+              values_from = average) %>% # converting to wide form to allow manipulation of variables 
+  mutate(Imports = -Imports) %>% # making imports a negative value to allow plotting 
+  select(country_name,Exports,Imports,`Total net production`) %>% # selecting relevant variables for plotting 
+  mutate(net_import_export = Exports + Imports) %>% # calculating net export-imports 
+  pivot_longer(cols = -c(country_name,`Total net production`, net_import_export), # converting back to long form the allow plotting 
+               names_to = "Type",
+               values_to = "Energy") %>%
+  ggplot(aes(x = reorder(country_name,-net_import_export))) + #reordering the countries by net export-imports to allow comparability 
+  geom_col(aes(y = Energy,
+               fill = Type)) +
+  geom_point(aes(y = net_import_export, #adding a point for the next export import
+                 size = `Total net production`)) + #changing the size of points to represent the total net production 
+  theme(axis.text.x = element_text(angle = 90)) + # rotating the x axis text to prevent text to overlap 
+  labs(x = "",
+       y = "Energy in GWh (Gigawatt hours)",
+       title = "Average Export and Imports by Country 2016-2018")
+
+export_import_plot
+```
+
+
+
+To look at Europe's net export-imports as a whole Table \@ref(tab:net-export-kable) shows summary of the total energy production levels across each year. From the table in 2016 and 2017 Europe is at a net export but in 2018 they are at a net import. This drop in 2018 is due to the spike in imports and drop in export in 2018. It should be noted there is a drop in total net production in 2018 suggesting reduced energy consumption supporting reduction of consumption of fossil fuels.    
+
+
+
+```{r net-export-kable, fig.cap= "European Energy Production Summary 2016-2018"}
+country_totals %>%
+  replace_na(list(energy = 0)) %>% # replacing NA values with o 
+  group_by(type,year) %>%
+  summarise(total = sum(energy)) %>% # calculating the total energy production 
+  pivot_wider(id_cols = year,
+              names_from = type,
+              values_from = total) %>% # making energy types into columns
+  mutate(`Net export-imports` = Exports - Imports) %>% # calculating net exports-imports 
+  select(year, `Total net production`, `Energy supplied`, `Energy absorbed by pumping`, Exports, Imports, `Net export-imports`) %>% #reordering the columns 
+  kable(caption = "European Energy Production Summary 2016-2018") %>%
+  kable_styling()
+```
+  
+## Energy types contribution to total energy production for each country in Europe
+
+```{r contribution-tbl-country, include=FALSE, warning=FALSE, message=FALSE}
+extract_total_net <- function(x){
+total_year <- country_totals %>% 
+  filter(type=="Total net production", year==x) %>%
+  select(-type,-country) %>%
+  pivot_wider(names_from = "level", values_from ="energy")
+return(total_year)
+}
+
+country_total_2016 <- extract_total_net(2016)
+country_total_2017 <- extract_total_net(2017)
+country_total_2018 <- extract_total_net(2018)
+
+extract_energy <- function(x){
+total_year <- energy_types %>% 
+  filter(year==x, level == "Level 1") %>%
+  select(-country) %>%
+  pivot_wider(names_from = "type", values_from ="energy")
+return(total_year)
+}
+
+en_types_2016 <- extract_energy(2016)
+en_types_2017 <- extract_energy(2017)
+en_types_2018 <- extract_energy(2018)
+```
+
+```{r, country-in-3y, include=FALSE}
+country_total_3y <- country_total_2016 %>%
+                      left_join(country_total_2017, by=c("country_name")) %>%
+                      left_join(country_total_2018, by=c("country_name")) %>%
+                    mutate(Total_3y = Total.x+Total.y+Total) %>%
+                    select(country_name,Total_3y)
+
+en_types_3y <- en_types_2016 %>%
+                      left_join(en_types_2017, by=c("country_name")) %>%
+                      left_join(en_types_2018, by=c("country_name")) %>%
+                    mutate(Thermal_3y= `Conventional thermal.x`+`Conventional thermal.y` + `Conventional thermal`,
+                           Nuclear_3y = Nuclear.x + Nuclear.y + Nuclear,
+                           Hydro_3y = Hydro + Hydro.x+ Hydro.y,
+                           Wind_3y = Wind.x + Wind.y + Wind,
+                           Solar_3y = Solar.x + Solar.y + Solar,
+                           Geothermal_3y = Geothermal.x + Geothermal.y + Geothermal,
+                           Other_3y = Other.x+Other.y+Other) %>%
+                    select(country_name, Thermal_3y,Nuclear_3y, Hydro_3y, Wind_3y, Solar_3y, Geothermal_3y, Other_3y)
+
+
+en_contribution_3y <- en_types_3y %>%
+  inner_join(country_total_3y, by="country_name") %>%
+  mutate(thermal = round(Thermal_3y/Total_3y*100, digits = 2),
+         nuclear = round(Nuclear_3y/Total_3y*100, digits = 2),
+         hydro = round(Hydro_3y/Total_3y*100, digits = 2),
+         wind = round(Wind_3y/Total_3y*100, digits = 2),
+         solar = round(Solar_3y/Total_3y*100, digits = 2),
+         geothermal = round(Geothermal_3y/Total_3y*100, digits = 2),
+         other = round(Other_3y/Total_3y*100, digits = 2)) %>%
+    select(-c(Thermal_3y, Nuclear_3y, Hydro_3y, Wind_3y, Solar_3y, Geothermal_3y,Other_3y, Total_3y)) 
+```
+
+
+```{r tbl-contribution-europe, include=FALSE, warning=FALSE, message=FALSE}
+get_total <- function(df1,df2,df3){
+  df1 <- df1 %>%
+  summarise(year=min(year), Total = sum(Total))
+  df2 <- df2 %>%
+  summarise(year=min(year), Total = sum(Total))
+  df3 <- df3 %>%
+  summarise(year=min(year),Total = sum(Total))
+ rbind(df1,df2,df3) 
+}
+
+europe_total_production <- get_total(country_total_2016,country_total_2017,country_total_2018)
+
+europe_energy_cont <- function(df){
+  df %>%
+  summarise(year = min(year),
+            Geothermal = sum(Geothermal),
+            Nuclear = sum(Nuclear),
+            Hydro = sum(Hydro),
+            Wind = sum(Wind),
+            Solar = sum(Solar),
+            `Conventional thermal` = sum(`Conventional thermal`),
+            Other = sum(Other))
+}
+
+europe_total_energy <- rbind(europe_energy_cont(en_types_2016),
+                           europe_energy_cont(en_types_2017),
+                           europe_energy_cont(en_types_2018))
+
+europe_energy_contribution <- function(df1,df2){
+df1 %>%
+  left_join(df2, by="year") %>%
+  mutate(Thermal = round(`Conventional thermal`/Total*100, digits = 2),
+         Nuclear = round(Nuclear/Total*100, digits = 2),
+         Hydro = round(Hydro/Total*100, digits = 2),
+         Wind = round(Wind/Total*100, digits = 2),
+         Solar = round(Solar/Total*100, digits = 2),
+         Geothermal = round(Geothermal/Total*100, digits = 2),
+         Other = round(Other/Total*100, digits = 2)) %>%
+    select(-c(`Conventional thermal`, Total)) 
+}
+
+contribute_to_europe <- europe_energy_contribution(europe_total_energy,
+                                                   europe_total_production)
+```
+
+To get the energy proportion, the method we use is to divide the total energy by type by the total energy production. The results obtained are in the form of a percentage. The \@ref(fig:chart-europe) figure shows the percentage of the contribution of energy types to the total electricity production in Europe for three years of observation (2016,2017,2018). The graph produced using `plotly` package. @plotly From the data shown on the graph, in general, there are differences in the contribution of each energy type. Thermal energy is still the most massive supply, with nearly 50% of total European production. Nuclear energy outperforms three renewable energy sources Hydro, Wind, and Solar by more than 20%. Geothermal and other energy sources are the type of energy with the smallest contribution by not reaching 1%.
+
+```{r chart-europe, echo=FALSE, warning=FALSE, message=FALSE, fig.cap="The proportion of each energy type to the total energy production in Europe"}
+library(plotly)
+p <- contribute_to_europe %>%
+    pivot_longer(cols=c(2:8),
+                 names_to = "contribution",
+                 values_to = "value")
+
+ a <- p %>%
+   mutate(contribution_fct = fct_reorder(contribution,value)) %>%
+  ggplot(aes(x=contribution_fct,
+         y=value,
+         fill=contribution)) +
+  geom_bar(stat="identity",
+           position = "dodge",
+           width = 1) +
+ #  geom_text(aes(label=value), position = "stack", hjust=-0.5, size=2.5) +
+   facet_wrap(~year) +
+   
+  ggtitle("Energy source contribution to the total production in Europe")+
+    ylab("percentage") +
+    xlab("") +
+   scale_y_continuous(limits = c(0,100))+
+   coord_flip()+
+   theme_minimal() +
+  theme(legend.position = "none",
+        axis.text.x = element_text(size = 6),
+        axis.text.y = element_text(size=7), 
+        axis.title.y = element_text(size=6),
+        axis.title.x = element_text(size=6),
+        plot.title = element_text(size = 10, face = "bold"),
+        plot.subtitle = element_text(size = 9, face = "bold"))
+
+ggplotly(a, tooltip = c("fill","y"))
+```
+
+Now let us look at the presentation of the energy types for each country in Figure \@ref(fig:plot-contribution-country-3y) In general, the majority of countries in Europe rely on thermal energy as the leading supplier of energy needs in their country. However, it is interesting that Albania relies almost mostly on hydropower. The same situation occurs in Norway and Georgia which rely on hydro over than 80%.
+Meanwhile, The energy intake in France, Slovakia, and Hungary are dominated by nuclear power. France which has 58 nuclear power reactors is the highest country with almost 71% nuclear contribution for its country. @iaea_country While Slovakia and Hungary more than 50% nuclear energy contribution. Denmark is the country with the most significant wind power utilization with nearly 48%, followed by Lithuania and Ireland. As for solar energy, many have adopted it, but the percentage is still small. Italy utilise solar about 8% and Greece around 7.7%. Not many countries use geothermal, only Italy and Turkey with around 2% percentage.
+
+```{r plot-contribution-country, echo=FALSE, warning=FALSE, message=FALSE, fig.cap="The proportion of each energy type to the total energy production in each country"}
+create_plot <- function(df){
+df_tbl <-  df %>%
+    pivot_longer(cols=c(2:8),
+                 names_to = "contribution",
+                 values_to = "value") 
+#df_tbl$contribution = factor(df_tbl$contribution, #levels=c('thermal','nuclear','hydro','wind','solar','geothermal','other'))
+  
+df_tbl %>%
+  mutate(country_fct = fct_reorder(country_name, value)) %>%
+  ggplot(aes(x=country_fct, y= value, fill= contribution)) +
+  geom_col(position = "stack") +
+  theme_minimal() +
+  #facet_wrap(contribution ~., ncol=7) +
+  coord_flip() +
+  ggtitle("Energy source contribution to the total production in 2016-2018")+
+    ylab("percentage") +
+  theme(legend.position = "bottom",
+        legend.title = element_blank(),
+        axis.text.x = element_text(size = 6),
+        axis.text.y = element_text(size=7),
+        axis.title.y = element_blank(),
+        axis.title.x = element_text(size=6),
+        plot.title = element_text(size = 10, face = "bold"),
+        plot.subtitle = element_text(size = 9, face = "bold"))
+}
+```
+
+```{r plot-contribution-country-3y, echo=FALSE, warning=FALSE, message=FALSE, fig.cap="The proportion of each energy type to the total energy production in each country in 3 years"}
+ggplotly(create_plot(en_contribution_3y))
+```
+
+The interesting part if we look at Malta, who did not get a full production of energy. After we check the dataset, found out that the total amount of net production is not equal by sum of energy types production in observation year. As seen in Table \@ref(tab:tbl-malta), Malta did not list any energy type in 2018 except Conventional Thermal. So that there is an insufficient value when we calculate the contributions.
+
+```{r tbl-malta, echo=FALSE}
+malta <- rbind(country_total_2016,
+      country_total_2017,
+      country_total_2018) %>%
+  filter(country_name=="Malta") %>%
+  select(-year, -country_name)
+
+malta_en <- rbind(en_types_2016,
+      en_types_2017,
+      en_types_2018) %>%
+  filter(country_name=="Malta") %>%
+  select(-level)
+
+cbind(malta_en,malta) %>%
+  kable(caption = "Energy type of Malta in 2016-2018") %>%
+  kable_styling("hover")
+```
+
+# Conclusion 
+
+From our analysis we can see France, Germany, Spain, Norway and Sweden are some of the countries that lead the European production of renewable energy with nuclear being the most prominent renewable energy produced. Across all three years the total renewable energy produced exceeds the total conventional thermal energy produced with 2018 being the highest year. However, although this shows positive signs in the movement towards renewable energy, conventional thermal energy still dominates production in many European countries such as Germany and the United Kingdom making just under half the total energy production across Europe across all three years. 
+
+When assessing the exports to imports of energy across Europe we can see France and Germany lead in next exports also being the leading countries in renewable energy production. However, when assessing year to year we can see 2018 showed a net importation of energy compared to the net exportation in 2016 and 2017. 
+
+The energy type contribution of each country is still dominated by conventional thermal. Although some countries supply electricity in their country with renewable energy like Albania with hydro and wind power from Denmark. Solar provides a small percentage of energy supply, but several countries have implemented it.
+
