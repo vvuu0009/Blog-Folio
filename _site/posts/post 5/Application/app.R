@@ -295,8 +295,7 @@ ui <- dashboardPage(
             tabItem(tabName = "dashboard1",
                     fluidPage(
                         titlePanel("FIT5147 Narrative Visualisation Project: Exploring World Health Data"),
-                        h3("Vinny Vu "),
-                        tags$img(src = 'NCD-RisC-Logo.png', height="50%", width="50%")
+                        h3("Vinny Vu ")
                     )
             ),
             tabItem(tabName = "dashboard2",
@@ -523,22 +522,22 @@ server <- function(input, output) {
     output$Country <- renderPlot({
         if (input$healthfac == "Height"){
             height_country_plot + 
-                geom_line(data = filter(height, Country == input$country), aes(colour = "red"), size = 1.1) +
+                geom_line(data = dplyr::filter(height, Country == input$country), aes(colour = "red"), size = 1.1) +
                 theme_minimal()
         }
         else if (input$healthfac == "BMI"){
             BMI_country_plot +     
-                geom_line(data = filter(BMI, Country.Region.World == input$country), aes(colour = "red"), size = 1.1)+
+                geom_line(data = dplyr::filter(BMI, Country.Region.World == input$country), aes(colour = "red"), size = 1.1)+
                 theme_minimal()
         }
         else if (input$healthfac == "Blood Pressure"){
             BP_country_plot +    
-                geom_line(data = filter(BP, Country.Region.World == input$country), aes(colour = "red"), size = 1.1)+
+                geom_line(data = dplyr::filter(BP, Country.Region.World == input$country), aes(colour = "red"), size = 1.1)+
                 theme_minimal()
         }
         else if (input$healthfac == "Cholesterol"){
             Col_country_plot +
-                geom_line(data = filter(Col, Country.Region.World == input$country), aes(colour = "red"), size = 1.1)+
+                geom_line(data = dplyr::filter(Col, Country.Region.World == input$country), aes(colour = "red"), size = 1.1)+
                 theme_minimal()
         }
     })
@@ -710,15 +709,15 @@ server <- function(input, output) {
     
     output$heightcont <- renderPlot({
         if (input$health == "Height"){
-            h1 +  geom_line(data = filter(height, continent == input$continent), aes(group = Country), colour = "grey", alpha = 1/2)+
+            h1 +  geom_line(data = dplyr::filter(height, continent == input$continent), aes(group = Country), colour = "grey", alpha = 1/2)+
                 theme_minimal()
         }
         else if (input$health == "BMI"){
-            BMI_continent + geom_line(data = filter(BMI2, continent == input$continent), aes(y = Mean.BMI, group = Country.Region.World), colour = "grey", alpha = 1/2)+
+            BMI_continent + geom_line(data = dplyr::filter(BMI2, continent == input$continent), aes(y = Mean.BMI, group = Country.Region.World), colour = "grey", alpha = 1/2)+
                 theme_minimal()
         } 
         else if (input$health == "Blood Pressure"){
-            BP_cont + geom_line(data = filter(BP2, continent == input$continent), aes(group = Country.Region.World), colour = "grey", alpha = 1/2)+
+            BP_cont + geom_line(data = dplyr::filter(BP2, continent == input$continent), aes(group = Country.Region.World), colour = "grey", alpha = 1/2)+
                 theme_minimal()
         }
         else if (input$health == "Cholesterol"){
@@ -728,19 +727,19 @@ server <- function(input, output) {
     })
     output$heightwealth <- renderPlot({
         if (input$health == "Height"){
-            h2 + geom_line(data = filter(height_status, Status == input$wealth), aes(group = Country), colour = "grey", alpha = 1/2)+
+            h2 + geom_line(data = dplyr::filter(height_status, Status == input$wealth), aes(group = Country), colour = "grey", alpha = 1/2)+
                 theme_minimal()
         }
         else if (input$health == "BMI"){
-            BMI_wealth + geom_line(data = filter(BMI2, Status == input$wealth), aes(y = Mean.BMI, group = Country.Region.World), colour = "grey", alpha = 1/2)+
+            BMI_wealth + geom_line(data = dplyr::filter(BMI2, Status == input$wealth), aes(y = Mean.BMI, group = Country.Region.World), colour = "grey", alpha = 1/2)+
                 theme_minimal()
         } 
         else if (input$health == "Blood Pressure"){
-            BP_wealth + geom_line(data = filter(BP2, Status == input$wealth), aes(group = Country.Region.World), colour = "grey", alpha = 1/2)+
+            BP_wealth + geom_line(data = dplyr::filter(BP2, Status == input$wealth), aes(group = Country.Region.World), colour = "grey", alpha = 1/2)+
                 theme_minimal()
         }
         else if (input$health == "Cholesterol"){
-            Col_wealth + geom_line(data = filter(Col2, Status == input$wealth), aes(group = Country.Region.World), colour = "grey", alpha = 1/2)+
+            Col_wealth + geom_line(data = dplyr::filter(Col2, Status == input$wealth), aes(group = Country.Region.World), colour = "grey", alpha = 1/2)+
                 theme_minimal()
         }
     })
