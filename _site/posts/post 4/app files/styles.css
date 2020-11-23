@@ -1,0 +1,12 @@
+body {
+  background-color: black;
+  color: white;
+}
+
+.well {
+  background-color: #505050;
+}
+
+div.datatables {
+    color: #fff;
+}
