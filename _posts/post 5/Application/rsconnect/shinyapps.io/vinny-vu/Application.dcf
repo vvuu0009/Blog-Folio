@@ -1,0 +1,12 @@
+name: Application
+title: Application
+username:
+account: vinny-vu
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3285527
+bundleId: 3893356
+url: https://vinny-vu.shinyapps.io/Application/
+when: 1606104265.3618
+asMultiple: FALSE
+asStatic: FALSE

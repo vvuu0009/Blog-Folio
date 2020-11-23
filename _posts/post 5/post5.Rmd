@@ -1,0 +1,25 @@
+---
+title: "World Health Data Application"
+description: |
+  Welcome to my new blog. This blog aims to display the works and projects I have undertaken through my post graduate studies and personal projects
+author:
+  - name: Vinny Vu 
+    url: https://www.linkedin.com/in/vinny-vu-809bb1139/
+date: 11-23-2020
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+# Learn more about creating blogs with Distill at:
+# https://rstudio.github.io/distill/blog.html
+
+```
+
+# Corona Shiny Application 
+
+
+[link](https://vinny-vu.shinyapps.io/coronavirus-shiny-app/)
