@@ -5,8 +5,8 @@ account: vinny-vu
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 3285527
-bundleId: 3893356
+bundleId: 3893371
 url: https://vinny-vu.shinyapps.io/Application/
-when: 1606104265.3618
+when: 1606104619.37782
 asMultiple: FALSE
 asStatic: FALSE
