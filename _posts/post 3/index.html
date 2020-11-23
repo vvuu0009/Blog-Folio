@@ -1,0 +1,3014 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+  <!--radix_placeholder_meta_tags-->
+  <title>ETC5521 Assignment </title>
+  
+  <meta property="description" itemprop="description" content="This explores"/>
+  
+  
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2020-11-23"/>
+  <meta property="article:created" itemprop="dateCreated" content="2020-11-23"/>
+  <meta name="article:author" content="Vinny Vu, Dea Avega Editya, Siyi Li, Aryan Jain"/>
+  
+  <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+  <meta property="og:title" content="ETC5521 Assignment "/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:description" content="This explores"/>
+  <meta property="og:locale" content="en_US"/>
+  
+  <!--  https://dev.twitter.com/cards/types/summary -->
+  <meta property="twitter:card" content="summary"/>
+  <meta property="twitter:title" content="ETC5521 Assignment "/>
+  <meta property="twitter:description" content="This explores"/>
+  
+  <!--/radix_placeholder_meta_tags-->
+  
+  <meta name="citation_reference" content="citation_title=Welcome to the &lt;span class=&quot;nocase&quot;&gt;tidyverse&lt;/span&gt;;citation_publication_date=2019;citation_volume=4;citation_doi=10.21105/joss.01686;citation_author=Hadley Wickham;citation_author=Mara Averick;citation_author=Jennifer Bryan;citation_author=Winston Chang;citation_author=Lucy Dâ€™Agostino McGowan;citation_author=Romain FranÃ§ois;citation_author=Garrett Grolemund;citation_author=Alex Hayes;citation_author=Lionel Henry;citation_author=Jim Hester;citation_author=Max Kuhn;citation_author=Thomas Lin Pedersen;citation_author=Evan Miller;citation_author=Stephan Milton Bache;citation_author=Kirill MÃ¼ller;citation_author=Jeroen Ooms;citation_author=David Robinson;citation_author=Dana Paige Seidel;citation_author=Vitalie Spinu;citation_author=Kohske Takahashi;citation_author=Davis Vaughan;citation_author=Claus Wilke;citation_author=Kara Woo;citation_author=Hiroaki Yutani"/>
+  <meta name="citation_reference" content="citation_title=KableExtra: Construct complex table with â€™kableâ€™ and pipe syntax;citation_publication_date=2019;citation_author=Hao Zhu"/>
+  <meta name="citation_reference" content="citation_title=Romato: API to zomato;citation_publication_date=2020;citation_author=Earo Wang"/>
+  <meta name="citation_reference" content="citation_title=Knitr: A general-purpose package for dynamic report generation in r;citation_publication_date=2020;citation_author=Yihui Xie"/>
+  <meta name="citation_reference" content="citation_title=Dplyr: A grammar of data manipulation;citation_publication_date=2020;citation_author=Hadley Wickham;citation_author=Romain FranÃ§ois;citation_author=Lionel Henry;citation_author=Kirill MÃ¼ller"/>
+  <meta name="citation_reference" content="citation_title=Ggplot2: Elegant graphics for data analysis;citation_publication_date=2016;citation_publisher=Springer-Verlag New York;citation_author=Hadley Wickham"/>
+  <meta name="citation_reference" content="citation_title=Leaflet: Create interactive web maps with the javascript â€™leafletâ€™ library;citation_publication_date=2019;citation_author=Joe Cheng;citation_author=Bhaskar Karambelkar;citation_author=Yihui Xie"/>
+  <meta name="citation_reference" content="citation_title=Readr: Read rectangular text data;citation_publication_date=2018;citation_author=Hadley Wickham;citation_author=Jim Hester;citation_author=Romain Francois"/>
+  <meta name="citation_reference" content="citation_title=Mapview: Interactive viewing of spatial data in r;citation_publication_date=2020;citation_author=Tim Appelhans;citation_author=Florian Detsch;citation_author=Christoph Reudenbach;citation_author=Stefan Woellauer"/>
+  <meta name="citation_reference" content="citation_title=Viridis: Default color maps from â€™matplotlibâ€™;citation_publication_date=2018;citation_author=Simon Garnier"/>
+  <meta name="citation_reference" content="citation_title=Interactive web-based data visualization with r, plotly, and shiny;citation_publication_date=2020;citation_publisher=Chapman; Hall/CRC;citation_author=Carson Sievert"/>
+  <meta name="citation_reference" content="citation_title=Best of melbourne;citation_publication_date=2020;citation_author= Zomato.com"/>
+  <meta name="citation_reference" content="citation_title=Shaping the future of food;citation_publication_date=2020;citation_author= Zomato.com"/>
+  <meta name="citation_reference" content="citation_title=Australiaâ€™s top restaurants: Why we love japanese food and restaurants;citation_publication_date=2018;citation_publisher=Financial Review;citation_author=Natasha Boddy"/>
+  <meta name="citation_reference" content="citation_title=Grinding the numbers â€“ melbourneâ€™s growing coffee loves;citation_publication_date=2016;citation_publisher=City of Journal, RMIT University;citation_author=Joshua Dawe"/>
+  <meta name="citation_reference" content="citation_title=The Japanese Food Boom Shows No Sign Of Slowing Down;citation_publication_date=2017;citation_author=Jake Adelstein"/>
+  <!--radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-rmarkdown-metadata">
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","subtitle","description","author","date","output","bibliography"]}},"value":[{"type":"character","attributes":{},"value":["ETC5521 Assignment "]},{"type":"character","attributes":{},"value":["How sustainable is the energy production in Europe? "]},{"type":"character","attributes":{},"value":["This explores\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Vinny Vu, Dea Avega Editya, Siyi Li, Aryan Jain"]},{"type":"character","attributes":{},"value":["https://www.linkedin.com/in/vinny-vu-809bb1139/"]}]}]},{"type":"character","attributes":{},"value":["11-23-2020"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["references.bib"]}]}
+  </script>
+  <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["assignment4.log","assignment4.pdf","assignment4.tex","assignment4_files/figure-latex/cost-rating-relationship-1.pdf","assignment4_files/figure-latex/create-map-1.pdf","assignment4_files/figure-latex/Cuisine-Type-1.pdf","assignment4_files/figure-latex/Cuisine-Votes-1.pdf","assignment4_files/figure-latex/instagrammable-plot-1.pdf","assignment4_files/figure-latex/price-range-count-1.pdf","assignment4_files/figure-latex/price-ranges-1.pdf","assignment4_files/figure-latex/price-ratings-1.pdf","assignment4_files/figure-latex/rating-count-1.pdf","assignment4_files/figure-latex/review-price-relation-1.pdf","assignment4_files/figure-latex/unnamed-chunk-7-1.pdf","index_files/figure-html5/cost-rating-relationship-1.png","index_files/figure-html5/Cuisine-Type-1.png","index_files/figure-html5/Cuisine-Votes-1.png","index_files/figure-html5/instagrammable-plot-1.png","index_files/figure-html5/price-range-count-1.png","index_files/figure-html5/price-ranges-1.png","index_files/figure-html5/price-ratings-1.png","index_files/figure-html5/rating-count-1.png","index_files/figure-html5/review-price-relation-1.png","LICENSE","logo.jpg","map.png","map_icon.jpeg","monashreport2.tex","preamble.tex","references.bib"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+  <!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+  
+  <style type="text/css">
+  
+  body {
+    background-color: white;
+  }
+  
+  .pandoc-table {
+    width: 100%;
+  }
+  
+  .pandoc-table>caption {
+    margin-bottom: 10px;
+  }
+  
+  .pandoc-table th:not([align]) {
+    text-align: left;
+  }
+  
+  .pagedtable-footer {
+    font-size: 15px;
+  }
+  
+  .html-widget {
+    margin-bottom: 2.0em;
+  }
+  
+  .l-screen-inset {
+    padding-right: 16px;
+  }
+  
+  .l-screen .caption {
+    margin-left: 10px;
+  }
+  
+  .shaded {
+    background: rgb(247, 247, 247);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .shaded .html-widget {
+    margin-bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .shaded .shaded-content {
+    background: white;
+  }
+  
+  .text-output {
+    margin-top: 0;
+    line-height: 1.5em;
+  }
+  
+  .hidden {
+    display: none !important;
+  }
+  
+  d-article {
+    padding-bottom: 30px;
+  }
+  
+  d-appendix {
+    padding-top: 30px;
+  }
+  
+  d-article>p>img {
+    width: 100%;
+  }
+  
+  d-article iframe {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.0em;
+    width: 100%;
+  }
+  
+  figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+  
+  /* CSS for table of contents */
+  
+  .d-toc {
+    color: rgba(0,0,0,0.8);
+    font-size: 0.8em;
+    line-height: 1em;
+  }
+  
+  .d-toc-header {
+    font-size: 0.6rem;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.5);
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 1.3em;
+  }
+  
+  .d-toc a {
+    border-bottom: none;
+  }
+  
+  .d-toc ul {
+    padding-left: 0;
+  }
+  
+  .d-toc li>ul {
+    padding-top: 0.8em;
+    padding-left: 16px;
+    margin-bottom: 0.6em;
+  }
+  
+  .d-toc ul,
+  .d-toc li {
+    list-style-type: none;
+  }
+  
+  .d-toc li {
+    margin-bottom: 0.9em;
+  }
+  
+  .d-toc-separator {
+    margin-top: 20px;
+    margin-bottom: 2em;
+  }
+  
+  .d-article-with-toc {
+    border-top: none;
+    padding-top: 0;
+  }
+  
+  
+  
+  /* Tweak code blocks (note that this CSS is repeated above in an injection
+     into the d-code shadow dom) */
+  
+  d-code {
+    overflow-x: auto !important;
+  }
+  
+  pre.d-code code.d-code {
+    padding-left: 10px;
+    font-size: 12px;
+    border-left: 2px solid rgba(0,0,0,0.1);
+  }
+  
+  pre.text-output {
+  
+    font-size: 12px;
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+  
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+  
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+  
+  @media(min-width: 768px) {
+  
+  d-code {
+    overflow-x: visible !important;
+  }
+  
+  pre.d-code code.d-code  {
+      padding-left: 18px;
+      font-size: 14px;
+  }
+  pre.text-output {
+    font-size: 14px;
+  }
+  }
+  
+  /* Figure */
+  
+  .figure {
+    position: relative;
+    margin-bottom: 2.5em;
+    margin-top: 1.5em;
+  }
+  
+  .figure img {
+    width: 100%;
+  }
+  
+  .figure .caption {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    line-height: 1.5em;
+  }
+  
+  .figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+  
+  .figure .caption a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+  
+  .figure .caption b,
+  .figure .caption strong, {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1.0);
+  }
+  
+  
+  
+  /* Tweak 1000px media break to show more text */
+  
+  @media(min-width: 1000px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 16px;
+    }
+  
+    .grid {
+      grid-column-gap: 16px;
+    }
+  
+    d-article {
+      font-size: 1.06rem;
+      line-height: 1.7em;
+    }
+    figure .caption, .figure .caption, figure figcaption {
+      font-size: 13px;
+    }
+  }
+  
+  @media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 32px;
+    }
+  
+    .grid {
+      grid-column-gap: 32px;
+    }
+  }
+  
+  
+  /* Get the citation styles for the appendix (not auto-injected on render since
+     we do our own rendering of the citation appendix) */
+  
+  d-appendix .citation-appendix,
+  .d-appendix .citation-appendix {
+    font-size: 11px;
+    line-height: 15px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 18px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.02);
+    padding: 10px 18px;
+    border-radius: 3px;
+    color: rgba(150, 150, 150, 1);
+    overflow: hidden;
+    margin-top: -12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  
+  
+  /* Social footer */
+  
+  .social_footer {
+    margin-top: 30px;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.67);
+  }
+  
+  .disqus-comments {
+    margin-right: 30px;
+  }
+  
+  .disqus-comment-count {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+  
+  #disqus_thread {
+    margin-top: 30px;
+  }
+  
+  .article-sharing a {
+    border-bottom: none;
+    margin-right: 8px;
+  }
+  
+  .article-sharing a:hover {
+    border-bottom: none;
+  }
+  
+  .sidebar-section.subscribe {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+  
+  .subscribe p {
+    margin-bottom: 0.5em;
+  }
+  
+  
+  .article-footer .subscribe {
+    font-size: 15px;
+    margin-top: 45px;
+  }
+  
+  
+  .sidebar-section.custom {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+  
+  .custom p {
+    margin-bottom: 0.5em;
+  }
+  
+  
+  /* Improve display for browsers without grid (IE/Edge <= 15) */
+  
+  .downlevel {
+    line-height: 1.6em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+  }
+  
+  .downlevel .d-title {
+    padding-top: 6rem;
+    padding-bottom: 1.5rem;
+  }
+  
+  .downlevel .d-title h1 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+  }
+  
+  .downlevel .d-title p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.55em;
+    margin-top: 0;
+  }
+  
+  .downlevel .d-byline {
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    font-size: 0.8rem;
+    line-height: 1.8em;
+  }
+  
+  .downlevel .section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .downlevel .d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+  
+  
+  .downlevel .d-appendix {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: none;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.5);
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+  
+  .downlevel .footnotes ol {
+    padding-left: 13px;
+  }
+  
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  
+  @media(min-width: 768px) {
+    .downlevel .base-grid,
+    .downlevel .distill-header,
+    .downlevel .d-title,
+    .downlevel .d-abstract,
+    .downlevel .d-article,
+    .downlevel .d-appendix,
+    .downlevel .distill-appendix,
+    .downlevel .d-byline,
+    .downlevel .d-footnote-list,
+    .downlevel .d-citation-list,
+    .downlevel .distill-footer,
+    .downlevel .appendix-bottom,
+    .downlevel .posts-container {
+    padding-left: 150px;
+    padding-right: 150px;
+    max-width: 900px;
+  }
+  }
+  
+  .downlevel pre code {
+    display: block;
+    border-left: 2px solid rgba(0, 0, 0, .1);
+    padding: 0 0 0 20px;
+    font-size: 14px;
+  }
+  
+  .downlevel code, .downlevel pre {
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+  
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+  
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+  
+  </style>
+  
+  <script type="application/javascript">
+  
+  function is_downlevel_browser() {
+    if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                   window.navigator.userAgent)) {
+      return true;
+    } else {
+      return window.load_distill_framework === undefined;
+    }
+  }
+  
+  // show body when load is complete
+  function on_load_complete() {
+  
+    // set body to visible
+    document.body.style.visibility = 'visible';
+  
+    // force redraw for leaflet widgets
+    if (window.HTMLWidgets) {
+      var maps = window.HTMLWidgets.findAll(".leaflet");
+      $.each(maps, function(i, el) {
+        var map = this.getMap();
+        map.invalidateSize();
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.TileLayer)
+            layer.redraw();
+        });
+      });
+    }
+  
+    // trigger 'shown' so htmlwidgets resize
+    $('d-article').trigger('shown');
+  }
+  
+  function init_distill() {
+  
+    init_common();
+  
+    // create front matter
+    var front_matter = $('<d-front-matter></d-front-matter>');
+    $('#distill-front-matter').wrap(front_matter);
+  
+    // create d-title
+    $('.d-title').changeElementType('d-title');
+  
+    // create d-byline
+    var byline = $('<d-byline></d-byline>');
+    $('.d-byline').replaceWith(byline);
+  
+    // create d-article
+    var article = $('<d-article></d-article>');
+    $('.d-article').wrap(article).children().unwrap();
+  
+    // move posts container into article
+    $('.posts-container').appendTo($('d-article'));
+  
+    // create d-appendix
+    $('.d-appendix').changeElementType('d-appendix');
+  
+    // create d-bibliography
+    var bibliography = $('<d-bibliography></d-bibliography>');
+    $('#distill-bibliography').wrap(bibliography);
+  
+    // flag indicating that we have appendix items
+    var appendix = $('.appendix-bottom').children('h3').length > 0;
+  
+    // replace citations with <d-cite>
+    $('.citation').each(function(i, val) {
+      appendix = true;
+      var cites = $(this).attr('data-cites').split(" ");
+      var dt_cite = $('<d-cite></d-cite>');
+      dt_cite.attr('key', cites.join());
+      $(this).replaceWith(dt_cite);
+    });
+    // remove refs
+    $('#refs').remove();
+  
+    // replace footnotes with <d-footnote>
+    $('.footnote-ref').each(function(i, val) {
+      appendix = true;
+      var href = $(this).attr('href');
+      var id = href.replace('#', '');
+      var fn = $('#' + id);
+      var fn_p = $('#' + id + '>p');
+      fn_p.find('.footnote-back').remove();
+      var text = fn_p.html();
+      var dtfn = $('<d-footnote></d-footnote>');
+      dtfn.html(text);
+      $(this).replaceWith(dtfn);
+    });
+    // remove footnotes
+    $('.footnotes').remove();
+  
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      var id = $(this).attr('id');
+      $('.d-toc a[href="#' + id + '"]').parent().remove();
+      appendix = true;
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+    });
+  
+    // show d-appendix if we have appendix content
+    $("d-appendix").css('display', appendix ? 'grid' : 'none');
+  
+    // replace code blocks with d-code
+    $('pre>code').each(function(i, val) {
+      var code = $(this);
+      var pre = code.parent();
+      var clz = "";
+      var language = pre.attr('class');
+      if (language) {
+        // map unknown languages to "clike" (without this they just dissapear)
+        if ($.inArray(language, ["bash", "clike", "css", "go", "html",
+                                 "javascript", "js", "julia", "lua", "markdown",
+                                 "markup", "mathml", "python", "svg", "xml"]) == -1)
+          language = "clike";
+        language = ' language="' + language + '"';
+        var dt_code = $('<d-code block' + language + clz + '></d-code>');
+        dt_code.text(code.text());
+        pre.replaceWith(dt_code);
+      } else {
+        code.addClass('text-output').unwrap().changeElementType('pre');
+      }
+    });
+  
+    // localize layout chunks to just output
+    $('.layout-chunk').each(function(i, val) {
+  
+      // capture layout
+      var layout = $(this).attr('data-layout');
+  
+      // apply layout to markdown level block elements
+      var elements = $(this).children().not('d-code, pre.text-output, script');
+      elements.each(function(i, el) {
+        var layout_div = $('<div class="' + layout + '"></div>');
+        if (layout_div.hasClass('shaded')) {
+          var shaded_content = $('<div class="shaded-content"></div>');
+          $(this).wrap(shaded_content);
+          $(this).parent().wrap(layout_div);
+        } else {
+          $(this).wrap(layout_div);
+        }
+      });
+  
+  
+      // unwrap the layout-chunk div
+      $(this).children().unwrap();
+    });
+  
+    // load distill framework
+    load_distill_framework();
+  
+    // wait for window.distillRunlevel == 4 to do post processing
+    function distill_post_process() {
+  
+      if (!window.distillRunlevel || window.distillRunlevel < 4)
+        return;
+  
+      // hide author/affiliations entirely if we have no authors
+      var front_matter = JSON.parse($("#distill-front-matter").html());
+      var have_authors = front_matter.authors && front_matter.authors.length > 0;
+      if (!have_authors)
+        $('d-byline').addClass('hidden');
+  
+      // table of contents
+      if (have_authors) // adjust border if we are in authors
+        $('.d-toc').parent().addClass('d-article-with-toc');
+  
+      // strip links that point to #
+      $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+  
+      // hide elements of author/affiliations grid that have no value
+      function hide_byline_column(caption) {
+        $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+      }
+  
+      // affiliations
+      var have_affiliations = false;
+      for (var i = 0; i<front_matter.authors.length; ++i) {
+        var author = front_matter.authors[i];
+        if (author.affiliation !== "&nbsp;") {
+          have_affiliations = true;
+          break;
+        }
+      }
+      if (!have_affiliations)
+        $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+  
+      // published date
+      if (!front_matter.publishedDate)
+        hide_byline_column("Published");
+  
+      // document object identifier
+      var doi = $('d-byline').find('h3:contains("DOI")');
+      var doi_p = doi.next().empty();
+      if (!front_matter.doi) {
+        // if we have a citation and valid citationText then link to that
+        if ($('#citation').length > 0 && front_matter.citationText) {
+          doi.html('Citation');
+          $('<a href="#citation"></a>')
+            .text(front_matter.citationText)
+            .appendTo(doi_p);
+        } else {
+          hide_byline_column("DOI");
+        }
+      } else {
+        $('<a></a>')
+           .attr('href', "https://doi.org/" + front_matter.doi)
+           .html(front_matter.doi)
+           .appendTo(doi_p);
+      }
+  
+       // change plural form of authors/affiliations
+      if (front_matter.authors.length === 1) {
+        var grid = $('.authors-affiliations');
+        grid.children('h3:contains("Authors")').text('Author');
+        grid.children('h3:contains("Affiliations")').text('Affiliation');
+      }
+  
+      // inject pre code styles (can't do this with a global stylesheet b/c a shadow root is used)
+      $('d-code').each(function(i, val) {
+        var style = document.createElement('style');
+        style.innerHTML = 'pre code { padding-left: 10px; font-size: 12px; border-left: 2px solid rgba(0,0,0,0.1); } ' +
+                          '@media(min-width: 768px) { pre code { padding-left: 18px; font-size: 14px; } }';
+        if (this.shadowRoot)
+          this.shadowRoot.appendChild(style);
+      });
+  
+      // move appendix-bottom entries to the bottom
+      $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+      $('.appendix-bottom').remove();
+  
+      // clear polling timer
+      clearInterval(tid);
+  
+      // show body now that everything is ready
+      on_load_complete();
+    }
+  
+    var tid = setInterval(distill_post_process, 50);
+    distill_post_process();
+  
+  }
+  
+  function init_downlevel() {
+  
+    init_common();
+  
+     // insert hr after d-title
+    $('.d-title').after($('<hr class="section-separator"/>'));
+  
+    // check if we have authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+  
+    // manage byline/border
+    if (!have_authors)
+      $('.d-byline').remove();
+    $('.d-byline').after($('<hr class="section-separator"/>'));
+    $('.d-byline a').remove();
+  
+    // remove toc
+    $('.d-toc-header').remove();
+    $('.d-toc').remove();
+    $('.d-toc-separator').remove();
+  
+    // move appendix elements
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+    });
+  
+  
+    // inject headers into references and footnotes
+    var refs_header = $('<h3></h3>');
+    refs_header.text('References');
+    $('#refs').prepend(refs_header);
+  
+    var footnotes_header = $('<h3></h3');
+    footnotes_header.text('Footnotes');
+    $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+  
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+  
+    // remove appendix if it's empty
+    if ($('.d-appendix').children().length === 0)
+      $('.d-appendix').remove();
+  
+    // prepend separator above appendix
+    $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+  
+    // trim code
+    $('pre>code').each(function(i, val) {
+      $(this).html($.trim($(this).html()));
+    });
+  
+    // move posts-container right before article
+    $('.posts-container').insertBefore($('.d-article'));
+  
+    $('body').addClass('downlevel');
+  
+    on_load_complete();
+  }
+  
+  
+  function init_common() {
+  
+    // jquery plugin to change element types
+    (function($) {
+      $.fn.changeElementType = function(newType) {
+        var attrs = {};
+  
+        $.each(this[0].attributes, function(idx, attr) {
+          attrs[attr.nodeName] = attr.nodeValue;
+        });
+  
+        this.replaceWith(function() {
+          return $("<" + newType + "/>", attrs).append($(this).contents());
+        });
+      };
+    })(jQuery);
+  
+    // prevent underline for linked images
+    $('a > img').parent().css({'border-bottom' : 'none'});
+  
+    // mark non-body figures created by knitr chunks as 100% width
+    $('.layout-chunk').each(function(i, val) {
+      var figures = $(this).find('img, .html-widget');
+      if ($(this).attr('data-layout') !== "l-body") {
+        figures.css('width', '100%');
+      } else {
+        figures.css('max-width', '100%');
+        figures.filter("[width]").each(function(i, val) {
+          var fig = $(this);
+          fig.css('width', fig.attr('width') + 'px');
+        });
+  
+      }
+    });
+  
+    // auto-append index.html to post-preview links in file: protocol
+    // and in rstudio ide preview
+    $('.post-preview').each(function(i, val) {
+      if (window.location.protocol === "file:")
+        $(this).attr('href', $(this).attr('href') + "index.html");
+    });
+  
+    // get rid of index.html references in header
+    if (window.location.protocol !== "file:") {
+      $('.distill-site-header a[href]').each(function(i,val) {
+        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+      });
+    }
+  
+    // add class to pandoc style tables
+    $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+    $('.kable-table').children('table').addClass('pandoc-table');
+  
+    // add figcaption style to table captions
+    $('caption').parent('table').addClass("figcaption");
+  
+    // initialize posts list
+    if (window.init_posts_list)
+      window.init_posts_list();
+  
+    // implmement disqus comment link
+    $('.disqus-comment-count').click(function() {
+      window.headroom_prevent_pin = true;
+      $('#disqus_thread').toggleClass('hidden');
+      if (!$('#disqus_thread').hasClass('hidden')) {
+        var offset = $(this).offset();
+        $(window).resize();
+        $('html, body').animate({
+          scrollTop: offset.top - 35
+        });
+      }
+    });
+  }
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    if (is_downlevel_browser())
+      init_downlevel();
+    else
+      window.addEventListener('WebComponentsReady', init_distill);
+  });
+  
+  </script>
+  
+  <!--/radix_placeholder_distill-->
+  <script src="index_files/kePrint-0.0.1/kePrint.js"></script>
+  <link href="index_files/lightable-0.0.1/lightable.css" rel="stylesheet" />
+  <script src="index_files/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+  <script src="index_files/jquery-1.12.4/jquery.min.js"></script>
+  <link href="index_files/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+  <script src="index_files/leaflet-1.3.1/leaflet.js"></script>
+  <link href="index_files/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+  <script src="index_files/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+  <script src="index_files/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+  <link href="index_files/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+  <script src="index_files/leaflet-binding-2.0.3/leaflet.js"></script>
+  <script src="index_files/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+  <script src="index_files/leaflet-providers-plugin-2.0.3/leaflet-providers-plugin.js"></script>
+  <script src="index_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="index_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="index_files/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+  <!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"ETC5521 Assignment ","description":"This explores","authors":[{"author":"Vinny Vu, Dea Avega Editya, Siyi Li, Aryan Jain","authorURL":"https://www.linkedin.com/in/vinny-vu-809bb1139/","affiliation":"&nbsp;","affiliationURL":"#"}],"publishedDate":"2020-11-23T00:00:00.000+11:00","citationText":"Jain, 2020"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>ETC5521 Assignment</h1>
+<p><p>This explores</p></p>
+</div>
+
+<div class="d-byline">
+  Vinny Vu, Dea Avega Editya, Siyi Li, Aryan Jain <a href="https://www.linkedin.com/in/vinny-vu-809bb1139/" class="uri">https://www.linkedin.com/in/vinny-vu-809bb1139/</a> 
+  
+<br/>11-23-2020
+</div>
+
+<div class="d-article">
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+
+
+<h1 id="introduction">Introduction</h1>
+<p>For this assignment we will be looking at scrapping data from Zomato, one of the largest foods aggregators in the world <span class="citation" data-cites="zomato">Zomato.com (<a href="#ref-zomato" role="doc-biblioref">2020</a><a href="#ref-zomato" role="doc-biblioref">b</a>)</span>. Zomato provides information on restaurants including, price, location, reviews and more. For the purposes on our analysis we will be looking at the best of Melbourne list <span class="citation" data-cites="zomatomelb">Zomato.com (<a href="#ref-zomatomelb" role="doc-biblioref">2020</a><a href="#ref-zomatomelb" role="doc-biblioref">a</a>)</span> to gain insight into some of the most popular restaurants in Melbourne.</p>
+<p>This report will include four sections looking at:</p>
+<ul>
+<li>Is expensive food better than cheap food?</li>
+<li>Finding the very best restaurants in Melbourne</li>
+<li>Popularity of different cuisine in Melbourne</li>
+<li>Exploring restaurants with gluten free food in Melbourne</li>
+</ul>
+<p>In this report we have used the following packages <span class="citation" data-cites="tidyverse">Wickham et al. (<a href="#ref-tidyverse" role="doc-biblioref">2019</a>)</span>, <span class="citation" data-cites="romato">Wang (<a href="#ref-romato" role="doc-biblioref">2020</a>)</span>, <span class="citation" data-cites="kableExtra">Zhu (<a href="#ref-kableExtra" role="doc-biblioref">2019</a>)</span>, <span class="citation" data-cites="knitr">Xie (<a href="#ref-knitr" role="doc-biblioref">2020</a>)</span>, <span class="citation" data-cites="dplyr">Wickham et al. (<a href="#ref-dplyr" role="doc-biblioref">2020</a>)</span>, <span class="citation" data-cites="ggplot2">Wickham (<a href="#ref-ggplot2" role="doc-biblioref">2016</a>)</span>, <span class="citation" data-cites="leaflet">Cheng, Karambelkar, and Xie (<a href="#ref-leaflet" role="doc-biblioref">2019</a>)</span>, <span class="citation" data-cites="readr">Wickham, Hester, and Francois (<a href="#ref-readr" role="doc-biblioref">2018</a>)</span>, <span class="citation" data-cites="mapview">Appelhans et al. (<a href="#ref-mapview" role="doc-biblioref">2020</a>)</span>, <span class="citation" data-cites="viridis">Garnier (<a href="#ref-viridis" role="doc-biblioref">2018</a>)</span>, <span class="citation" data-cites="plotly">Sievert (<a href="#ref-plotly" role="doc-biblioref">2020</a>)</span>.</p>
+
+<h1 id="is-expensive-food-better-than-cheap-food">Is expensive food better than cheap food?</h1>
+<p>In this section we will be using the Zomato Best of Melbourne to explore whether expensive food is “better” than cheap food. To conduct this analysis, we will be looking at:</p>
+<ul>
+<li>What is considered cheap and expensive food</li>
+<li>What the breakdown of price ranges of the restaurants is</li>
+<li>Comparing prices and aggregate ratings</li>
+<li>Determining whether there is a relationship between prices and ratings</li>
+</ul>
+<h2 id="what-is-considered-cheap-and-expensive-food">What is considered cheap and expensive food?</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span id="fig:price-ranges"></span>
+<img src="index_files/figure-html5/price-ranges-1.png" alt="Price Ranges" width="624" />
+<p class="caption">
+Figure 1: Price Ranges
+</p>
+</div>
+</div>
+<p>From Figure <a href="#fig:price-ranges">1</a> we can see Zomato breaks down price ranges into 4 categories with 4 being the most expensive to 1 being the least expensive.</p>
+<div class="layout-chunk" data-layout="l-body">
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:price-range-table">Table 1: </span>Price Ranges
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+Price Range
+</th>
+<th style="text-align:right;">
+Maximum
+</th>
+<th style="text-align:right;">
+Median
+</th>
+<th style="text-align:right;">
+Minimum
+</th>
+<th style="text-align:right;">
+Range
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+45
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+15
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+90
+</td>
+<td style="text-align:right;">
+60
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+40
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+600
+</td>
+<td style="text-align:right;">
+150
+</td>
+<td style="text-align:right;">
+100
+</td>
+<td style="text-align:right;">
+500
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>From Table <a href="#tab:price-range-table">1</a> we can see the range of prices that make up each price category.</p>
+<h2 id="what-the-breakdown-of-price-ranges-of-the-restaurants">What the breakdown of price ranges of the restaurants?</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span id="fig:price-range-count"></span>
+<img src="index_files/figure-html5/price-range-count-1.png" alt="Price Range Counts" width="480" />
+<p class="caption">
+Figure 2: Price Range Counts
+</p>
+</div>
+</div>
+<p>From Figure <a href="#fig:price-range-count">2</a> We can see price range 3 has the most counts. One thing to note however is price range 3 has a range of $40 compared to 1 and 2 which is $10 and $15, respectively. It may be unfair to conclude there is a higher count of more expensive food as the ranges included in the expensive ranges are larger than the lower ones.</p>
+<h2 id="comparing-prices-and-aggregate-ratings">Comparing prices and aggregate ratings</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span id="fig:price-ratings"></span>
+<img src="index_files/figure-html5/price-ratings-1.png" alt="Price Ranges to Aggregate Ratings" width="624" />
+<p class="caption">
+Figure 3: Price Ranges to Aggregate Ratings
+</p>
+</div>
+</div>
+<p>From Figure <a href="#fig:price-ratings">3</a> we can see the median aggregate rating for price range 1 is the highest. In fact, we can see a large amount of lower priced restaurants outranking higher priced restaurants in terms of aggregate ratings.</p>
+<h2 id="is-there-a-relationship-between-prices-and-ratings">Is there a relationship between prices and ratings</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span id="fig:cost-rating-relationship"></span>
+<img src="index_files/figure-html5/cost-rating-relationship-1.png" alt="Average Cost for Two to Aggregate Rating Relationship" width="624" />
+<p class="caption">
+Figure 4: Average Cost for Two to Aggregate Rating Relationship
+</p>
+</div>
+</div>
+<p>From Figure <a href="#fig:cost-rating-relationship">4</a> we can see there is not a strong relationship between the average cost for two and the aggregate ratings suggesting there is no relationship between price and food quality. We see a slight upwards trend at the higher price levels. However, this is only based on 5 restaurants with drastically higher prices. We see most of the restaurants fall below the $200 price point. This might even suggest lower priced restaurants out rank the higher priced restaurants due to the higher count.</p>
+<div class="layout-chunk" data-layout="l-body">
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:rating-ranges">Table 2: </span>Rating Ranges
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Rating Text
+</th>
+<th style="text-align:right;">
+Maximum
+</th>
+<th style="text-align:right;">
+Minimum
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Excellent
+</td>
+<td style="text-align:right;">
+4.9
+</td>
+<td style="text-align:right;">
+4.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Very Good
+</td>
+<td style="text-align:right;">
+4.4
+</td>
+<td style="text-align:right;">
+4.1
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Table <a href="#tab:rating-ranges">2</a> shows range of aggregate ratings that make up each rating levels.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span id="fig:rating-count"></span>
+<img src="index_files/figure-html5/rating-count-1.png" alt="Average Rating Count" width="624" />
+<p class="caption">
+Figure 5: Average Rating Count
+</p>
+</div>
+</div>
+<p>From Figure <a href="#fig:rating-count">5</a> we can see restaurants in the second and fourth price category all rank in either the very good or excellent category. 3 has the highest count in all categories, however, this may be due to the higher count. We see all price levels have restaurants with high ratings.</p>
+
+<h1 id="finding-the-very-best-restaurants-of-melbourne">Finding The Very Best Restaurants of Melbourne</h1>
+<p>This section is covering composition and distribution of the very best restaurants in Melbourne-Victoria. In order to find the very best restaurant, this report will filter out 100 restaurants which are listed in <strong>“Best of Melbourne”</strong> category on Zomato’s website. The very best restaurants are described as one which has rating equals to or more than 4.8 out of 5. After filtered out the dataset, several highest-rated restaurants fill the top list as shown in table <a href="#tab:best-restaurant">3</a>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<table class="table" style="font-size: 8px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:best-restaurant">Table 3: </span>The Very Best Restaurants in Melbourne According to Zomato Rating
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+name
+</th>
+<th style="text-align:left;">
+cuisines
+</th>
+<th style="text-align:left;">
+locality
+</th>
+<th style="text-align:right;">
+price_for_two
+</th>
+<th style="text-align:right;">
+rating
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Tipo 00
+</td>
+<td style="text-align:left;">
+Italian
+</td>
+<td style="text-align:left;">
+CBD
+</td>
+<td style="text-align:right;">
+150
+</td>
+<td style="text-align:right;">
+4.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Minamishima
+</td>
+<td style="text-align:left;">
+Japanese, Sushi
+</td>
+<td style="text-align:left;">
+Richmond
+</td>
+<td style="text-align:right;">
+450
+</td>
+<td style="text-align:right;">
+4.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Dexter
+</td>
+<td style="text-align:left;">
+American, BBQ
+</td>
+<td style="text-align:left;">
+Preston
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:right;">
+4.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Le Petit Gateau
+</td>
+<td style="text-align:left;">
+French, Desserts, Coffee and Tea
+</td>
+<td style="text-align:left;">
+CBD
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+4.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Vue de monde
+</td>
+<td style="text-align:left;">
+Australian, Contemporary
+</td>
+<td style="text-align:left;">
+CBD
+</td>
+<td style="text-align:right;">
+600
+</td>
+<td style="text-align:right;">
+4.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Lune Croissanterie
+</td>
+<td style="text-align:left;">
+Bakery, French
+</td>
+<td style="text-align:left;">
+Fitzroy
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+4.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Beatrix
+</td>
+<td style="text-align:left;">
+Coffee and Tea, Bakery
+</td>
+<td style="text-align:left;">
+North Melbourne
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+4.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Patricia Coffee Brewers
+</td>
+<td style="text-align:left;">
+Coffee and Tea
+</td>
+<td style="text-align:left;">
+CBD
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+4.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Agathé Pâtisserie
+</td>
+<td style="text-align:left;">
+Bakery, Patisserie
+</td>
+<td style="text-align:left;">
+South Melbourne Market, South Melbourne
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+4.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hinoki Japanese Pantry
+</td>
+<td style="text-align:left;">
+Japanese, Sushi
+</td>
+<td style="text-align:left;">
+Fitzroy
+</td>
+<td style="text-align:right;">
+55
+</td>
+<td style="text-align:right;">
+4.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Humble Rays
+</td>
+<td style="text-align:left;">
+Coffee and Tea, Cafe Food, Asian Fusion
+</td>
+<td style="text-align:left;">
+Carlton
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+4.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Rice Paper Scissors
+</td>
+<td style="text-align:left;">
+Asian Fusion, Tapas
+</td>
+<td style="text-align:left;">
+CBD
+</td>
+<td style="text-align:right;">
+80
+</td>
+<td style="text-align:right;">
+4.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Shanklin Cafe
+</td>
+<td style="text-align:left;">
+Modern Australian, Coffee and Tea, Cafe Food
+</td>
+<td style="text-align:left;">
+Hawthorn
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+4.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Bibelot
+</td>
+<td style="text-align:left;">
+Desserts, Ice Cream, Cafe Food, Coffee and Tea
+</td>
+<td style="text-align:left;">
+South Melbourne
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+4.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Aka Siro
+</td>
+<td style="text-align:left;">
+Japanese
+</td>
+<td style="text-align:left;">
+Collingwood
+</td>
+<td style="text-align:right;">
+80
+</td>
+<td style="text-align:right;">
+4.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+La Belle Miette
+</td>
+<td style="text-align:left;">
+Desserts, French, Coffee and Tea
+</td>
+<td style="text-align:left;">
+CBD
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+4.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Attica
+</td>
+<td style="text-align:left;">
+Australian, Contemporary
+</td>
+<td style="text-align:left;">
+Ripponlea
+</td>
+<td style="text-align:right;">
+600
+</td>
+<td style="text-align:right;">
+4.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Shira Nui
+</td>
+<td style="text-align:left;">
+Sushi, Japanese
+</td>
+<td style="text-align:left;">
+Glen Waverley
+</td>
+<td style="text-align:right;">
+150
+</td>
+<td style="text-align:right;">
+4.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+The Proud Peacock
+</td>
+<td style="text-align:left;">
+Chinese, Thai, Vietnamese
+</td>
+<td style="text-align:left;">
+Mount Waverley
+</td>
+<td style="text-align:right;">
+45
+</td>
+<td style="text-align:right;">
+4.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Punch Lane
+</td>
+<td style="text-align:left;">
+Mediterranean, Modern Australian
+</td>
+<td style="text-align:left;">
+CBD
+</td>
+<td style="text-align:right;">
+150
+</td>
+<td style="text-align:right;">
+4.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Burch &amp; Purchese Sweet Studio
+</td>
+<td style="text-align:left;">
+Desserts
+</td>
+<td style="text-align:left;">
+South Yarra
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+4.8
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>From table <a href="#tab:best-restaurant">3</a> above, there are twelve restaurants which have minimum rating 4.8 out of 5 hence can be described as the very best restaurants in Melbourne. The prices, cuisines and locations in the top list are vary but with some patterns that will be further explored in the following paragraphs.</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<p>Regarding the average price and location of the restaurants, figure <a href="#fig:maps"><strong>??</strong></a> shows the map plot of these highest-rated restaurants with their attribute of average food price for two person. The average price for two persons is differentiated by color, while larger circle indicates higher rating (4.9).</p>
+<p>It is seen from the figure <a href="#fig:maps"><strong>??</strong></a> that three restaurants are located in CBD, which is not surprising given the nature of CBD as the epicenter of Melbourne. Other restaurants are relatively still located close to CBD like Fitzroy, North Melbourne, Carlton and Hawthorn where eight restaurants base in. One outlier from the list is Shira Nui restaurant, where its location is quite far away from other restaurants in the group. This Japanese-sushi restaurant is located in Glen Waverley suburb which is about one and half hour driving from the CBD.</p>
+<p>Furthermore, 4 out of 12 highest-rated restaurants in Melbourne are Japanese-Sushi Restaurants, three are coffee shops, while the rest are french and Australian food restaurants as indicated by figure <a href="#fig:map-icon"><strong>??</strong></a>. This fact support an opinion that “Japanese food is still growing since UNESCO declared Japanese cuisine to be an Intangible Cultural Heritage in 2013” <span class="citation" data-cites="sushi">Adelstein (<a href="#ref-sushi" role="doc-biblioref">2017</a>)</span>.</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<p>Furthermore, 4 out of 12 highest-rated restaurants in Melbourne are Japanese-Sushi Restaurants, three are coffee shops, while the rest are french and australian food restaurants as shown by figure <a href="#fig:map-icon"><strong>??</strong></a>. This fact support an opinion that “japanese food is still growing since UNESCO declared Japanese cuisine to be an Intangible Cultural Heritage in 2013” <span class="citation" data-cites="sushi">Adelstein (<a href="#ref-sushi" role="doc-biblioref">2017</a>)</span>.</p>
+
+<h1 id="popularity-of-different-cuisines-in-melbourne">Popularity of different cuisines in Melbourne</h1>
+<p>In this section we will look at the popularity of different cuisines in Melbourne. The analysis is based on the total votes restaurants serving these cuisine have.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span id="fig:Cuisine-Type"></span>
+<img src="index_files/figure-html5/Cuisine-Type-1.png" alt="Number of restaurants for different Cuisines in Melbourne" width="624" />
+<p class="caption">
+Figure 6: Number of restaurants for different Cuisines in Melbourne
+</p>
+</div>
+</div>
+<p>From Figure <a href="#fig:Cuisine-Type">6</a>, we can see that Japanese cuisine dominates the Melbourne CBD area, with more than 25 restaurants. Korean and Chinese cuisine are second popular with more than 10 restaurants serving these cuisine in the CBD Area. Also we see that CBD has lots of Cafes which can be related to the nature of the area given that CBD is a business hub with a fast pace environment. According to <span class="citation" data-cites="Coffee">Dawe (<a href="#ref-Coffee" role="doc-biblioref">2016</a>)</span> while many people still rely on a quick takeaway on their way to work or on a break from the office, many cafe’s have transformed into restaurants and dining spaces where people can enjoy their hot beverage over a meal or even just to sit down with friends or work colleagues.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span id="fig:Cuisine-Votes"></span>
+<img src="index_files/figure-html5/Cuisine-Votes-1.png" alt="Number of Votes for different Cuisines in Melbourne" width="624" />
+<p class="caption">
+Figure 7: Number of Votes for different Cuisines in Melbourne
+</p>
+</div>
+</div>
+<p>From Figure <a href="#fig:Cuisine-Votes">7</a>, we can look at the number of votes for different cuisine types. The popularity of a cuisine can largely be explained the number of votes it gets. Japanese cuisine is very popular. According to <span class="citation" data-cites="ATR">Boddy (<a href="#ref-ATR" role="doc-biblioref">2018</a>)</span>, ‘Chefs and restaurant owners agree diners have become more discerning and want healthy, sustainable and honest food’. The growing popularity has made Japanese restaurants a regular feature on the top restaurants list.</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<p>In Table <a href="#tab:top10-Jap"><strong>??</strong></a> we can look at the top ten popular Japanese restaurants with votes count and the locality they are in.</p>
+
+<h1 id="exploring-gluten-free-foodrestaurants-in-melbourne">Exploring gluten free food/restaurants in Melbourne</h1>
+<p>In this section we will be looking into restaurants with gluten free food.</p>
+<p>We will explore high end restaurants which offer gluten free food. To look for a good restaurant we will be using aggregate ratings. Popular restaurants will have more then 500 reviews. Being realistic, calculating average cost for one person’s meal. Most Instagramable place.</p>
+<h2 id="checking-out-the-category-gluten-free">Checking out the category “Gluten-Free”!</h2>
+<p>For diet conscious people and people with Gluten Allergy.</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<h2 id="selecting-appropriate-variables-and-being-realistic">Selecting appropriate variables and being realistic!</h2>
+<p>Picking required variables.</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<h2 id="making-an-easy-to-understand-table">Making an easy to understand table!</h2>
+<div class="layout-chunk" data-layout="l-body">
+<table class="table" style="font-size: 8px; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:rest-gluten-free">Table 4: </span>Top Options
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+name
+</th>
+<th style="text-align:right;">
+avg_cost_for_one
+</th>
+<th style="text-align:right;">
+all_reviews_count
+</th>
+<th style="text-align:right;">
+photo_count
+</th>
+<th style="text-align:left;">
+locality
+</th>
+<th style="text-align:left;">
+aggregate_rating
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Jinda Thai Restaurant
+</td>
+<td style="text-align:right;">
+40.0
+</td>
+<td style="text-align:right;">
+1036
+</td>
+<td style="text-align:right;">
+2477
+</td>
+<td style="text-align:left;">
+Abbotsford
+</td>
+<td style="text-align:left;">
+4.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Humble Rays
+</td>
+<td style="text-align:right;">
+25.0
+</td>
+<td style="text-align:right;">
+838
+</td>
+<td style="text-align:right;">
+2566
+</td>
+<td style="text-align:left;">
+Carlton
+</td>
+<td style="text-align:left;">
+4.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Vertue Coffee Roasters
+</td>
+<td style="text-align:right;">
+25.0
+</td>
+<td style="text-align:right;">
+465
+</td>
+<td style="text-align:right;">
+1424
+</td>
+<td style="text-align:left;">
+Carlton
+</td>
+<td style="text-align:left;">
+4.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DOC Pizza &amp; Mozzarella Bar - Carlton
+</td>
+<td style="text-align:right;">
+35.0
+</td>
+<td style="text-align:right;">
+926
+</td>
+<td style="text-align:right;">
+763
+</td>
+<td style="text-align:left;">
+Carlton
+</td>
+<td style="text-align:left;">
+4.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+The Hardware Societe
+</td>
+<td style="text-align:right;">
+30.0
+</td>
+<td style="text-align:right;">
+2108
+</td>
+<td style="text-align:right;">
+4230
+</td>
+<td style="text-align:left;">
+CBD
+</td>
+<td style="text-align:left;">
+4.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chin Chin
+</td>
+<td style="text-align:right;">
+67.5
+</td>
+<td style="text-align:right;">
+3214
+</td>
+<td style="text-align:right;">
+3270
+</td>
+<td style="text-align:left;">
+CBD
+</td>
+<td style="text-align:left;">
+4.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Dodee Paidang
+</td>
+<td style="text-align:right;">
+37.5
+</td>
+<td style="text-align:right;">
+483
+</td>
+<td style="text-align:right;">
+1007
+</td>
+<td style="text-align:left;">
+CBD
+</td>
+<td style="text-align:left;">
+4.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tipo 00
+</td>
+<td style="text-align:right;">
+75.0
+</td>
+<td style="text-align:right;">
+724
+</td>
+<td style="text-align:right;">
+2129
+</td>
+<td style="text-align:left;">
+CBD
+</td>
+<td style="text-align:left;">
+4.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Rice Paper Scissors
+</td>
+<td style="text-align:right;">
+40.0
+</td>
+<td style="text-align:right;">
+992
+</td>
+<td style="text-align:right;">
+2884
+</td>
+<td style="text-align:left;">
+CBD
+</td>
+<td style="text-align:left;">
+4.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+San Telmo
+</td>
+<td style="text-align:right;">
+60.0
+</td>
+<td style="text-align:right;">
+767
+</td>
+<td style="text-align:right;">
+1208
+</td>
+<td style="text-align:left;">
+CBD
+</td>
+<td style="text-align:left;">
+4.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MoVida Bar De Tapas
+</td>
+<td style="text-align:right;">
+60.0
+</td>
+<td style="text-align:right;">
+900
+</td>
+<td style="text-align:right;">
+1160
+</td>
+<td style="text-align:left;">
+CBD
+</td>
+<td style="text-align:left;">
+4.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
++39 Pizzeria
+</td>
+<td style="text-align:right;">
+50.0
+</td>
+<td style="text-align:right;">
+809
+</td>
+<td style="text-align:right;">
+1185
+</td>
+<td style="text-align:left;">
+CBD
+</td>
+<td style="text-align:left;">
+4.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cumulus Inc. 
+</td>
+<td style="text-align:right;">
+75.0
+</td>
+<td style="text-align:right;">
+1125
+</td>
+<td style="text-align:right;">
+1288
+</td>
+<td style="text-align:left;">
+CBD
+</td>
+<td style="text-align:left;">
+4.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hakata Gensuke Ramen Professionals
+</td>
+<td style="text-align:right;">
+25.0
+</td>
+<td style="text-align:right;">
+845
+</td>
+<td style="text-align:right;">
+1189
+</td>
+<td style="text-align:left;">
+CBD
+</td>
+<td style="text-align:left;">
+4.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sakura Kaiten Sushi
+</td>
+<td style="text-align:right;">
+30.0
+</td>
+<td style="text-align:right;">
+437
+</td>
+<td style="text-align:right;">
+1111
+</td>
+<td style="text-align:left;">
+CBD
+</td>
+<td style="text-align:left;">
+4.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Le Petit Gateau
+</td>
+<td style="text-align:right;">
+15.0
+</td>
+<td style="text-align:right;">
+351
+</td>
+<td style="text-align:right;">
+517
+</td>
+<td style="text-align:left;">
+CBD
+</td>
+<td style="text-align:left;">
+4.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Vue de monde
+</td>
+<td style="text-align:right;">
+300.0
+</td>
+<td style="text-align:right;">
+985
+</td>
+<td style="text-align:right;">
+2755
+</td>
+<td style="text-align:left;">
+CBD
+</td>
+<td style="text-align:left;">
+4.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Shoya Nouvelle Wafu Cuisine
+</td>
+<td style="text-align:right;">
+70.0
+</td>
+<td style="text-align:right;">
+391
+</td>
+<td style="text-align:right;">
+1316
+</td>
+<td style="text-align:left;">
+CBD
+</td>
+<td style="text-align:left;">
+4.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Wonderbao
+</td>
+<td style="text-align:right;">
+10.0
+</td>
+<td style="text-align:right;">
+773
+</td>
+<td style="text-align:right;">
+773
+</td>
+<td style="text-align:left;">
+CBD
+</td>
+<td style="text-align:left;">
+4.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Brother Baba Budan
+</td>
+<td style="text-align:right;">
+7.5
+</td>
+<td style="text-align:right;">
+545
+</td>
+<td style="text-align:right;">
+446
+</td>
+<td style="text-align:left;">
+CBD
+</td>
+<td style="text-align:left;">
+4.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Patricia Coffee Brewers
+</td>
+<td style="text-align:right;">
+7.5
+</td>
+<td style="text-align:right;">
+364
+</td>
+<td style="text-align:right;">
+292
+</td>
+<td style="text-align:left;">
+CBD
+</td>
+<td style="text-align:left;">
+4.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Shimbashi Soba &amp; Sake Bar
+</td>
+<td style="text-align:right;">
+27.5
+</td>
+<td style="text-align:right;">
+368
+</td>
+<td style="text-align:right;">
+923
+</td>
+<td style="text-align:left;">
+CBD
+</td>
+<td style="text-align:left;">
+4.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Maha Restaurant
+</td>
+<td style="text-align:right;">
+150.0
+</td>
+<td style="text-align:right;">
+931
+</td>
+<td style="text-align:right;">
+1240
+</td>
+<td style="text-align:left;">
+CBD
+</td>
+<td style="text-align:left;">
+4.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+La Belle Miette
+</td>
+<td style="text-align:right;">
+10.0
+</td>
+<td style="text-align:right;">
+478
+</td>
+<td style="text-align:right;">
+427
+</td>
+<td style="text-align:left;">
+CBD
+</td>
+<td style="text-align:left;">
+4.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Little Rogue
+</td>
+<td style="text-align:right;">
+10.0
+</td>
+<td style="text-align:right;">
+334
+</td>
+<td style="text-align:right;">
+671
+</td>
+<td style="text-align:left;">
+CBD
+</td>
+<td style="text-align:left;">
+4.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Purple Peanuts Japanese Cafe
+</td>
+<td style="text-align:right;">
+20.0
+</td>
+<td style="text-align:right;">
+490
+</td>
+<td style="text-align:right;">
+661
+</td>
+<td style="text-align:left;">
+CBD
+</td>
+<td style="text-align:left;">
+4.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Coda
+</td>
+<td style="text-align:right;">
+72.5
+</td>
+<td style="text-align:right;">
+562
+</td>
+<td style="text-align:right;">
+704
+</td>
+<td style="text-align:left;">
+CBD
+</td>
+<td style="text-align:left;">
+4.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Punch Lane
+</td>
+<td style="text-align:right;">
+75.0
+</td>
+<td style="text-align:right;">
+430
+</td>
+<td style="text-align:right;">
+862
+</td>
+<td style="text-align:left;">
+CBD
+</td>
+<td style="text-align:left;">
+4.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Aka Siro
+</td>
+<td style="text-align:right;">
+40.0
+</td>
+<td style="text-align:right;">
+238
+</td>
+<td style="text-align:right;">
+491
+</td>
+<td style="text-align:left;">
+Collingwood
+</td>
+<td style="text-align:left;">
+4.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Kenzan Japanese
+</td>
+<td style="text-align:right;">
+80.0
+</td>
+<td style="text-align:right;">
+263
+</td>
+<td style="text-align:right;">
+596
+</td>
+<td style="text-align:left;">
+Collins Place
+</td>
+<td style="text-align:left;">
+4.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Addict Food &amp; Coffee
+</td>
+<td style="text-align:right;">
+20.0
+</td>
+<td style="text-align:right;">
+570
+</td>
+<td style="text-align:right;">
+1350
+</td>
+<td style="text-align:left;">
+Fitzroy
+</td>
+<td style="text-align:left;">
+4.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Naked For Satan
+</td>
+<td style="text-align:right;">
+40.0
+</td>
+<td style="text-align:right;">
+874
+</td>
+<td style="text-align:right;">
+885
+</td>
+<td style="text-align:left;">
+Fitzroy
+</td>
+<td style="text-align:left;">
+4.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Lune Croissanterie
+</td>
+<td style="text-align:right;">
+12.5
+</td>
+<td style="text-align:right;">
+754
+</td>
+<td style="text-align:right;">
+1831
+</td>
+<td style="text-align:left;">
+Fitzroy
+</td>
+<td style="text-align:left;">
+4.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Faraday’s Cage
+</td>
+<td style="text-align:right;">
+22.5
+</td>
+<td style="text-align:right;">
+382
+</td>
+<td style="text-align:right;">
+1096
+</td>
+<td style="text-align:left;">
+Fitzroy
+</td>
+<td style="text-align:left;">
+4.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cutler &amp; Co
+</td>
+<td style="text-align:right;">
+100.0
+</td>
+<td style="text-align:right;">
+570
+</td>
+<td style="text-align:right;">
+988
+</td>
+<td style="text-align:left;">
+Fitzroy
+</td>
+<td style="text-align:left;">
+4.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hell of the North
+</td>
+<td style="text-align:right;">
+67.5
+</td>
+<td style="text-align:right;">
+418
+</td>
+<td style="text-align:right;">
+851
+</td>
+<td style="text-align:left;">
+Fitzroy
+</td>
+<td style="text-align:left;">
+4.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hinoki Japanese Pantry
+</td>
+<td style="text-align:right;">
+27.5
+</td>
+<td style="text-align:right;">
+274
+</td>
+<td style="text-align:right;">
+383
+</td>
+<td style="text-align:left;">
+Fitzroy
+</td>
+<td style="text-align:left;">
+4.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Laksa King
+</td>
+<td style="text-align:right;">
+35.0
+</td>
+<td style="text-align:right;">
+1304
+</td>
+<td style="text-align:right;">
+1233
+</td>
+<td style="text-align:left;">
+Flemington
+</td>
+<td style="text-align:left;">
+4.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Shira Nui
+</td>
+<td style="text-align:right;">
+75.0
+</td>
+<td style="text-align:right;">
+424
+</td>
+<td style="text-align:right;">
+754
+</td>
+<td style="text-align:left;">
+Glen Waverley
+</td>
+<td style="text-align:left;">
+4.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Shanklin Cafe
+</td>
+<td style="text-align:right;">
+25.0
+</td>
+<td style="text-align:right;">
+529
+</td>
+<td style="text-align:right;">
+1242
+</td>
+<td style="text-align:left;">
+Hawthorn
+</td>
+<td style="text-align:left;">
+4.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+The Proud Peacock
+</td>
+<td style="text-align:right;">
+22.5
+</td>
+<td style="text-align:right;">
+630
+</td>
+<td style="text-align:right;">
+481
+</td>
+<td style="text-align:left;">
+Mount Waverley
+</td>
+<td style="text-align:left;">
+4.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Beatrix
+</td>
+<td style="text-align:right;">
+15.0
+</td>
+<td style="text-align:right;">
+387
+</td>
+<td style="text-align:right;">
+645
+</td>
+<td style="text-align:left;">
+North Melbourne
+</td>
+<td style="text-align:left;">
+4.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Dexter
+</td>
+<td style="text-align:right;">
+55.0
+</td>
+<td style="text-align:right;">
+685
+</td>
+<td style="text-align:right;">
+1498
+</td>
+<td style="text-align:left;">
+Preston
+</td>
+<td style="text-align:left;">
+4.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Serotonin Eatery
+</td>
+<td style="text-align:right;">
+32.5
+</td>
+<td style="text-align:right;">
+900
+</td>
+<td style="text-align:right;">
+1897
+</td>
+<td style="text-align:left;">
+Richmond
+</td>
+<td style="text-align:left;">
+4.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Minamishima
+</td>
+<td style="text-align:right;">
+225.0
+</td>
+<td style="text-align:right;">
+297
+</td>
+<td style="text-align:right;">
+1435
+</td>
+<td style="text-align:left;">
+Richmond
+</td>
+<td style="text-align:left;">
+4.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Attica
+</td>
+<td style="text-align:right;">
+300.0
+</td>
+<td style="text-align:right;">
+497
+</td>
+<td style="text-align:right;">
+1852
+</td>
+<td style="text-align:left;">
+Ripponlea
+</td>
+<td style="text-align:left;">
+4.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Komeyui
+</td>
+<td style="text-align:right;">
+75.0
+</td>
+<td style="text-align:right;">
+249
+</td>
+<td style="text-align:right;">
+1316
+</td>
+<td style="text-align:left;">
+South Melbourne
+</td>
+<td style="text-align:left;">
+4.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Peko Peko
+</td>
+<td style="text-align:right;">
+25.0
+</td>
+<td style="text-align:right;">
+517
+</td>
+<td style="text-align:right;">
+828
+</td>
+<td style="text-align:left;">
+South Melbourne
+</td>
+<td style="text-align:left;">
+4.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Bibelot
+</td>
+<td style="text-align:right;">
+15.0
+</td>
+<td style="text-align:right;">
+428
+</td>
+<td style="text-align:right;">
+1437
+</td>
+<td style="text-align:left;">
+South Melbourne
+</td>
+<td style="text-align:left;">
+4.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Agathé Pâtisserie
+</td>
+<td style="text-align:right;">
+7.5
+</td>
+<td style="text-align:right;">
+322
+</td>
+<td style="text-align:right;">
+632
+</td>
+<td style="text-align:left;">
+South Melbourne Market, South Melbourne
+</td>
+<td style="text-align:left;">
+4.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Wagyu Ya
+</td>
+<td style="text-align:right;">
+75.0
+</td>
+<td style="text-align:right;">
+395
+</td>
+<td style="text-align:right;">
+1625
+</td>
+<td style="text-align:left;">
+South Yarra
+</td>
+<td style="text-align:left;">
+4.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Burch &amp; Purchese Sweet Studio
+</td>
+<td style="text-align:right;">
+12.5
+</td>
+<td style="text-align:right;">
+485
+</td>
+<td style="text-align:right;">
+868
+</td>
+<td style="text-align:left;">
+South Yarra
+</td>
+<td style="text-align:left;">
+4.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mr. Miyagi
+</td>
+<td style="text-align:right;">
+40.0
+</td>
+<td style="text-align:right;">
+908
+</td>
+<td style="text-align:right;">
+2311
+</td>
+<td style="text-align:left;">
+Windsor
+</td>
+<td style="text-align:left;">
+4.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Journeyman
+</td>
+<td style="text-align:right;">
+27.5
+</td>
+<td style="text-align:right;">
+838
+</td>
+<td style="text-align:right;">
+1535
+</td>
+<td style="text-align:left;">
+Windsor
+</td>
+<td style="text-align:left;">
+4.7
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The Table <a href="#tab:rest-gluten-free">4</a> shows the name of the restarunts in Melbourne, their locality, number of reviews recieved, aggregate ratings, photo count and how much it costs for one persons gluten free meal on average.</p>
+<h2 id="visualizing-findings">Visualizing findings!</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:review-price-relation"></span>
+<img src="index_files/figure-html5/review-price-relation-1.png" alt="Worth the money!" width="624" />
+<p class="caption">
+Figure 8: Worth the money!
+</p>
+</div>
+</div>
+<p>The graph Figure <a href="#fig:review-price-relation">8</a> shows top restaurants in Melbourne, using the category “gluten free”, with an intercept at 500 reviews count. In the highest rating of 4.9, Lune Croissanterie is the best restaurant with very reasonable average price of 12.50 AUD per person. While, Vue de monde is second on the list with a rating of 4.8 but very pricy at an average cost of 300 AUD.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:instagrammable-plot"></span>
+<img src="index_files/figure-html5/instagrammable-plot-1.png" alt="Can I instagram it?" width="624" />
+<p class="caption">
+Figure 9: Can I instagram it?
+</p>
+</div>
+</div>
+<p>The graph Figure <a href="#fig:instagrammable-plot">9</a> visualizes restaurants with good reviews and potential of each restaurant on how much instagrammable it is. Lune Croissanterie has the best review rating with a high photo count of 1813. While, The Hardware Societe has the highest photo count at 4224, with a good rating of 4.6.</p>
+<p>In Table <a href="#tab:top10-Jap"><strong>??</strong></a> we can look at the top 10 popular Japanese restaurants in Melbourne along with their location and rating. ‘Don-Don’ is a very popular Japanese restaurant with 3168 votes. ‘Shira Nui’ is the highest rated restaurant with an aggregated rating of 4.8 out of 5.</p>
+<p>The graph Figure <a href="#fig:instagrammable-plot">9</a> visualizes restaurants with good reviews and potential of each restaurant on how much instagrammable it is. Lune Crissantete has the best review rating with a high photo count of 1813. While, The Hardware Societe has the highest photo count at 4224, with a good rating of 4.6.</p>
+
+<h1 id="conclusion">Conclusion</h1>
+<ul>
+<li>From this analysis we find there is no real relationship between restaurant prices and quality suggesting expensive food is not better than cheap.</li>
+<li>Melbourne has a strong multicultural cuisines options for people to choose from. Japanese being the most popular has the highest number of restaurants. Popularity of Cafes are also high.</li>
+<li>Most of the very best restaurants in Melbourne is located near CBD.</li>
+<li>Melbourne has quite a few good restaurants which serve gluten free food with a high review count. Most of the the same restaurants have a high photo count as well hence it is instagrammable in my opinion.</li>
+</ul>
+
+<div id="refs" class="references" role="doc-bibliography">
+<div id="ref-sushi">
+<p>Adelstein, Jake. 2017. “The Japanese Food Boom Shows No Sign of Slowing Down.” <a href="https://www.forbes.com/sites/adelsteinjake/2017/10/02/the-japanese-food-boom-shows-no-sign-of-slowing-down/%7B\#%7D434503db2118">https://www.forbes.com/sites/adelsteinjake/2017/10/02/the-japanese-food-boom-shows-no-sign-of-slowing-down/{\#}434503db2118</a>.</p>
+</div>
+<div id="ref-mapview">
+<p>Appelhans, Tim, Florian Detsch, Christoph Reudenbach, and Stefan Woellauer. 2020. <em>Mapview: Interactive Viewing of Spatial Data in R</em>. <a href="https://CRAN.R-project.org/package=mapview">https://CRAN.R-project.org/package=mapview</a>.</p>
+</div>
+<div id="ref-ATR">
+<p>Boddy, Natasha. 2018. “Australia’s Top Restaurants: Why We Love Japanese Food and Restaurants.” <a href="https://www.afr.com/life-and-luxury/food-and-wine/australias-top-restaurants-why-we-love-japanese-food-and-restaurants-20180419-h0yzao">https://www.afr.com/life-and-luxury/food-and-wine/australias-top-restaurants-why-we-love-japanese-food-and-restaurants-20180419-h0yzao</a>.</p>
+</div>
+<div id="ref-leaflet">
+<p>Cheng, Joe, Bhaskar Karambelkar, and Yihui Xie. 2019. <em>Leaflet: Create Interactive Web Maps with the Javascript ’Leaflet’ Library</em>. <a href="https://CRAN.R-project.org/package=leaflet">https://CRAN.R-project.org/package=leaflet</a>.</p>
+</div>
+<div id="ref-Coffee">
+<p>Dawe, Joshua. 2016. “Grinding the Numbers – Melbourne’s Growing Coffee Loves.” <a href="http://thecityjournal.net/news/grinding-numbers-melbournes-growing-coffee-love/">http://thecityjournal.net/news/grinding-numbers-melbournes-growing-coffee-love/</a>.</p>
+</div>
+<div id="ref-viridis">
+<p>Garnier, Simon. 2018. <em>Viridis: Default Color Maps from ’Matplotlib’</em>. <a href="https://CRAN.R-project.org/package=viridis">https://CRAN.R-project.org/package=viridis</a>.</p>
+</div>
+<div id="ref-plotly">
+<p>Sievert, Carson. 2020. <em>Interactive Web-Based Data Visualization with R, Plotly, and Shiny</em>. Chapman; Hall/CRC. <a href="https://plotly-r.com">https://plotly-r.com</a>.</p>
+</div>
+<div id="ref-romato">
+<p>Wang, Earo. 2020. <em>Romato: API to Zomato</em>.</p>
+</div>
+<div id="ref-ggplot2">
+<p>Wickham, Hadley. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.</p>
+</div>
+<div id="ref-tidyverse">
+<p>Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” <em>Journal of Open Source Software</em> 4 (43): 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>.</p>
+</div>
+<div id="ref-dplyr">
+<p>Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2020. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.</p>
+</div>
+<div id="ref-readr">
+<p>Wickham, Hadley, Jim Hester, and Romain Francois. 2018. <em>Readr: Read Rectangular Text Data</em>. <a href="https://CRAN.R-project.org/package=readr">https://CRAN.R-project.org/package=readr</a>.</p>
+</div>
+<div id="ref-knitr">
+<p>Xie, Yihui. 2020. <em>Knitr: A General-Purpose Package for Dynamic Report Generation in R</em>. <a href="https://yihui.org/knitr/">https://yihui.org/knitr/</a>.</p>
+</div>
+<div id="ref-kableExtra">
+<p>Zhu, Hao. 2019. <em>KableExtra: Construct Complex Table with ’Kable’ and Pipe Syntax</em>. <a href="https://CRAN.R-project.org/package=kableExtra">https://CRAN.R-project.org/package=kableExtra</a>.</p>
+</div>
+<div id="ref-zomatomelb">
+<p>Zomato.com. 2020a. “Best of Melbourne.” <a href="https://www.zomato.com/melbourne/great-food-no-bull">https://www.zomato.com/melbourne/great-food-no-bull</a>.</p>
+</div>
+<div id="ref-zomato">
+<p>———. 2020b. “Shaping the Future of Food.” <a href="https://www.zomato.com/about">https://www.zomato.com/about</a>.</p>
+</div>
+</div>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom"></div>
+<script id="distill-bibliography" type="text/bibtex">
+@Article{tidyverse,
+    title = {Welcome to the {tidyverse}},
+    author = {Hadley Wickham and Mara Averick and Jennifer Bryan and Winston Chang and Lucy D'Agostino McGowan and Romain FranÃ§ois and Garrett Grolemund and Alex Hayes and Lionel Henry and Jim Hester and Max Kuhn and Thomas Lin Pedersen and Evan Miller and Stephan Milton Bache and Kirill MÃ¼ller and Jeroen Ooms and David Robinson and Dana Paige Seidel and Vitalie Spinu and Kohske Takahashi and Davis Vaughan and Claus Wilke and Kara Woo and Hiroaki Yutani},
+    year = {2019},
+    journal = {Journal of Open Source Software},
+    volume = {4},
+    number = {43},
+    pages = {1686},
+    doi = {10.21105/joss.01686},
+  }
+  
+
+@Manual{kableExtra,
+    title = {kableExtra: Construct Complex Table with 'kable' and Pipe Syntax},
+    author = {Hao Zhu},
+    year = {2019},
+    note = {R package version 1.1.0},
+    url = {https://CRAN.R-project.org/package=kableExtra},
+  }
+  
+
+@Manual{romato,
+    title = {romato: API to Zomato},
+    author = {Earo Wang},
+    year = {2020},
+    note = {R package version 0.1.0},
+  }
+
+
+@Manual{knitr,
+    title = {knitr: A General-Purpose Package for Dynamic Report Generation in R},
+    author = {Yihui Xie},
+    year = {2020},
+    note = {R package version 1.28},
+    url = {https://yihui.org/knitr/},
+  }
+
+
+@Manual{dplyr,
+    title = {dplyr: A Grammar of Data Manipulation},
+    author = {Hadley Wickham and Romain FranÃ§ois and Lionel Henry and Kirill MÃ¼ller},
+    year = {2020},
+    note = {R package version 1.0.0},
+    url = {https://CRAN.R-project.org/package=dplyr},
+  }
+  
+  
+@Book{ggplot2,
+    author = {Hadley Wickham},
+    title = {ggplot2: Elegant Graphics for Data Analysis},
+    publisher = {Springer-Verlag New York},
+    year = {2016},
+    isbn = {978-3-319-24277-4},
+    url = {https://ggplot2.tidyverse.org},
+  }
+
+  
+@Manual{leaflet,
+    title = {leaflet: Create Interactive Web Maps with the JavaScript 'Leaflet'
+Library},
+    author = {Joe Cheng and Bhaskar Karambelkar and Yihui Xie},
+    year = {2019},
+    note = {R package version 2.0.3},
+    url = {https://CRAN.R-project.org/package=leaflet},
+  }
+
+
+
+@Manual{readr,
+    title = {readr: Read Rectangular Text Data},
+    author = {Hadley Wickham and Jim Hester and Romain Francois},
+    year = {2018},
+    note = {R package version 1.3.1},
+    url = {https://CRAN.R-project.org/package=readr},
+  }
+
+
+@Manual{mapview,
+    title = {mapview: Interactive Viewing of Spatial Data in R},
+    author = {Tim Appelhans and Florian Detsch and Christoph Reudenbach and Stefan Woellauer},
+    year = {2020},
+    note = {R package version 2.7.8},
+    url = {https://CRAN.R-project.org/package=mapview},
+  }
+
+@Manual{viridis,
+    title = {viridis: Default Color Maps from 'matplotlib'},
+    author = {Simon Garnier},
+    year = {2018},
+    note = {R package version 0.5.1},
+    url = {https://CRAN.R-project.org/package=viridis},
+  }
+  
+@Book{plotly,
+    author = {Carson Sievert},
+    title = {Interactive Web-Based Data Visualization with R, plotly, and shiny},
+    publisher = {Chapman and Hall/CRC},
+    year = {2020},
+    isbn = {9781138331457},
+    url = {https://plotly-r.com},
+  }
+  
+  
+@misc{zomatomelb,
+    title = {Best of Melbourne},
+    author = {Zomato.com},
+    year = {2020},
+    url = {https://www.zomato.com/melbourne/great-food-no-bull},
+  }
+    
+
+@misc{zomato,
+    title = {Shaping the future of food},
+    author = {Zomato.com},
+    year = {2020},
+    url = {https://www.zomato.com/about},
+  }
+  
+@ARTICLE{ATR,
+  title     = "Australia's top restaurants: why we love Japanese food and restaurants",
+  author    = "Natasha Boddy",
+  publisher = "Financial Review",
+  year      =  2018,
+  url       = "https://www.afr.com/life-and-luxury/food-and-wine/australias-top-restaurants-why-we-love-japanese-food-and-restaurants-20180419-h0yzao",
+}
+
+@ARTICLE{Coffee,
+  title     = "Grinding the Numbers â€“ Melbourneâ€™s growing coffee loves",
+  author    = "Joshua Dawe",
+  publisher = "City of Journal, RMIT University",
+  year      =  2016,
+  url       = "http://thecityjournal.net/news/grinding-numbers-melbournes-growing-coffee-love/",
+}
+
+@misc{sushi,
+author = {Adelstein, Jake},
+mendeley-groups = {Big Data Ethic},
+title = {{The Japanese Food Boom Shows No Sign Of Slowing Down}},
+url = {https://www.forbes.com/sites/adelsteinjake/2017/10/02/the-japanese-food-boom-shows-no-sign-of-slowing-down/{\#}434503db2118},
+urldate = {2020-06-12},
+year = {2017}
+}
+
+</script>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>

@@ -16,6 +16,22 @@
     "input_file": {}
   },
   {
+    "path": "posts/post2/",
+    "title": "ETC5521 Assignment ",
+    "description": "This explores",
+    "author": [
+      {
+        "name": "Vinny Vu, Dea Avega Editya, Siyi Li, Aryan Jain",
+        "url": "https://www.linkedin.com/in/vinny-vu-809bb1139/"
+      }
+    ],
+    "date": "2020-11-23",
+    "categories": [],
+    "preview": "posts/post2/index_files/figure-html5/demo1-1.png",
+    "last_modified": "2020-11-23T12:01:56+11:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/welcome/",
     "title": "Welcome to My Blog",
     "description": "Welcome to my new blog. This blog aims to display the works and projects I have undertaken through my post graduate studies and personal projects",
@@ -32,7 +48,7 @@
     "input_file": {}
   },
   {
-    "path": "posts/post2/",
+    "path": "posts/post 3/",
     "title": "ETC5521 Assignment ",
     "description": "This explores",
     "author": [
@@ -43,8 +59,8 @@
     ],
     "date": "2020-11-23",
     "categories": [],
-    "preview": "posts/post2/index_files/figure-html5/demo1-1.png",
-    "last_modified": "2020-11-23T12:01:56+11:00",
+    "preview": "posts/post 3/index_files/figure-html5/price-ranges-1.png",
+    "last_modified": "2020-11-23T12:10:15+11:00",
     "input_file": "index.utf8.md"
   }
 ]
