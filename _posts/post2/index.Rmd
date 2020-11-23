@@ -1,0 +1,631 @@
+---
+title: "ETC5521 Assignment "
+subtitle: "How sustainable is the energy production in Europe? "
+description: |
+  This explores
+author:
+  - name: Vinny Vu, Dea Avega Editya, Siyi Li, Aryan Jain
+    url: https://www.linkedin.com/in/vinny-vu-809bb1139/
+date: 11-23-2020
+output:
+  distill::distill_article:
+    self_contained: false
+bibliography: references.bib  
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, 
+                      message = FALSE, 
+                      warning = FALSE)
+```
+
+```{r read-data, echo = FALSE, include = FALSE,  results="hide", warning = FALSE, message = FALSE}
+
+knitr::opts_chunk$set(echo = FALSE)
+
+library(tidyverse)
+library(janitor)
+library(readr)
+library(naniar)
+library(dplyr)
+library(gridExtra)
+library(ggpubr)
+library(reshape2)
+library(tidytext)
+library(lubridate)
+library(plotly)
+library(ggthemes)
+library(bookdown)
+library(patchwork)
+library(shiny)
+
+
+# Get the Data
+
+blackpast <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-06-16/blackpast.csv')
+census <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-06-16/census.csv')
+slave_routes <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-06-16/slave_routes.csv')
+african_names <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-06-16/african_names.csv')
+
+sum(is.na(slave_routes))
+
+#checking missing values (NA)
+naniar::miss_summary(slave_routes)
+naniar::miss_summary(african_names)
+
+#summary
+summary(slave_routes)
+summary(african_names)
+
+```
+
+
+# Introduction and motivation
+
+Juneteenth is a significant event for African Americans which occurred on June 19, 1865 where Union Gen. Gordon Granger issued an order officially freeing the enslaved African Americans (@vox.) Although this event occurred over 100 years ago issues still exist around the mistreatment of African Americans. Today we will still see protest and pleas around the violence and mistreatment experienced by the black community and #BlackLivesMatter movement surrounding the death of George Floyd (@blacklives.) Therefore, we are motivated to explore history of slavery in the United States of America (USA) and its significance in Black American history. This analysis will be conducted through the data sourced from tidytuesday github (https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-06-16/readme.md) (@data.)
+
+This report has several limitations:
+
+\newline 1. Data sets used only contain relatively small observations, i.e. slaves_name record only covers numbers of slaves saved during their expedition. Hence, it may not really capture situation during slavery history.
+
+\newline 2. Census data only capture US demographics from 1790 to 1870 which is quite short regarding long existence of slavery (prior to the census period). In addition, West region only has census data of year 1850 and 1860.
+
+\newline 3. Some proportion of data has N/A value and errors which would be omitted during data exploration. 
+
+# Data description
+
+Our data sets are retrieved from github repository of **tidytuesday** project, which has original source from US Census's Archives, Slave Voyages, and Black Past @data. 
+
+There are four data sets in the tidytuesday's repo which include: 
+
+1. Census (in csv format)
+  The data set records the total slave populations across the USA during the slavery era and has 8 variables listed below and 102 observation. The data is collected from a historical US census data with time period from 1790 to 1870. 
+  
+* **region**: in character form which records the census region
+* **division**: in character form which records the census division
+* **year**: in double form which records the census year 
+* **total**: in double form which records the census total population by region/division  
+* **white**: in double form which records the total white population 
+* **black**: in double form which records the total black population 
+* **black_free**: in double form which records the free black population 
+* **black_slaves**: in double form which records the enslaved black population 
+  
+2. African_names (in csv format)
+  The data set has 11 variables listed below and 91.490 observations. The data is collected from liberated slaves by recording their names and ages. The record is from 1808 to 1862.
+
+* **id** in double form recording the slave ID number 
+* **voyage id** in double form recording the voyage ID number 
+* **name** in character form recording the name of the slave 
+* **gender** in character form recording the gender of the slave 
+* **age** in double form recording the age of the slave 
+* **height** in double form recording the height of the slave in inches  
+* **ship name** in character form recording the name of the ship the slave voyaged on 
+* **year arrival** in double form recording the year the slaved arrived 
+* **port embark** in character form recording the port the slave embarked 
+* **country origin** in character form recording the origin country the slave was from 
+
+Note, the gender category does not have consistent categorization and is cleaned in section 3.1
+
+3. Blackpast (in csv format)
+  The data set covers details around some events related to African-Americans history during slavery era until post-slavery including violence and racism events and celebrations of achievements. It has 6 variables recorded below and 896 observations. The data is compiled by blackpast organization (blackpast.org) (@data) from 1492 to 2009.
+  
+* **year** in character form recording the year of event
+* **event** in character form recording the details of the event 
+* **subject** in character form recording the subject category
+* **country** in character form recording the country where the event occurred or affected 
+* **state** in character form recording the state within the country
+* **era** in character form recording the era when the event occurred 
+
+4. slave_routes (in csv format)
+  The data set has 8 variables listed below and has records approximately 5 million enslaved Africans who arrived alive at the final port. 
+  
+* **voyage_id** in double form recording the unique id for the slave voyage 
+* **ship_name** in character form recording the name of the ship
+* **pot_origin** in character form recording the port of origin
+* **place_of_purchase** in character form recording the place where slaves were enslaved and purchased 
+* **port_arrival** in character form recording the port where the slave ship arrived 
+* **year_arrival** in double form recording the year of arrival
+* **n_slaves_arrived** in double form recording the number of slaves that arrived at the final destination 
+* **captions_name** in character form recording the name of the captain of the slave ship 
+
+The wrangling process is conducted by grouping some variables in the african_names to have aggregate numbers for each category, hence enable us to compare across categories. We also recalculate the total population in the census data set since the existing total is incorrect for the West region (we found this miscalculation after visualizing the data). These proportions will be used to track slavery exploitation in the USA.
+
+Furthermore, this report also takes advantage of the comprehensive record of African-Americans' historical events in the blackpast data set, to analyze which region of USA are unfriendly to the African-American people relating to unfortunate events recorded.
+
+# Questions for Anlaysis 
+
+Therefore, using all of these mentioned data sets this report will find a brief explanation on a main question:
+**What can we learn from the history of slavery in the USA and its prominence in today's issues surrounding racism towards African-Americans?** 
+
+
+To answer the main question, we will first look at these secondary questions:
+1. What is the demographic of black slaves? 
+2. Which region of the USA that had most exploited the practice? 
+3. Which region is unfriendly to black people?
+4. How does the exploitation of African slaves compare across time during the slavery period?
+5. Which subjects were more relevant in the slavery and post slavery era 
+6. Which states were more active in spreading awareness after the abolition of slavery?
+
+References of data sets sources:
+\newline 1. Tidytuesday (https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-06-16/readme.md) (@data),
+\newline 2. Blackpast (https://www.blackpast.org/african-american-history-timeline/) (@blackpast)
+\newline 3. US census data (https://www.census.gov/content/dam/Census/library/working-papers/2002/demo/POP-twps0056.pdf)
+
+# Analysis and findings
+
+## Demographic of Black Slaves
+
+In this section, we will extract some information from african_names dataset related to demographic of slaves. By extracting and analyzing the data, we can have an initial picture of the enslavement practice before moving on to further analysis in the following sections.
+
+We group the category of slaves by **id** (since names are not always unique), **gender** and **age** and plot gender category on a bar chart in figure \@ref(fig:demo1). The plot shows us that men occupy the largest percentage of total slaves in the observed data, followed by boys and subsequently women. Meanwhile, girls contribute the smallest to the total population of slaves. 
+
+```{r demo1, fig.cap="Composition Based on Gender", fig.align="center", echo = FALSE, warning=FALSE}
+# Aryan
+african_names$gender[african_names$age < 18 & african_names$gender %in% c("Boy", "Man")] = "Boy"
+african_names$gender[african_names$age >= 18 & african_names$gender %in% c("Boy", "Man")] = "Man"
+african_names$gender[african_names$age < 18 & african_names$gender %in% c("Girl", "Woman")] = "Girl"
+african_names$gender[african_names$age >= 18 & african_names$gender %in% c("Girl", "Woman")] = "Woman"
+
+
+african_names %>%
+  select(id, gender, age)%>%
+  na.omit()%>%
+  group_by(gender)%>%
+  count()%>%
+  mutate(total=n)%>%
+  select(-n)%>%
+  as_tibble()-> new
+
+# new_plty <-
+#   plot_ly(new, labels = ~gender, values = ~total, type ='pie', width = 400, height = 200)
+# new_plty %>% layout(title='Composition Based on Gender',
+#                     xaxis=list(showgrid=FALSE, zeroline=FALSE, showticklabels=FALSE),
+#                     yaxis=list(showgrid=FALSE, zeroline=FALSE, showticklabels=FALSE))
+
+ggplot(new, aes(x = gender, y = total, fill=factor(gender))) +
+  geom_col() +
+  xlab("")+ylab("Number") +
+  labs(fill = "Gender")
+```
+
+In general, we can see that the male proportion is significantly larger than female. However, \@ref(fig:demo) also reveals that children make up for almost one-third of the total slave population.
+
+```{r demo, fig.cap = "Maturity of Slaves", echo = FALSE, warning = FALSE, out.height="60%", out.width="60%",fig.align = "center", message=FALSE}
+
+ new_type<-rbind(new, c("children", colSums(new[1:2,2])),
+                 c("Adults", colSums(new[3:4,2])))
+ 
+ target<-c("children","Adults")
+filter(new_type, gender %in% target)%>%
+   ggplot(aes(x=gender,y= total, fill=factor(gender)))+
+  geom_bar(stat="identity",position="dodge")+
+  xlab("Type")+ylab("Number")+
+  labs(fill = "Maturity")
+ 
+  
+```
+
+Looking at the age distribution of slaves as shown in figure \@ref(fig:demo2), we can observe that the average age of the adult slaves was between **23 to 26** with majority being younger than **35 years of age**. This range of productive ages is not surprising since they were brought into the country mainly for manual labor, according to prior information we got from blackpast.org.
+
+```{r demo2, fig.cap = "Age Distribution", out.width="110%", echo = FALSE, fig.align="center", message=FALSE}
+african_names%>%
+  select(gender, age)%>%
+  na.omit()%>%
+  arrange(desc(-age))->afrian_new
+
+
+  plot_ly(type = "box",
+          x=~age,
+          y=~gender,
+          color=~gender,
+          data=afrian_new) %>% 
+    layout(title="",
+         yaxis=list(title="",
+                      zeroline=FALSE),
+         xaxis=list(title="Age",
+                      zeroline=FALSE))
+```
+
+Although, there are some outliers such as a 77 years old man and a 70 years old women which is definitely not ideal age for manual labor. We could also observe that some slaves are as young as 5 month of age which could be due to the fact that they were brought along with their parents as slaves.
+
+## Exploring which area has most significantly exploited the slavery of Afrians
+
+```{r region_census, echo = FALSE, message = FALSE}
+
+
+# # ploting US  
+# US <- census %>% 
+#   slice(1:9)
+# 
+# US %>% 
+#   group_by(region, year) %>% 
+#   ggplot(aes(x = year))+
+#   geom_line(aes(y = black_slaves))+
+#   geom_line(aes(y = black_free), color = "green")+
+#   geom_line(aes(y = white), color = "red")
+
+
+# Deleting 1870 since there is no slavery in that year due to regulation
+census_tidy <- census %>%
+  slice(10:38) %>% 
+  filter(year != 1870) %>% 
+  mutate(total = white + black_free + black_slaves) %>%
+  mutate(prop_white = white/total, prop_black_free = black_free/total, prop_black_slave = black_slaves/total)
+  
+
+# Regions
+S <- census_tidy %>% 
+  filter(region == "South") %>% 
+  group_by(region, year) %>% 
+  ggplot(aes(x = year))+
+  geom_line(aes(y = prop_black_slave, color = "black_slaves"), size = 1)+
+  geom_line(aes(y = prop_white, color = "white"), size = 1)+
+  geom_line(aes(y = prop_black_free, color = "black_free"), size = 1)+
+  ggtitle("South")+
+  ylab("Proportion")+
+  scale_color_manual(values = c('black_slaves'='black','white'='red', "black_free" = "green"))+
+  labs(color = "category")+
+  ylim(0, 1)+
+  theme_minimal()
+
+N <- census_tidy %>% 
+  filter(region == "Northeast") %>% 
+  group_by(region, year) %>% 
+  ggplot(aes(x = year))+
+  geom_line(aes(y = prop_black_slave, color = "black_slaves"), size = 1)+
+  geom_line(aes(y = prop_white, color = "white"), size = 1)+
+  geom_line(aes(y = prop_black_free, color = "black_free"), size = 1)+
+  ggtitle("Northeast")+
+  ylab("Proportion")+
+  scale_color_manual(values = c('black_slaves'='black','white'='red', "black_free" = "green"))+
+  ylim(0,1)+
+  labs(color = "category")+
+  theme_minimal()
+
+M <- census_tidy %>% 
+  filter(region == "Midwest") %>% 
+  group_by(region, year) %>% 
+  ggplot(aes(x = year))+
+  geom_line(aes(y = prop_black_slave, color = "black_slaves"), size = 1)+
+  geom_line(aes(y = prop_white, color = "white"), size = 1)+
+  geom_line(aes(y = prop_black_free, color = "black_free"), size = 1)+
+  ggtitle("Midwest")+
+  ylab("Proportion")+
+   scale_color_manual(values = c('black_slaves'='black','white'='red', "black_free" = "green"))+
+  ylim(0,1)+
+  labs(color = "category")+
+  theme_minimal()
+
+
+W <- census_tidy %>% 
+  filter(region == "West") %>% 
+  group_by(region, year) %>% 
+  ggplot(aes(x = year))+
+  geom_line(aes(y = prop_black_slave, color = "black_slaves"), size = 1)+
+  geom_line(aes(y = prop_white, color = "white"), size = 1)+
+  geom_line(aes(y = prop_black_free, color = "black_free"), size = 1)+
+  ggtitle("West")+
+  ylab("Proportion")+
+  scale_color_manual(values = c('black_slaves'='black','white'='red', "black_free" = "green"))+
+  scale_y_continuous(limits = c(0,1))+
+  labs(color = "category")+
+  theme_minimal()
+
+# west only has two years (1860, 1850)
+
+```
+
+```{r compare-region, fig.cap= "Composition of White and Black people in the US by region with the census year on the x-axis and proportion of people on the y-axis. From the plot we can see the South region stands out having the largest proportion of slaves across all regions.", fig.align="center", out.height="60%", out.width="60%", echo = FALSE}
+
+ggarrange(N, M, S, W,
+          ncol = 2, nrow = 2, common.legend = TRUE, legend = "bottom")
+```
+
+To answer the question of which region that has most significantly exploited the slavery practice, we will not look at the number of black slaves in each region of the USA. Instead, we will be exploring the trend of the proportion from these three categories (white, black slaves, and black free), as seen in figure \@ref(fig:compare-region). In the figure, we are not covering the census in 1870 since enslavement practices ended in that year.
+
+From the plot, we note that the **South region** has the most contrasting pattern distinguishing the region from the others. The proportion of white people in the South region slightly decrease from 1800 until 1860, however, the proportion of black slaves is growing reaching more than a quarter of the total population in that region.
+
+```{r south_div, echo = FALSE, include = FALSE, results = "hide", message = FALSE}
+
+# Look further in south
+
+census_south <- census %>% 
+  filter(region == "South", year != 1870) %>% 
+  na.omit() %>% 
+  mutate(total = white + black_free + black_slaves) %>%
+  mutate(prop_white = white/total, prop_black_free = black_free/total, prop_black_slave = black_slaves/total)
+
+SA <- census_south %>% 
+  filter(year != 1870, division == "South Atlantic") %>% 
+  ggplot(aes(x = year))+
+  geom_line(aes(y = prop_black_slave), size = 1)+
+  geom_line(aes(y = prop_white), color = "red", size = 1)+
+  geom_line(aes(y = prop_black_free), color = "green", size = 1)+
+  ggtitle("South Atlantic")+
+  ylab("Proportion")+
+  theme_minimal()
+
+SA
+
+ES <- census_south %>% 
+  filter(year != 1870, division == "East South Central") %>% 
+  ggplot(aes(x = year))+
+  geom_line(aes(y = prop_black_slave), size = 1)+
+  geom_line(aes(y = prop_white), color = "red", size = 1)+
+  geom_line(aes(y = prop_black_free), color = "green", size = 1)+
+  ggtitle("East South Central")+
+  ylab("Proportion")+
+  theme_minimal()
+ES
+
+WS <- census_south %>% 
+  filter(year != 1870, division == "West South Central") %>% 
+  ggplot(aes(x = year))+
+  geom_line(aes(y = prop_black_slave), size = 1)+
+  geom_line(aes(y = prop_white), color = "red", size = 1)+
+  geom_line(aes(y = prop_black_free), color = "green", size = 1)+
+  ggtitle("West South Central")+
+  ylab("Proportion")+
+  xlab("Census Year")+
+  theme_minimal()
+WS
+```
+
+```{r south-all, fig.cap= "Proportion of White and Black by the divisions of the South region in the US with census year on the x-axis and proportion of people on the y-axis. From the plot we can the proportion remains fairly stable across the South Atlantic region, the East South Central region experiences an increasing proportion of black slaves across the period whereas the West South Central region experiences the opposite trend.", fig.align="center", out.height="60%", out.width="60%", echo = FALSE, message = FALSE}
+
+ggarrange(SA, ES, WS,
+          ncol = 1, nrow = 3, legend = "top", common.legend = TRUE)
+```
+
+After spotting the pattern, we are interested to explore further into the South region to see the slavery practice in division level. The South region consists of three divisions, South Atlantic, East South Central and West South Central.
+From figure \@ref(fig:south-all) we can see clearly that the East South-Central division has a more progressive pattern of slavery exploitation during the observed period, whereas other divisions tend to have more of a stable pattern of slavery practice. Nevertheless, all these divisions have a similar proportion of black slaves in the last census year of slavery period (1860). 
+
+## The most unfriendly region towards African-Americans
+
+In this section, we will connect the slavery and post-slavery period in the USA through some observed events from blackpast data set before answering our main question. For the purpose of analysis, we will first filter country of interest in the data set to be only include the USA. From this we will select only important words (filtered using English stop words of tidytext R package (@tidytext)). Having all essential words, we aim to find various sentiments in these words by using NRC sentiment (@nrc) and group the sentiments by region. 
+
+To link this analysis with the previous section, we add the regions that correspond to the state names in the blackpast data set. For example, we add Northeast for covering states like Connecticut, New York, and New Jersey. In addition we also focus on all events that related to slavery and racism behaviour toward African-American, represented by subjects such as **"Slave Laws", "Slave Labor", "Racial Restrictions", "Racial Violence", "Resistance to Enslavement", "The Slavery Controversy", and "Antebellum Slavery".)** 
+
+```{r event, echo = FALSE, include = FALSE,  results="hide", message = FALSE}
+# select bad events in the US black history
+# we assign corresponding regions to each state so we can check our previous exploration in most exploiting regions
+blackpast_usa <- blackpast %>% 
+  filter(country == "United States") %>% 
+  filter(subject %in% c("Slave Laws", "Slave Labor", "Racial Restrictions",
+          "Racial Violence","Resistance to Enslavement",
+          "The Slavery Controversy","Antebellum Slavery")) %>%       
+  mutate(region = case_when(
+        state %in% c("Connecticut", "Maine", "Massachusetts", "New Hampshire", "Rhode Island", "Vermont", "New York", "New Jersey", "Pennsylvania") ~ "Northeast",
+        state %in% c("Illinois", "Indiana", "Michigan", "Ohio", "Wisconsin", "Iowa", "Kansas", "Minnesota", "Missouri", "Nebraska", "North Dakota", "South Dakota") ~ "Midwest",
+        state %in% c() ~ "",
+        state %in% c("Delaware", "Florida", "Georgia", "Maryland", "North Carolina", "South Carolina", "Virginia", "District of Columbia", "West Virginia", "Alabama", "Kentucky", "Mississippi", "Tennessee", "Arkansas", "Louisiana", "Oklahoma", "Texas") ~ "South",
+        state %in% c("Arizona", "Colorado", "Idaho", "Montana", "Nevada", "New Mexico", "Utah", "Wyoming", "Alaska", "California", "Hawaii", "Oregon", "Washington") ~ "West",
+              ))
+
+```
+
+```{r sentiment, echo = FALSE, message = FALSE}
+
+# using nrc package for analyse negative sentiment
+nrc_sentiments <- get_sentiments("nrc") %>% 
+  filter(sentiment %in% c("trust", "fear", "anger", "negative"))
+
+text_blackpast <- blackpast_usa %>% 
+  select(events, region) %>% 
+  ungroup() %>% 
+  unnest_tokens(input = "events", token = "words", "word")
+
+# remove unnecessary words
+data("stop_words")
+
+text_tidy <- text_blackpast %>% 
+  anti_join(stop_words)
+
+text_tidy <- left_join(text_tidy, nrc_sentiments) %>% 
+  na.omit()
+
+# # removing word white, black, police, church, mob
+# neutral <- c("white", "black", "police", "church", "mob")
+# 
+# # text_tidy <- text_tidy %>% 
+# #   count(word, sort = TRUE) %>%
+# #   filter(n > 10) %>%
+# #   filter(!word %in% neutral) %>% 
+# #   mutate(word = reorder(word, n)) %>%
+# #   ggplot(aes(sentiment, n)) +
+# #   geom_col() +
+# #   xlab(NULL) +
+# #   coord_flip()
+# 
+# plot_sentiment <- text_tidy %>% 
+#   count(sentiment, sort = TRUE) %>%
+#   filter(n > 1) %>%
+#   mutate(sentiment = reorder(sentiment, n)) %>%
+#   ggplot(aes(x = sentiment, y = n)) +
+#   geom_col() +
+#   xlab(NULL) +
+#   coord_flip()
+# 
+# plot_sentiment
+
+
+```
+
+```{r sentiment-region, fig.cap = "Sentiment Analysis in Regions with sentiments of the words on the y-axis and count of words on the x-axis. From the plot we can see most of the words associated with Black Slavery are negative in nature having negative, fear and anger is the main sentiment and with trust being the lowest. We also see the South region contains most of the text analysed.", echo = FALSE, message = FALSE, warning = FALSE,fig.align="center", out.width= "60%"}
+text_tidy %>% 
+  ggplot(aes(x = fct_reorder(sentiment, word), y = word, fill= region, group = region)) +
+  geom_col() +
+  xlab("") +
+  ylab("")+
+  coord_flip()+
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+
+```
+
+
+```{r sentiment-negative, fig.cap = "Negative Nuances from event statements with region on the x-axis and count of the words on the y-axis. From the plot we can see the South dominates in the count of text with fear and negative sentiments.", out.width="50%", fig.align="center", echo = FALSE, message = FALSE}
+
+# only bad sentiment analysed
+text_tidy %>% 
+  filter(sentiment %in% c("negative", "fear", "disgust", "sadness")) %>% 
+  ggplot(aes(x = region, y = word, fill = sentiment, group = sentiment)) +
+  geom_col() +
+  xlab("") +
+  ylab("")+
+  theme(axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+
+```
+
+
+Using these methods, we can observe the occurrence of bad events in the USA history which comprise of racial restrictions and racial violence. According to the analysis in figure \@ref(fig:sentiment-region), most nuances of observed events are related to **negative, fear and anger** sentiments. Moreover, most events recorded occurred in the South region. Again, it is not surprising given the previous finding that South region is the region that most exploits slavery practice. 
+
+We then more focus on particular bad events which represented by sentiment of "disgust", "fear", "negative" and "sadness" (we get rid of positive sentiments such as joy) and plot it into bar chart as seen in figure \@ref(fig:sentiment-negative). Using these negative sentiments, we can see that South and Northeast region are most "unfriendly" towards African American people, since both regions contribute to most of the bad events in the observed data. On the other hand, **West region** may be a good place to live for African Americans, due to very few bad incidents occurring there.
+
+## How does the exploitation of African slaves compare across time during the slavery period?
+
+To explore the exploitation of African slaves for all countries across time during the slavery period we will be analysing data from the slave_routes data set which contains 85% of all voyages that embarked captives @data. Note there is missing data which only as the data set only contains details on the Africans who arrived alive at the final port. Many slaves died in transport and or details around the slave voyage were not fully recorded @data.
+
+Figure \@ref(fig:total-slaves-line) shows the line graph of the total slaves arriving by voyage each year with a smoothed line showing the trend in slaves exported across time. From the plot we can see an overall upward trend in the number of slaves exported from 1700 until 1800 followed by a sharper downward trend approaching 0 exported slaves toward the end of the period. The yearly exported slaves’ peaks at 79,472 arriving in 1829 and reaches 700 in 1866. From the plot, however, we see sharp fluctuations in the total arrivals. These fluctuations may however be resulted from missing data which will be assessed in the following section.
+
+
+```{r total-slaves-line, fig.cap= "Line graph showing the total slaves arriving by voyage per year with year or arrival on the x-axis and total salves arriving per year on the y-axis", warning= FALSE, message=FALSE, fig.height= 3}
+slave_routes %>%
+  filter(year_arrival >= 1700) %>%
+  group_by(year_arrival) %>%
+  dplyr::summarise(total = sum(n_slaves_arrived, na.rm = TRUE)) %>%
+  ggplot(aes(x = year_arrival,
+             y = total)) +
+  geom_line() +
+  geom_smooth() +
+  labs(x = "year of arrival",
+       y = "total slaves arrived per year",
+       title = "Total Slaves Arriving by Year Line Graph")
+```
+
+
+Figure \@ref(fig:ship-count-hist) shows the histogram of the number of voyages per year in plot A and number of voyages per decade in plot B. From plot A we can see sharp dips in the number of voyages around 1745, 1780, 1809 and 1832. These dips are reflective of the dips that appear in Figure \@ref(fig:total-slaves-line). Using the blackpast we can determine significant events occurring around those years to determine if these dips are genuine or resulting from missing Data. In 1745, 1780 and 1832 we see there is no events that would drastically effect the number of voyages, in fact we see detrimental events such as the banning of teaching African’s reading and writing and restricting rights to preach. Therefore, these dips in values, are likely due to missing values. However, in 1807 we see the US government abolishing the importation of enslaved Africans. However, 250,000 Africans are illegally imported from 1808, therefore, potentially highlighting the dips and missing values during these years as slaves were not officially recorded.
+
+Plot B shows the overall trend in the number of voyages that grows from 1700 peaking in the 1770s then steadily declines after reaching the lowest in the 1865, however, it should be noted data is only recorded until 1866. There also appears to be a dip in the 1780s potentially highlighting missing values. 
+
+
+```{r ship-count-hist, fig.cap= "Histograms showing the number of voyages per year/decade with year on the x-axis and number of voyages per year (A) and per decade (B) on the y-axis", warning=FALSE, fig.height= 3}
+p1 <- slave_routes %>%
+  filter(year_arrival >= 1700) %>%
+  ggplot(aes(x = year_arrival)) +
+  geom_histogram(binwidth = 1) +
+  labs(y = "voyages per year",
+       x = "")
+
+p2 <- slave_routes %>%
+  filter(year_arrival >= 1700) %>%
+  ggplot(aes(x = year_arrival)) +
+  geom_histogram(binwidth = 10) +
+  labs(y = "voyages per decade", x = "year of arrival")
+
+p1 + p2 +plot_layout(guides = "collect", nrow = 2) +plot_annotation(title = "Number of Voyages Histrogram",tag_levels = 'A')
+```
+
+To further explore the exploitation of slaves the following plots have been included to examine the number of slaves arrived per voyage. Figure \@ref(fig:arrival-box) shows the boxplot of the number of slaves arrived per voyage each decade. From the plot we can see an increasing trend in the average slaves arrived per voyage peaking in the 1860s. In later years we also see an increased spread in the number of slaves per voyage and the increased presence of outliers with the peak at 1,700 slaves arriving.
+
+```{r arrival-box, fig.cap= "Boxplot showing the number of slaves arriving per voyage by decade with year on the x-axis and number of slaves arrived on the y-axis", warning= FALSE, fig.height= 3}
+slave_routes %>%
+  mutate(decade = round(year_arrival - 4.5, -1)) %>%
+  filter(year_arrival >= 1570) %>%
+  group_by(decade) %>%
+  ggplot(aes(x = year_arrival,
+             y = n_slaves_arrived,
+             group = decade)) +
+  geom_boxplot() +
+  labs(x = "year of arrival",
+       y = "number of slaves arrived",
+       title = "Number of Slaves Arrived per Voyage")
+```
+
+To further explore this \@ref(fig:arrival-box-filter) shows the same boxplots, however, filtered for the year 1700 onward and removed counts above1500 to better compare decade counts. From the plot we can see from 1700 to 1800 the average count and spread per voyage remains fairly constant. From 1800 onward we see a pickup in the average slaves per voyage and the increased prominence of large slaves arriving per voyage. Across all decades there are voyages with 0 values highlighting the presence of missing values.
+
+```{r arrival-box-filter, fig.cap= "Boxplot showing the number of slaves arriving per voyage by decade from 1700 and significantly large values filtered with year on the x-axis and number of slaves arrived on the y-axis", warning=FALSE, fig.height= 3}
+slave_routes %>%
+  filter(year_arrival >= 1700) %>%
+  filter(n_slaves_arrived <= 1500) %>%
+  mutate(decade = round(year_arrival - 4.5, -1)) %>%
+  group_by(decade) %>%
+  ggplot(aes(x = year_arrival,
+             y = n_slaves_arrived,
+             group = decade)) +
+  geom_boxplot() +
+  labs(x = "year of arrival",
+       y = "number of slaves arrived",
+       title = "Number of Slaves Arrived per Voyage from 1700")
+```
+
+
+## The most relevant subjects in the slavery and post-slavery era
+
+To explore subjects based on the slavery and post-slavery eras, the data had to be filtered based on the year and a new column title **slavery** was created and the separating year was selected as 1865 which was the year slavery was abolished.
+
+The data was then filtered again to only show observations for United States and later grouped by the **subject** column.
+
+```{r aryan-1, fig.cap="Most relavent subjects in slavery and post-slavery era"}
+blackpast$slavery[blackpast$year < 1865] = "Active"
+blackpast$slavery[blackpast$year >= 1865] = "Abolished"
+
+blackpast %>% 
+  filter(country %in% c("United States", "The United States", "U.S.", "Unied States", "Colonial America")) %>%
+  group_by(subject, slavery) %>%
+  count() %>%
+  arrange(desc(n)) %>%
+  filter((n >= 7 & slavery == "Active") | (n >= 14 & slavery == "Abolished")) %>%
+  ggplot(aes(y = subject, x = n, fill = slavery)) +
+  geom_col() +
+  xlab("") +
+  ylab("")
+```
+
+Unsurprisingly, the figure \@ref(fig:aryan-1) reveals that slave laws, resistance of enslavement and racial restrictions were some of the most relevant subjects in the slavery era whereas subjects such as racial violence cannot be seen in the era which could be due to the fact that it was considered rather ordinary.
+
+The post slavery era introduced some new subjects for the black history such as black education, formation of black organizations, and with voting rights, black population and black empowerment became majors subject for politics. The black population was also involved in major judicial decisions, major sports and even press.
+
+## The states that participated the most in black empowerment post slavery
+
+The dataset filtered in the last section was then filtered again to leave out N.A. values for states and then filtered again to only show observations for subjects such as Black Organisation, The Civil Rights Movement and The Black Press as they are representative of black empowerment.
+
+The filtered data was then plotted on a graph to show the states against the count of the selected activities.
+
+```{r aryan-2, fig.cap="Most active states for black empowerment post slavery"}
+blackpast %>%
+  filter(country %in% c("United States", "The United States", "U.S.", "Unied States", "Colonial America")) %>%
+  filter(!is.na(state) & state != "n.a." & state != "n. a.") %>%
+  filter(subject %in% c("Black Education", "Black Organizations", "The Civil Rights Movement", "The Black Press")) %>%
+  filter(slavery == "Abolished") %>%
+  group_by(state, slavery) %>%
+  count() %>%
+  arrange(desc(n)) %>%
+  filter(n > 2) %>%
+  ggplot(aes(y = fct_reorder(state, n), x = n, fill = n)) +
+  geom_col() +
+  theme(legend.position = "none") +
+  xlab("") +
+  ylab("")
+```
+
+The figure \@ref(fig:aryan-2) revealed that New York followed by the capital District of Columbia (now known as Washington D.C.) were some of the most active states for promoting black education, formation of black organizations, black press and overall empowerment of the african-american race. New York also hosted several events for "The Civil Rights Movement".
+
+# Conclusion 
+
+From the analysis conducted we are successfully able to explore the history of slavery in America and its prominence in today's history of racism towards African Americans. 
+
+In section 4.2 we were able to determine the practice was mostly exploited in **the South region.** 
+
+These events effecting slavery in America are further explored in section 4.3 where from the sentiment analysis e can see that most bad events took place in **South region,** followed by **Northeast region.** These bad events recorded are related to slavery exploitation and racism behaviour/racial violence (in post-slavery era) towards Africa-American. Hence, we may argue that today's racism are possibly are result of associations with the long history of enslavement, especially in the case of the South region. This finding is quite intriguing since it is inadvertently backed by a journal research from @journal that describe these two regions (South and Northeast) as the most racist regions in the United States.
+
+Section 4.4 further explores American slavery looking at the voyages of slaves during the period finding the exportation of slaves peaking in the early 1800s declining until Juneteenth. However, despite the reduction in slaves exported the slaves exported per voyage grew deep into the 1800s.
+
+Section 4.5 shows how after the abolition of slavery the events surrounding black population shifted from emancipation, resistance to slavery and changes in slave laws to black education, black organizations and black politics which in itself shows the continued efforts to empower the once tormented race and section 4.6 shows the states that made the most efforts in doing so with New York and Washington D.C. being at the forefront.
+
+This report has been completed with the use of the following R packages: @tidyverse, @janitor, @readr, @naniar, @dplyr, @gridExtra, @ggpubr, @reshape2, @tidytext, @lubridate, @plotly, @ggthemes, and @patchwork 
+
+# Bibliography
