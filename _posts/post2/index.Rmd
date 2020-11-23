@@ -185,7 +185,9 @@ african_names %>%
 ggplot(new, aes(x = gender, y = total, fill=factor(gender))) +
   geom_col() +
   xlab("")+ylab("Number") +
-  labs(fill = "Gender")
+  labs(fill = "Gender") +
+  theme_bw() +
+  theme(legend.position = "none")
 ```
 
 In general, we can see that the male proportion is significantly larger than female. However, \@ref(fig:demo) also reveals that children make up for almost one-third of the total slave population.
@@ -200,7 +202,9 @@ filter(new_type, gender %in% target)%>%
    ggplot(aes(x=gender,y= total, fill=factor(gender)))+
   geom_bar(stat="identity",position="dodge")+
   xlab("Type")+ylab("Number")+
-  labs(fill = "Maturity")
+  labs(fill = "Maturity")+
+  theme_bw() +
+  theme(legend.position = "none")
  
   
 ```
@@ -223,7 +227,8 @@ african_names%>%
          yaxis=list(title="",
                       zeroline=FALSE),
          xaxis=list(title="Age",
-                      zeroline=FALSE))
+                      zeroline=FALSE))  %>% 
+config(displayModeBar = F)
 ```
 
 Although, there are some outliers such as a 77 years old man and a 70 years old women which is definitely not ideal age for manual labor. We could also observe that some slaves are as young as 5 month of age which could be due to the fact that they were brought along with their parents as slaves.
@@ -458,6 +463,7 @@ text_tidy %>%
   xlab("") +
   ylab("")+
   coord_flip()+
+  theme_bw() +
   theme(axis.title.x=element_blank(),
         axis.text.x=element_blank(),
         axis.ticks.x=element_blank())
@@ -474,6 +480,7 @@ text_tidy %>%
   geom_col() +
   xlab("") +
   ylab("")+
+  theme_bw() +
   theme(axis.title.y=element_blank(),
         axis.text.y=element_blank(),
         axis.ticks.y=element_blank())
@@ -500,10 +507,11 @@ slave_routes %>%
   ggplot(aes(x = year_arrival,
              y = total)) +
   geom_line() +
-  geom_smooth() +
+  geom_smooth(se = FALSE) +
   labs(x = "year of arrival",
        y = "total slaves arrived per year",
-       title = "Total Slaves Arriving by Year Line Graph")
+       title = "Total Slaves Arriving by Year Line Graph") +
+  theme_bw()
 ```
 
 
@@ -518,13 +526,15 @@ p1 <- slave_routes %>%
   ggplot(aes(x = year_arrival)) +
   geom_histogram(binwidth = 1) +
   labs(y = "voyages per year",
-       x = "")
+       x = "") +
+  theme_bw()
 
 p2 <- slave_routes %>%
   filter(year_arrival >= 1700) %>%
   ggplot(aes(x = year_arrival)) +
   geom_histogram(binwidth = 10) +
-  labs(y = "voyages per decade", x = "year of arrival")
+  labs(y = "voyages per decade", x = "year of arrival") +
+  theme_bw()
 
 p1 + p2 +plot_layout(guides = "collect", nrow = 2) +plot_annotation(title = "Number of Voyages Histrogram",tag_levels = 'A')
 ```
@@ -538,11 +548,14 @@ slave_routes %>%
   group_by(decade) %>%
   ggplot(aes(x = year_arrival,
              y = n_slaves_arrived,
-             group = decade)) +
+             group = decade,
+             fill = decade)) +
   geom_boxplot() +
   labs(x = "year of arrival",
        y = "number of slaves arrived",
-       title = "Number of Slaves Arrived per Voyage")
+       title = "Number of Slaves Arrived per Voyage") +
+  theme_bw() +
+  theme(legend.position = "none")
 ```
 
 To further explore this \@ref(fig:arrival-box-filter) shows the same boxplots, however, filtered for the year 1700 onward and removed counts above1500 to better compare decade counts. From the plot we can see from 1700 to 1800 the average count and spread per voyage remains fairly constant. From 1800 onward we see a pickup in the average slaves per voyage and the increased prominence of large slaves arriving per voyage. Across all decades there are voyages with 0 values highlighting the presence of missing values.
@@ -555,11 +568,14 @@ slave_routes %>%
   group_by(decade) %>%
   ggplot(aes(x = year_arrival,
              y = n_slaves_arrived,
-             group = decade)) +
+             group = decade,
+             fill = decade)) +
   geom_boxplot() +
   labs(x = "year of arrival",
        y = "number of slaves arrived",
-       title = "Number of Slaves Arrived per Voyage from 1700")
+       title = "Number of Slaves Arrived per Voyage from 1700")+
+  theme_bw() +
+  theme(legend.position = "none")
 ```
 
 
@@ -582,7 +598,8 @@ blackpast %>%
   ggplot(aes(y = subject, x = n, fill = slavery)) +
   geom_col() +
   xlab("") +
-  ylab("")
+  ylab("") +
+  theme_bw()
 ```
 
 Unsurprisingly, the figure \@ref(fig:aryan-1) reveals that slave laws, resistance of enslavement and racial restrictions were some of the most relevant subjects in the slavery era whereas subjects such as racial violence cannot be seen in the era which could be due to the fact that it was considered rather ordinary.
@@ -607,9 +624,11 @@ blackpast %>%
   filter(n > 2) %>%
   ggplot(aes(y = fct_reorder(state, n), x = n, fill = n)) +
   geom_col() +
+  theme_bw() +
   theme(legend.position = "none") +
   xlab("") +
-  ylab("")
+  ylab("") 
+
 ```
 
 The figure \@ref(fig:aryan-2) revealed that New York followed by the capital District of Columbia (now known as Washington D.C.) were some of the most active states for promoting black education, formation of black organizations, black press and overall empowerment of the african-american race. New York also hosted several events for "The Civil Rights Movement".
@@ -628,4 +647,3 @@ Section 4.5 shows how after the abolition of slavery the events surrounding blac
 
 This report has been completed with the use of the following R packages: @tidyverse, @janitor, @readr, @naniar, @dplyr, @gridExtra, @ggpubr, @reshape2, @tidytext, @lubridate, @plotly, @ggthemes, and @patchwork 
 
-# Bibliography
