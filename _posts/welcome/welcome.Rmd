@@ -1,13 +1,10 @@
 ---
 title: "Welcome to My Blog"
 description: |
-  Welcome to our new blog, My Blog. We hope you enjoy 
-  reading what we have to say!
+  Welcome to my new blog. This blog aims to display the works and projects I have undertaken through my post graduate studies and personal projects
 author:
-  - name: Nora Jones 
-    url: https://example.com/norajones
-    affiliation: Spacely Sprockets
-    affiliation_url: https://example.com/spacelysprokets
+  - name: Vinny Vu 
+    url: https://www.linkedin.com/in/vinny-vu-809bb1139/
 date: 11-23-2020
 output:
   distill::distill_article:
@@ -23,4 +20,14 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 
+## About the Blog 
 
+This blog was created to display the projects I have developed through my studies at Monash University and personal project. Additional information can be found on my github profile in the following [link](https://github.com/vvuu0009?tab=repositories)
+
+## About Me 
+
+I am Vinny Vu, currently a student at Monash University completing my Masters of Business Analytics expected to graduate in 2021. For further information follow the [link](https://www.linkedin.com/in/vinny-vu-809bb1139/) for my Linkdin profile.  
+
+```{r fig-1, fig.align='center'}
+knitr::include_graphics("image.PNG")
+```

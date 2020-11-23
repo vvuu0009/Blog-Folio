@@ -1,7 +1,7 @@
 name: "Blog-Folio"
-title: "My Blog"
+title: "Vinny's Blog Folio"
 description: |
-  My Blog
+  Vinny's Blog Folio
 output_dir: "_site"
 navbar:
   right:

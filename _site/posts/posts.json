@@ -2,17 +2,17 @@
   {
     "path": "posts/welcome/",
     "title": "Welcome to My Blog",
-    "description": "Welcome to our new blog, My Blog. We hope you enjoy \nreading what we have to say!",
+    "description": "Welcome to my new blog. This blog aims to display the works and projects I have undertaken through my post graduate studies and personal projects",
     "author": [
       {
-        "name": "Nora Jones",
-        "url": "https://example.com/norajones"
+        "name": "Vinny Vu",
+        "url": "https://www.linkedin.com/in/vinny-vu-809bb1139/"
       }
     ],
     "date": "2020-11-23",
     "categories": [],
-    "preview": {},
-    "last_modified": "2020-11-23T11:14:07+11:00",
-    "input_file": {}
+    "preview": "posts/welcome/image.PNG",
+    "last_modified": "2020-11-23T11:35:32+11:00",
+    "input_file": "welcome.utf8.md"
   }
 ]
