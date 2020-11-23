@@ -1,12 +1,12 @@
 ---
-title: "ETC5521 Assignment "
-subtitle: "How sustainable is the energy production in Europe? "
+title: "Zomato's best restaurants in Melbourne"
+subtitle: "This project explores the top rated restaurants in Melbourne based off zomato ratings. This project with written for ETC5513: Collaborative and Reproducible Practices "
 description: |
-  This explores
+  This project explores the top rated restaurants in Melbourne based off zomato ratings. This project with written for ETC5513: Collaborative and Reproducible Practices
 author:
-  - name: Vinny Vu, Dea Avega Editya, Siyi Li, Aryan Jain
+  - name: Vinny Vu
     url: https://www.linkedin.com/in/vinny-vu-809bb1139/
-date: 11-23-2020
+date: 06-12-2020
 output:
   distill::distill_article:
     self_contained: false
