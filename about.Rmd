@@ -17,6 +17,8 @@ This blog was created to display the projects I have developed through my studie
 
 I am Vinny Vu, currently a student at Monash University completing my Masters of Business Analytics expected to graduate in 2021. For further information follow the [link](https://www.linkedin.com/in/vinny-vu-809bb1139/) for my Linkdin profile.  
 
+For any further information please contact me via my email: *vinny.vu.97@gmail.com* 
+
 ```{r fig-1, fig.align='center'}
 knitr::include_graphics("image.PNG")
 ```

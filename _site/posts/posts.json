@@ -12,7 +12,7 @@
     "date": "2020-11-23",
     "categories": [],
     "preview": "posts/welcome/image.png",
-    "last_modified": "2020-11-23T11:41:23+11:00",
+    "last_modified": "2020-11-23T17:06:31+11:00",
     "input_file": {}
   },
   {
@@ -29,7 +29,7 @@
     "categories": [],
     "preview": {},
     "last_modified": "2020-11-23T16:22:47+11:00",
-    "input_file": "post5.utf8.md"
+    "input_file": {}
   },
   {
     "path": "posts/post 4/",
@@ -45,7 +45,7 @@
     "categories": [],
     "preview": {},
     "last_modified": "2020-11-23T16:11:59+11:00",
-    "input_file": "post4.utf8.md"
+    "input_file": {}
   },
   {
     "path": "posts/post2/",
@@ -61,7 +61,7 @@
     "categories": [],
     "preview": "posts/post2/index_files/figure-html5/demo1-1.png",
     "last_modified": "2020-11-23T16:36:33+11:00",
-    "input_file": "index.utf8.md"
+    "input_file": {}
   },
   {
     "path": "posts/post1/",
@@ -77,7 +77,7 @@
     "categories": [],
     "preview": "posts/post1/index_files/figure-html5/export-import-plot-1.png",
     "last_modified": "2020-11-23T15:48:38+11:00",
-    "input_file": "index.utf8.md"
+    "input_file": {}
   },
   {
     "path": "posts/post 3/",
@@ -92,7 +92,7 @@
     "date": "2020-06-12",
     "categories": [],
     "preview": "posts/post 3/index_files/figure-html5/price-ranges-1.png",
-    "last_modified": "2020-11-23T17:01:24+11:00",
-    "input_file": "index.utf8.md"
+    "last_modified": "2020-11-23T17:01:25+11:00",
+    "input_file": {}
   }
 ]
