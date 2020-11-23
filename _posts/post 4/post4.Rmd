@@ -1,14 +1,15 @@
 ---
 title: "Coronavirus Application"
 description: |
-  Welcome to my new blog. This blog aims to display the works and projects I have undertaken through my post graduate studies and personal projects
+  This application explores the current state of coronavirus around the world made for ETC5523: Communicating with Data
 author:
   - name: Vinny Vu 
     url: https://www.linkedin.com/in/vinny-vu-809bb1139/
-date: 11-23-2020
+date: 10-09-2020
 output:
   distill::distill_article:
     self_contained: false
+bibliography: mybib.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -21,5 +22,11 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # Corona Shiny Application 
 
+Coronavirus disease (COVID-19) is an infectious disease caused by a newly discovered coronavirus [@WHO] first reported in December 2019 in Wuhan City in China [@aus-health] Currently there are no specific vaccines or treatments for the disease, [@aus-health] causing many countries to enter quarantines and lockdowns to prevent the spread of the disease. In the blog post I will introducing and reviewing the shiny application I have made to discuss the current state of coronavirus around the world as of 31st July 2020 [@shiny]. 
 
-[link](https://vinny-vu.shinyapps.io/coronavirus-application/)
+Data has been taken from the coronavirus package from Github [@coronavirus] which contains data pulled from the Johns Hopkins University Center for Systems Science and Engineering (JHU CCSE) Coronavirus repository which aggregates data from sources such as the World Health Organization and European Center for Disease Prevention and Control [@coronavirus]. Data from the coronavirus package contains tabular data with dates, locations, case numbers and case type included daily confirmed, death and recovered. 
+
+Currently as of the 12th of October 2020, there are over 37 million confirmed coronavirus cases and over 1 million coronavirus related deaths [@worldometer]. The shiny application explores summary figures of confirmed cases, deaths, and recoveries across different continents with the use of line-graphs and summary data tables. Further, the application explores 6 countries with the highest cumulative coronavirus confirmed cases using line-graphs. Finally, to compare case numbers across all countries, a data table showing the total case numbers as at 31 July is included. 
+
+
+Links to the Application can be found [here](https://vinny-vu.shinyapps.io/coronavirus-application/)

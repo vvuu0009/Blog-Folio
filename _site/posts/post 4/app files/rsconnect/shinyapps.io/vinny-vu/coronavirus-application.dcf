@@ -1,0 +1,12 @@
+name: coronavirus-application
+title: coronavirus-application
+username:
+account: vinny-vu
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3285555
+bundleId: 3893417
+url: https://vinny-vu.shinyapps.io/coronavirus-application/
+when: 1606105640.34332
+asMultiple: FALSE
+asStatic: FALSE

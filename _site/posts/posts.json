@@ -16,22 +16,6 @@
     "input_file": {}
   },
   {
-    "path": "posts/post 4/",
-    "title": "Coronavirus Application",
-    "description": "Welcome to my new blog. This blog aims to display the works and projects I have undertaken through my post graduate studies and personal projects",
-    "author": [
-      {
-        "name": "Vinny Vu",
-        "url": "https://www.linkedin.com/in/vinny-vu-809bb1139/"
-      }
-    ],
-    "date": "2020-11-23",
-    "categories": [],
-    "preview": {},
-    "last_modified": "2020-11-23T14:57:40+11:00",
-    "input_file": "post4.utf8.md"
-  },
-  {
     "path": "posts/post 5/",
     "title": "World Health Data Application",
     "description": "Welcome to my new blog. This blog aims to display the works and projects I have undertaken through my post graduate studies and personal projects",
@@ -46,6 +30,22 @@
     "preview": {},
     "last_modified": "2020-11-23T15:09:43+11:00",
     "input_file": "post5.utf8.md"
+  },
+  {
+    "path": "posts/post 4/",
+    "title": "Coronavirus Application",
+    "description": "This application explores the current state of coronavirus around the world made for ETC5523: Communicating with Data",
+    "author": [
+      {
+        "name": "Vinny Vu",
+        "url": "https://www.linkedin.com/in/vinny-vu-809bb1139/"
+      }
+    ],
+    "date": "2020-10-09",
+    "categories": [],
+    "preview": {},
+    "last_modified": "2020-11-23T16:11:59+11:00",
+    "input_file": "post4.utf8.md"
   },
   {
     "path": "posts/post2/",
