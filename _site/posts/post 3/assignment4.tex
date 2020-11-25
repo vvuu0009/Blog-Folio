@@ -320,6 +320,11 @@
 
 \section*{Introduction}
 
+\hypertarget{git-repository}{%
+\section{Git Repository}\label{git-repository}}
+
+Access the git repository for this project via the following \href{https://github.com/dedi0003/assignment4_etc5513}{link}
+
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
 
@@ -469,11 +474,11 @@ name & cuisines & locality & price\_for\_two & rating\\
 \hline
 \cellcolor{pink}{Tipo 00} & \cellcolor{pink}{Italian} & \cellcolor{pink}{CBD} & \cellcolor{pink}{150} & \cellcolor{pink}{4.9}\\
 \hline
-Minamishima & Japanese, Sushi & Richmond & 450 & 4.9\\
-\hline
-\cellcolor{pink}{Dexter} & \cellcolor{pink}{American, BBQ} & \cellcolor{pink}{Preston} & \cellcolor{pink}{110} & \cellcolor{pink}{4.9}\\
-\hline
 Le Petit Gateau & French, Desserts, Coffee and Tea & CBD & 30 & 4.9\\
+\hline
+\cellcolor{pink}{Minamishima} & \cellcolor{pink}{Japanese, Sushi} & \cellcolor{pink}{Richmond} & \cellcolor{pink}{450} & \cellcolor{pink}{4.9}\\
+\hline
+Dexter & American, BBQ & Preston & 110 & 4.9\\
 \hline
 \cellcolor{pink}{Vue de monde} & \cellcolor{pink}{Australian, Contemporary} & \cellcolor{pink}{CBD} & \cellcolor{pink}{600} & \cellcolor{pink}{4.9}\\
 \hline
@@ -503,11 +508,9 @@ La Belle Miette & Desserts, French, Coffee and Tea & CBD & 20 & 4.8\\
 \hline
 Shira Nui & Sushi, Japanese & Glen Waverley & 150 & 4.8\\
 \hline
-\cellcolor{pink}{The Proud Peacock} & \cellcolor{pink}{Chinese, Thai, Vietnamese} & \cellcolor{pink}{Mount Waverley} & \cellcolor{pink}{45} & \cellcolor{pink}{4.8}\\
+\cellcolor{pink}{Punch Lane} & \cellcolor{pink}{Mediterranean, Modern Australian} & \cellcolor{pink}{CBD} & \cellcolor{pink}{150} & \cellcolor{pink}{4.8}\\
 \hline
-Punch Lane & Mediterranean, Modern Australian & CBD & 150 & 4.8\\
-\hline
-\cellcolor{pink}{Burch \& Purchese Sweet Studio} & \cellcolor{pink}{Desserts} & \cellcolor{pink}{South Yarra} & \cellcolor{pink}{25} & \cellcolor{pink}{4.8}\\
+The Proud Peacock & Chinese, Thai, Vietnamese & Mount Waverley & 45 & 4.8\\
 \hline
 \end{tabular}
 \end{table}
@@ -555,9 +558,9 @@ From Figure \ref{fig:Cuisine-Votes}, we can look at the number of votes for diff
 name & locality & aggregate\_rating & Total\_Votes\\
 \midrule
 \cellcolor{gray!6}{Hakata Gensuke Ramen Professionals} & \cellcolor{gray!6}{CBD} & \cellcolor{gray!6}{4.7} & \cellcolor{gray!6}{2337}\\
-Purple Peanuts Japanese Cafe & CBD & 4.6 & 2143\\
+Purple Peanuts Japanese Cafe & CBD & 4.6 & 2142\\
 \cellcolor{gray!6}{Mr. Miyagi} & \cellcolor{gray!6}{Windsor} & \cellcolor{gray!6}{4.7} & \cellcolor{gray!6}{2024}\\
-Peko Peko & South Melbourne & 4.6 & 1989\\
+Peko Peko & South Melbourne & 4.6 & 1990\\
 \cellcolor{gray!6}{Sakura Kaiten Sushi} & \cellcolor{gray!6}{CBD} & \cellcolor{gray!6}{4.6} & \cellcolor{gray!6}{1856}\\
 \addlinespace
 Calia & Emporium Melbourne & 4.5 & 1806\\
@@ -606,69 +609,73 @@ Picking required variables.
 \hline
 name & avg\_cost\_for\_one & all\_reviews\_count & photo\_count & locality & aggregate\_rating\\
 \hline
-\cellcolor{gray!6}{Jinda Thai Restaurant} & \cellcolor{gray!6}{40.0} & \cellcolor{gray!6}{1036} & \cellcolor{gray!6}{2477} & \cellcolor{gray!6}{Abbotsford} & \cellcolor{gray!6}{4.7}\\
+\cellcolor{gray!6}{Jinda Thai Restaurant} & \cellcolor{gray!6}{40.0} & \cellcolor{gray!6}{1036} & \cellcolor{gray!6}{2478} & \cellcolor{gray!6}{Abbotsford} & \cellcolor{gray!6}{4.7}\\
 \hline
-Humble Rays & 25.0 & 838 & 2566 & Carlton & 4.8\\
+Mr Hendricks Cafe & 25.0 & 472 & 1063 & Balwyn & 4.7\\
 \hline
-\cellcolor{gray!6}{Vertue Coffee Roasters} & \cellcolor{gray!6}{25.0} & \cellcolor{gray!6}{465} & \cellcolor{gray!6}{1424} & \cellcolor{gray!6}{Carlton} & \cellcolor{gray!6}{4.6}\\
+\cellcolor{gray!6}{Humble Rays} & \cellcolor{gray!6}{25.0} & \cellcolor{gray!6}{838} & \cellcolor{gray!6}{2566} & \cellcolor{gray!6}{Carlton} & \cellcolor{gray!6}{4.8}\\
 \hline
-DOC Pizza \& Mozzarella Bar - Carlton & 35.0 & 926 & 763 & Carlton & 4.6\\
+Vertue Coffee Roasters & 25.0 & 465 & 1424 & Carlton & 4.6\\
 \hline
-\cellcolor{gray!6}{The Hardware Societe} & \cellcolor{gray!6}{30.0} & \cellcolor{gray!6}{2108} & \cellcolor{gray!6}{4230} & \cellcolor{gray!6}{CBD} & \cellcolor{gray!6}{4.6}\\
+\cellcolor{gray!6}{DOC Pizza \& Mozzarella Bar - Carlton} & \cellcolor{gray!6}{35.0} & \cellcolor{gray!6}{926} & \cellcolor{gray!6}{763} & \cellcolor{gray!6}{Carlton} & \cellcolor{gray!6}{4.6}\\
 \hline
-Chin Chin & 67.5 & 3214 & 3270 & CBD & 4.6\\
+The Hardware Societe & 30.0 & 2108 & 4229 & CBD & 4.6\\
 \hline
-\cellcolor{gray!6}{Dodee Paidang} & \cellcolor{gray!6}{37.5} & \cellcolor{gray!6}{483} & \cellcolor{gray!6}{1007} & \cellcolor{gray!6}{CBD} & \cellcolor{gray!6}{4.6}\\
+\cellcolor{gray!6}{Rice Paper Scissors} & \cellcolor{gray!6}{40.0} & \cellcolor{gray!6}{993} & \cellcolor{gray!6}{2891} & \cellcolor{gray!6}{CBD} & \cellcolor{gray!6}{4.8}\\
 \hline
-Tipo 00 & 75.0 & 724 & 2129 & CBD & 4.9\\
+Chin Chin & 67.5 & 3213 & 3270 & CBD & 4.6\\
 \hline
-\cellcolor{gray!6}{Rice Paper Scissors} & \cellcolor{gray!6}{40.0} & \cellcolor{gray!6}{992} & \cellcolor{gray!6}{2884} & \cellcolor{gray!6}{CBD} & \cellcolor{gray!6}{4.8}\\
+\cellcolor{gray!6}{Tipo 00} & \cellcolor{gray!6}{75.0} & \cellcolor{gray!6}{724} & \cellcolor{gray!6}{2129} & \cellcolor{gray!6}{CBD} & \cellcolor{gray!6}{4.9}\\
 \hline
-San Telmo & 60.0 & 767 & 1208 & CBD & 4.6\\
+Dodee Paidang & 37.5 & 483 & 1007 & CBD & 4.6\\
 \hline
-\cellcolor{gray!6}{MoVida Bar De Tapas} & \cellcolor{gray!6}{60.0} & \cellcolor{gray!6}{900} & \cellcolor{gray!6}{1160} & \cellcolor{gray!6}{CBD} & \cellcolor{gray!6}{4.7}\\
+\cellcolor{gray!6}{San Telmo} & \cellcolor{gray!6}{60.0} & \cellcolor{gray!6}{767} & \cellcolor{gray!6}{1208} & \cellcolor{gray!6}{CBD} & \cellcolor{gray!6}{4.6}\\
 \hline
-+39 Pizzeria & 50.0 & 809 & 1185 & CBD & 4.6\\
+MoVida Bar De Tapas & 60.0 & 900 & 1160 & CBD & 4.7\\
 \hline
-\cellcolor{gray!6}{Cumulus Inc.} & \cellcolor{gray!6}{75.0} & \cellcolor{gray!6}{1125} & \cellcolor{gray!6}{1288} & \cellcolor{gray!6}{CBD} & \cellcolor{gray!6}{4.7}\\
+\cellcolor{gray!6}{+39 Pizzeria} & \cellcolor{gray!6}{50.0} & \cellcolor{gray!6}{809} & \cellcolor{gray!6}{1185} & \cellcolor{gray!6}{CBD} & \cellcolor{gray!6}{4.6}\\
 \hline
-Hakata Gensuke Ramen Professionals & 25.0 & 845 & 1189 & CBD & 4.7\\
+Cumulus Inc. & 75.0 & 1125 & 1288 & CBD & 4.7\\
 \hline
-\cellcolor{gray!6}{Sakura Kaiten Sushi} & \cellcolor{gray!6}{30.0} & \cellcolor{gray!6}{437} & \cellcolor{gray!6}{1111} & \cellcolor{gray!6}{CBD} & \cellcolor{gray!6}{4.6}\\
+\cellcolor{gray!6}{Le Petit Gateau} & \cellcolor{gray!6}{15.0} & \cellcolor{gray!6}{352} & \cellcolor{gray!6}{519} & \cellcolor{gray!6}{CBD} & \cellcolor{gray!6}{4.9}\\
 \hline
-Le Petit Gateau & 15.0 & 351 & 517 & CBD & 4.9\\
+Sakura Kaiten Sushi & 30.0 & 437 & 1111 & CBD & 4.6\\
 \hline
-\cellcolor{gray!6}{Vue de monde} & \cellcolor{gray!6}{300.0} & \cellcolor{gray!6}{985} & \cellcolor{gray!6}{2755} & \cellcolor{gray!6}{CBD} & \cellcolor{gray!6}{4.9}\\
+\cellcolor{gray!6}{Hakata Gensuke Ramen Professionals} & \cellcolor{gray!6}{25.0} & \cellcolor{gray!6}{845} & \cellcolor{gray!6}{1189} & \cellcolor{gray!6}{CBD} & \cellcolor{gray!6}{4.7}\\
 \hline
-Shoya Nouvelle Wafu Cuisine & 70.0 & 391 & 1316 & CBD & 4.7\\
+Vue de monde & 300.0 & 985 & 2755 & CBD & 4.9\\
 \hline
-\cellcolor{gray!6}{Wonderbao} & \cellcolor{gray!6}{10.0} & \cellcolor{gray!6}{773} & \cellcolor{gray!6}{773} & \cellcolor{gray!6}{CBD} & \cellcolor{gray!6}{4.6}\\
+\cellcolor{gray!6}{Shoya Nouvelle Wafu Cuisine} & \cellcolor{gray!6}{70.0} & \cellcolor{gray!6}{391} & \cellcolor{gray!6}{1316} & \cellcolor{gray!6}{CBD} & \cellcolor{gray!6}{4.7}\\
 \hline
-Brother Baba Budan & 7.5 & 545 & 446 & CBD & 4.6\\
+Wonderbao & 10.0 & 773 & 773 & CBD & 4.6\\
 \hline
-\cellcolor{gray!6}{Patricia Coffee Brewers} & \cellcolor{gray!6}{7.5} & \cellcolor{gray!6}{364} & \cellcolor{gray!6}{292} & \cellcolor{gray!6}{CBD} & \cellcolor{gray!6}{4.9}\\
+\cellcolor{gray!6}{Brother Baba Budan} & \cellcolor{gray!6}{7.5} & \cellcolor{gray!6}{545} & \cellcolor{gray!6}{446} & \cellcolor{gray!6}{CBD} & \cellcolor{gray!6}{4.6}\\
 \hline
-Shimbashi Soba \& Sake Bar & 27.5 & 368 & 923 & CBD & 4.6\\
+Little Rogue & 10.0 & 334 & 671 & CBD & 4.7\\
 \hline
-\cellcolor{gray!6}{Maha Restaurant} & \cellcolor{gray!6}{150.0} & \cellcolor{gray!6}{931} & \cellcolor{gray!6}{1240} & \cellcolor{gray!6}{CBD} & \cellcolor{gray!6}{4.7}\\
+\cellcolor{gray!6}{Purple Peanuts Japanese Cafe} & \cellcolor{gray!6}{20.0} & \cellcolor{gray!6}{490} & \cellcolor{gray!6}{661} & \cellcolor{gray!6}{CBD} & \cellcolor{gray!6}{4.6}\\
 \hline
-La Belle Miette & 10.0 & 478 & 427 & CBD & 4.8\\
+Patricia Coffee Brewers & 7.5 & 365 & 292 & CBD & 4.9\\
 \hline
-\cellcolor{gray!6}{Little Rogue} & \cellcolor{gray!6}{10.0} & \cellcolor{gray!6}{334} & \cellcolor{gray!6}{671} & \cellcolor{gray!6}{CBD} & \cellcolor{gray!6}{4.7}\\
+\cellcolor{gray!6}{Shimbashi Soba \& Sake Bar} & \cellcolor{gray!6}{27.5} & \cellcolor{gray!6}{368} & \cellcolor{gray!6}{923} & \cellcolor{gray!6}{CBD} & \cellcolor{gray!6}{4.6}\\
 \hline
-Purple Peanuts Japanese Cafe & 20.0 & 490 & 661 & CBD & 4.6\\
+Maha Restaurant & 150.0 & 932 & 1240 & CBD & 4.7\\
 \hline
-\cellcolor{gray!6}{Coda} & \cellcolor{gray!6}{72.5} & \cellcolor{gray!6}{562} & \cellcolor{gray!6}{704} & \cellcolor{gray!6}{CBD} & \cellcolor{gray!6}{4.6}\\
+\cellcolor{gray!6}{La Belle Miette} & \cellcolor{gray!6}{10.0} & \cellcolor{gray!6}{477} & \cellcolor{gray!6}{427} & \cellcolor{gray!6}{CBD} & \cellcolor{gray!6}{4.8}\\
 \hline
-Punch Lane & 75.0 & 430 & 862 & CBD & 4.8\\
+Coda & 72.5 & 562 & 704 & CBD & 4.6\\
+\hline
+\cellcolor{gray!6}{Punch Lane} & \cellcolor{gray!6}{75.0} & \cellcolor{gray!6}{430} & \cellcolor{gray!6}{862} & \cellcolor{gray!6}{CBD} & \cellcolor{gray!6}{4.8}\\
+\hline
+Pastuso & 62.5 & 444 & 1048 & CBD & 4.6\\
 \hline
 \cellcolor{gray!6}{Aka Siro} & \cellcolor{gray!6}{40.0} & \cellcolor{gray!6}{238} & \cellcolor{gray!6}{491} & \cellcolor{gray!6}{Collingwood} & \cellcolor{gray!6}{4.8}\\
 \hline
-Kenzan Japanese & 80.0 & 263 & 596 & Collins Place & 4.6\\
+Kenzan Japanese & 80.0 & 263 & 594 & Collins Place & 4.6\\
 \hline
 \cellcolor{gray!6}{Addict Food \& Coffee} & \cellcolor{gray!6}{20.0} & \cellcolor{gray!6}{570} & \cellcolor{gray!6}{1350} & \cellcolor{gray!6}{Fitzroy} & \cellcolor{gray!6}{4.6}\\
 \hline
-Naked For Satan & 40.0 & 874 & 885 & Fitzroy & 4.6\\
+Naked For Satan & 40.0 & 875 & 885 & Fitzroy & 4.6\\
 \hline
 \cellcolor{gray!6}{Lune Croissanterie} & \cellcolor{gray!6}{12.5} & \cellcolor{gray!6}{754} & \cellcolor{gray!6}{1831} & \cellcolor{gray!6}{Fitzroy} & \cellcolor{gray!6}{4.9}\\
 \hline
@@ -684,9 +691,9 @@ Laksa King & 35.0 & 1304 & 1233 & Flemington & 4.6\\
 \hline
 \cellcolor{gray!6}{Shira Nui} & \cellcolor{gray!6}{75.0} & \cellcolor{gray!6}{424} & \cellcolor{gray!6}{754} & \cellcolor{gray!6}{Glen Waverley} & \cellcolor{gray!6}{4.8}\\
 \hline
-Shanklin Cafe & 25.0 & 529 & 1242 & Hawthorn & 4.8\\
+Shanklin Cafe & 25.0 & 530 & 1244 & Hawthorn & 4.8\\
 \hline
-\cellcolor{gray!6}{The Proud Peacock} & \cellcolor{gray!6}{22.5} & \cellcolor{gray!6}{630} & \cellcolor{gray!6}{481} & \cellcolor{gray!6}{Mount Waverley} & \cellcolor{gray!6}{4.8}\\
+\cellcolor{gray!6}{The Proud Peacock} & \cellcolor{gray!6}{22.5} & \cellcolor{gray!6}{631} & \cellcolor{gray!6}{481} & \cellcolor{gray!6}{Mount Waverley} & \cellcolor{gray!6}{4.8}\\
 \hline
 Beatrix & 15.0 & 387 & 645 & North Melbourne & 4.9\\
 \hline
@@ -704,15 +711,15 @@ Peko Peko & 25.0 & 517 & 828 & South Melbourne & 4.6\\
 \hline
 \cellcolor{gray!6}{Bibelot} & \cellcolor{gray!6}{15.0} & \cellcolor{gray!6}{428} & \cellcolor{gray!6}{1437} & \cellcolor{gray!6}{South Melbourne} & \cellcolor{gray!6}{4.8}\\
 \hline
-Agathé Pâtisserie & 7.5 & 322 & 632 & South Melbourne Market, South Melbourne & 4.9\\
+Agathé Pâtisserie & 7.5 & 322 & 634 & South Melbourne Market, South Melbourne & 4.9\\
 \hline
 \cellcolor{gray!6}{Wagyu Ya} & \cellcolor{gray!6}{75.0} & \cellcolor{gray!6}{395} & \cellcolor{gray!6}{1625} & \cellcolor{gray!6}{South Yarra} & \cellcolor{gray!6}{4.7}\\
 \hline
-Burch \& Purchese Sweet Studio & 12.5 & 485 & 868 & South Yarra & 4.8\\
+Mr. Miyagi & 40.0 & 908 & 2311 & Windsor & 4.7\\
 \hline
-\cellcolor{gray!6}{Mr. Miyagi} & \cellcolor{gray!6}{40.0} & \cellcolor{gray!6}{908} & \cellcolor{gray!6}{2311} & \cellcolor{gray!6}{Windsor} & \cellcolor{gray!6}{4.7}\\
+\cellcolor{gray!6}{Journeyman} & \cellcolor{gray!6}{27.5} & \cellcolor{gray!6}{839} & \cellcolor{gray!6}{1535} & \cellcolor{gray!6}{Windsor} & \cellcolor{gray!6}{\vphantom{1}4.7}\\
 \hline
-Journeyman & 27.5 & 838 & 1535 & Windsor & 4.7\\
+Journeyman & 27.5 & 839 & 1535 & Windsor & 4.7\\
 \hline
 \end{tabular}
 \end{table}

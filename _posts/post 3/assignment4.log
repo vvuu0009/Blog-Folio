@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.9.9)  23 NOV 2020 12:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.9.9)  25 NOV 2020 19:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1358,7 +1358,7 @@ ction with package mdbch, on input line 312.
 Package mathdesign/mdbch Warning: Package 'amsfonts' shouldn't be used in conjo
 nction with package mdbch, on input line 312.
 
-<logo.jpg, id=60, 4015.0pt x 6022.5pt>
+<logo.jpg, id=64, 4015.0pt x 6022.5pt>
 File: logo.jpg Graphic file (type jpg)
 <use logo.jpg>
 Package pdftex.def Info: logo.jpg  used on input line 313.
@@ -1640,157 +1640,157 @@ LaTeX Font Info:    Font shape `T1/mdbch/b/n' will be
 
 [2]
 LaTeX Font Info:    Trying to load font information for TS1+mdbch on input line
- 333.
+ 338.
 
 (c:/Users/vinny/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/mathdesign/mdbch/t
 s1mdbch.fd
 File: ts1mdbch.fd 2013/08/29 Fontinst v1.933 font definitions for TS1/mdbch.
 )
 LaTeX Font Info:    Font shape `TS1/mdbch/m/n' will be
-(Font)              scaled to size 10.51207pt on input line 333.
+(Font)              scaled to size 10.51207pt on input line 338.
 [3
 
 ]
-<assignment4_files/figure-latex/price-ranges-1.pdf, id=121, 578.16pt x 361.35pt
+<assignment4_files/figure-latex/price-ranges-1.pdf, id=128, 578.16pt x 361.35pt
 >
 File: assignment4_files/figure-latex/price-ranges-1.pdf Graphic file (type pdf)
 
 <use assignment4_files/figure-latex/price-ranges-1.pdf>
 Package pdftex.def Info: assignment4_files/figure-latex/price-ranges-1.pdf  use
-d on input line 368.
+d on input line 373.
 (pdftex.def)             Requested size: 455.24165pt x 284.52603pt.
 LaTeX Font Info:    Font shape `T1/mdbch/m/it' will be
-(Font)              scaled to size 10.51207pt on input line 369.
+(Font)              scaled to size 10.51207pt on input line 374.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<assignment4_files/figure-latex/price-range-count-1.pdf, id=124, 361.35pt x 289
+<assignment4_files/figure-latex/price-range-count-1.pdf, id=131, 361.35pt x 289
 .08pt>
 File: assignment4_files/figure-latex/price-range-count-1.pdf Graphic file (type
  pdf)
 <use assignment4_files/figure-latex/price-range-count-1.pdf>
 Package pdftex.def Info: assignment4_files/figure-latex/price-range-count-1.pdf
-  used on input line 400.
+  used on input line 405.
 (pdftex.def)             Requested size: 361.34912pt x 289.07928pt.
 [4
 
  <./assignment4_files/figure-latex/price-ranges-1.pdf>]
-<assignment4_files/figure-latex/price-ratings-1.pdf, id=141, 578.16pt x 361.35p
+<assignment4_files/figure-latex/price-ratings-1.pdf, id=148, 578.16pt x 361.35p
 t>
 File: assignment4_files/figure-latex/price-ratings-1.pdf Graphic file (type pdf
 )
 <use assignment4_files/figure-latex/price-ratings-1.pdf>
 Package pdftex.def Info: assignment4_files/figure-latex/price-ratings-1.pdf  us
-ed on input line 411.
+ed on input line 416.
 (pdftex.def)             Requested size: 455.24165pt x 284.52603pt.
 [5 <./assignment4_files/figure-latex/price-range-count-1.pdf>]
-<assignment4_files/figure-latex/cost-rating-relationship-1.pdf, id=154, 578.16p
+<assignment4_files/figure-latex/cost-rating-relationship-1.pdf, id=162, 578.16p
 t x 361.35pt>
 File: assignment4_files/figure-latex/cost-rating-relationship-1.pdf Graphic fil
 e (type pdf)
 <use assignment4_files/figure-latex/cost-rating-relationship-1.pdf>
 Package pdftex.def Info: assignment4_files/figure-latex/cost-rating-relationshi
-p-1.pdf  used on input line 422.
+p-1.pdf  used on input line 427.
 (pdftex.def)             Requested size: 455.24165pt x 284.52603pt.
 [6 <./assignment4_files/figure-latex/price-ratings-1.pdf>]
-<assignment4_files/figure-latex/rating-count-1.pdf, id=169, 578.16pt x 361.35pt
+<assignment4_files/figure-latex/rating-count-1.pdf, id=176, 578.16pt x 361.35pt
 >
 File: assignment4_files/figure-latex/rating-count-1.pdf Graphic file (type pdf)
 
 <use assignment4_files/figure-latex/rating-count-1.pdf>
 Package pdftex.def Info: assignment4_files/figure-latex/rating-count-1.pdf  use
-d on input line 447.
+d on input line 452.
 (pdftex.def)             Requested size: 455.24165pt x 284.52603pt.
 [7 <./assignment4_files/figure-latex/cost-rating-relationship-1.pdf>] [8 <./ass
 ignment4_files/figure-latex/rating-count-1.pdf>]
 LaTeX Font Info:    Font shape `T1/mdbch/m/n' will be
-(Font)              scaled to size 7.68005pt on input line 465.
+(Font)              scaled to size 7.68005pt on input line 470.
 
-Overfull \hbox (83.09097pt too wide) in paragraph at lines 466--513
+Overfull \hbox (55.86523pt too wide) in paragraph at lines 471--516
  [][] 
  []
 
 
-LaTeX Warning: Reference `fig:maps' on page 9 undefined on input line 517.
+LaTeX Warning: Reference `fig:maps' on page 9 undefined on input line 520.
 
 
-LaTeX Warning: Reference `fig:maps' on page 9 undefined on input line 519.
+LaTeX Warning: Reference `fig:maps' on page 9 undefined on input line 522.
 
 
-LaTeX Warning: Reference `fig:map-icon' on page 9 undefined on input line 521.
+LaTeX Warning: Reference `fig:map-icon' on page 9 undefined on input line 524.
 
 [9
 
 ]
 
-LaTeX Warning: Reference `fig:map-icon' on page 10 undefined on input line 523.
+LaTeX Warning: Reference `fig:map-icon' on page 10 undefined on input line 526.
 
 
 [10]
-<assignment4_files/figure-latex/Cuisine-Type-1.pdf, id=211, 578.16pt x 361.35pt
+<assignment4_files/figure-latex/Cuisine-Type-1.pdf, id=218, 578.16pt x 361.35pt
 >
 File: assignment4_files/figure-latex/Cuisine-Type-1.pdf Graphic file (type pdf)
 
 <use assignment4_files/figure-latex/Cuisine-Type-1.pdf>
 Package pdftex.def Info: assignment4_files/figure-latex/Cuisine-Type-1.pdf  use
-d on input line 535.
+d on input line 538.
 (pdftex.def)             Requested size: 455.24165pt x 284.52603pt.
-<assignment4_files/figure-latex/Cuisine-Votes-1.pdf, id=214, 578.16pt x 361.35p
+<assignment4_files/figure-latex/Cuisine-Votes-1.pdf, id=221, 578.16pt x 361.35p
 t>
 File: assignment4_files/figure-latex/Cuisine-Votes-1.pdf Graphic file (type pdf
 )
 <use assignment4_files/figure-latex/Cuisine-Votes-1.pdf>
 Package pdftex.def Info: assignment4_files/figure-latex/Cuisine-Votes-1.pdf  us
-ed on input line 543.
+ed on input line 546.
 (pdftex.def)             Requested size: 455.24165pt x 284.52603pt.
 [11
 
  <./assignment4_files/figure-latex/Cuisine-Type-1.pdf>] [12 <./assignment4_file
 s/figure-latex/Cuisine-Votes-1.pdf>]
-Overfull \hbox (110.64102pt too wide) in paragraph at lines 605--718
+Overfull \hbox (110.64102pt too wide) in paragraph at lines 608--725
  [][] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<assignment4_files/figure-latex/review-price-relation-1.pdf, id=243, 578.16pt x
+<assignment4_files/figure-latex/review-price-relation-1.pdf, id=250, 578.16pt x
  361.35pt>
 File: assignment4_files/figure-latex/review-price-relation-1.pdf Graphic file (
 type pdf)
 <use assignment4_files/figure-latex/review-price-relation-1.pdf>
 Package pdftex.def Info: assignment4_files/figure-latex/review-price-relation-1
-.pdf  used on input line 727.
+.pdf  used on input line 734.
 (pdftex.def)             Requested size: 455.24165pt x 284.52603pt.
 [13
 
 ]
-Overfull \vbox (281.14723pt too high) has occurred while \output is active []
+Overfull \vbox (302.37178pt too high) has occurred while \output is active []
 
 [14 <./assignment4_files/figure-latex/review-price-relation-1.pdf>]
-<assignment4_files/figure-latex/instagrammable-plot-1.pdf, id=267, 578.16pt x 3
+<assignment4_files/figure-latex/instagrammable-plot-1.pdf, id=274, 578.16pt x 3
 61.35pt>
 File: assignment4_files/figure-latex/instagrammable-plot-1.pdf Graphic file (ty
 pe pdf)
 <use assignment4_files/figure-latex/instagrammable-plot-1.pdf>
 Package pdftex.def Info: assignment4_files/figure-latex/instagrammable-plot-1.p
-df  used on input line 738.
+df  used on input line 745.
 (pdftex.def)             Requested size: 455.24165pt x 284.52603pt.
 [15 <./assignment4_files/figure-latex/instagrammable-plot-1.pdf>] [16
 
 ]
 LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
-(Font)              scaled to size 9.24173pt on input line 770.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 772.
+(Font)              scaled to size 9.24173pt on input line 777.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 779.
 [17
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 772.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 779.
 (./assignment4.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 772.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 772.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 779.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 779.
 Package rerunfilecheck Info: File `assignment4.out' has not changed.
-(rerunfilecheck)             Checksum: 3A857C92B2CC1641826FFFA527A78EDD;3858.
+(rerunfilecheck)             Checksum: 8BCA9D70DD434A23FBFE3DE16A6661B4;3987.
 
 LaTeX Warning: There were undefined references.
 
@@ -1801,13 +1801,13 @@ Package biblatex Warning: Please rerun LaTeX.
 Package logreq Info: Writing requests to 'assignment4.run.xml'.
 \openout1 = `assignment4.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 772.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 779.
  ) 
 Here is how much of TeX's memory you used:
- 26789 strings out of 482824
- 449856 string characters out of 5954530
- 1154092 words of memory out of 5000000
- 41412 multiletter control sequences out of 15000+600000
+ 26793 strings out of 482824
+ 449906 string characters out of 5954530
+ 1155129 words of memory out of 5000000
+ 41414 multiletter control sequences out of 15000+600000
  640309 words of font info for 282 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  46i,14n,94p,947b,1447s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1825,10 +1825,10 @@ vmr8a.pfb><c:/Users/vinny/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public
 /public/bera/fvsr8a.pfb><c:/Users/vinny/AppData/Roaming/TinyTeX/texmf-dist/font
 s/type1/public/mathdesign/mdbch/md-chb8t.pfb><c:/Users/vinny/AppData/Roaming/Ti
 nyTeX/texmf-dist/fonts/type1/public/mathdesign/mdbch/md-chr8t.pfb>
-Output written on assignment4.pdf (17 pages, 7621458 bytes).
+Output written on assignment4.pdf (17 pages, 7622170 bytes).
 PDF statistics:
- 362 PDF objects out of 1000 (max. 8388607)
- 311 compressed objects within 4 object streams
- 76 named destinations out of 1000 (max. 500000)
- 30883 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 369 PDF objects out of 1000 (max. 8388607)
+ 318 compressed objects within 4 object streams
+ 78 named destinations out of 1000 (max. 500000)
+ 30891 words of extra memory for PDF output out of 35830 (max. 10000000)
 

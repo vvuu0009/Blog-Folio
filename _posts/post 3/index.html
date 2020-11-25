@@ -1007,6 +1007,8 @@
 </div>
 
 
+<h1 id="git-repository">Git Repository</h1>
+<p>Access the git repository for this project via the following <a href="https://github.com/dedi0003/assignment4_etc5513">link</a></p>
 <h1 id="introduction">Introduction</h1>
 <p>For this assignment we will be looking at scrapping data from Zomato, one of the largest foods aggregators in the world <span class="citation" data-cites="zomato">Zomato.com (<a href="#ref-zomato" role="doc-biblioref">2020</a><a href="#ref-zomato" role="doc-biblioref">b</a>)</span>. Zomato provides information on restaurants including, price, location, reviews and more. For the purposes on our analysis we will be looking at the best of Melbourne list <span class="citation" data-cites="zomatomelb">Zomato.com (<a href="#ref-zomatomelb" role="doc-biblioref">2020</a><a href="#ref-zomatomelb" role="doc-biblioref">a</a>)</span> to gain insight into some of the most popular restaurants in Melbourne.</p>
 <p>This report will include four sections looking at:</p>
@@ -1069,7 +1071,7 @@ Range
 25
 </td>
 <td style="text-align:right;">
-20.0
+20
 </td>
 <td style="text-align:right;">
 15
@@ -1086,7 +1088,7 @@ Range
 45
 </td>
 <td style="text-align:right;">
-40.0
+40
 </td>
 <td style="text-align:right;">
 30
@@ -1103,7 +1105,7 @@ Range
 90
 </td>
 <td style="text-align:right;">
-60.0
+60
 </td>
 <td style="text-align:right;">
 50
@@ -1120,7 +1122,7 @@ Range
 600
 </td>
 <td style="text-align:right;">
-147.5
+150
 </td>
 <td style="text-align:right;">
 100
@@ -1264,6 +1266,23 @@ CBD
 </tr>
 <tr>
 <td style="text-align:left;">
+Le Petit Gateau
+</td>
+<td style="text-align:left;">
+French, Desserts, Coffee and Tea
+</td>
+<td style="text-align:left;">
+CBD
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+4.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 Minamishima
 </td>
 <td style="text-align:left;">
@@ -1291,23 +1310,6 @@ Preston
 </td>
 <td style="text-align:right;">
 110
-</td>
-<td style="text-align:right;">
-4.9
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Le Petit Gateau
-</td>
-<td style="text-align:left;">
-French, Desserts, Coffee and Tea
-</td>
-<td style="text-align:left;">
-CBD
-</td>
-<td style="text-align:right;">
-30
 </td>
 <td style="text-align:right;">
 4.9
@@ -1366,13 +1368,13 @@ North Melbourne
 </tr>
 <tr>
 <td style="text-align:left;">
-Agathé Pâtisserie
+Patricia Coffee Brewers
 </td>
 <td style="text-align:left;">
-Bakery, Patisserie
+Coffee and Tea
 </td>
 <td style="text-align:left;">
-South Melbourne Market, South Melbourne
+CBD
 </td>
 <td style="text-align:right;">
 15
@@ -1383,13 +1385,13 @@ South Melbourne Market, South Melbourne
 </tr>
 <tr>
 <td style="text-align:left;">
-Patricia Coffee Brewers
+Agathé Pâtisserie
 </td>
 <td style="text-align:left;">
-Coffee and Tea
+Bakery, Patisserie
 </td>
 <td style="text-align:left;">
-CBD
+South Melbourne Market, South Melbourne
 </td>
 <td style="text-align:right;">
 15
@@ -1553,23 +1555,6 @@ Glen Waverley
 </tr>
 <tr>
 <td style="text-align:left;">
-The Proud Peacock
-</td>
-<td style="text-align:left;">
-Chinese, Thai, Vietnamese
-</td>
-<td style="text-align:left;">
-Mount Waverley
-</td>
-<td style="text-align:right;">
-45
-</td>
-<td style="text-align:right;">
-4.8
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 Punch Lane
 </td>
 <td style="text-align:left;">
@@ -1585,13 +1570,30 @@ CBD
 4.8
 </td>
 </tr>
+<tr>
+<td style="text-align:left;">
+The Proud Peacock
+</td>
+<td style="text-align:left;">
+Chinese, Thai, Vietnamese
+</td>
+<td style="text-align:left;">
+Mount Waverley
+</td>
+<td style="text-align:right;">
+45
+</td>
+<td style="text-align:right;">
+4.8
+</td>
+</tr>
 </tbody>
 </table>
 </div>
 <p>From table <a href="#tab:best-restaurant">3</a> above, there are twelve restaurants which have minimum rating 4.8 out of 5 hence can be described as the very best restaurants in Melbourne. The prices, cuisines and locations in the top list are vary but with some patterns that will be further explored in the following paragraphs.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div id="htmlwidget-91724a7570a20d608bae" style="width:624px;height:384px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-91724a7570a20d608bae">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addProviderTiles","args":["CartoDB",null,null,{"errorTileUrl":"","noWrap":false,"opacity":1,"detectRetina":false}]},{"method":"addCircleMarkers","args":[[-37.8048177217,-37.8135277429,-37.814313,-37.8331123984,-37.8198314176,-37.736195646,-37.8163464526,-37.8189544974,-37.7960258682,-37.8325692889,-37.8023673299,-37.8325827938,-37.8147135635,-37.8051562667,-37.8005961095,-37.814007159,-37.8769242618,-37.8788198823,-37.8759680969,-37.8108116997],[144.9615536258,144.9619733915,144.961402,145.0473296642,145.005193837,145.0044562295,144.9596324936,144.9579336494,144.9799244106,144.95820757,144.9444753304,144.9569066986,144.9582602084,144.9855748192,144.9838920683,144.9614460021,144.9973121658,145.165768303,145.1287893578,144.9713500589],[6,10,6,6,10,10,10,10,10,6,10,10,10,6,10,6,6,6,6,6],null,null,{"interactive":true,"className":"","stroke":false,"color":["#25858E","#85D54A","#2BB07F","#25858E","#C2DF23","#51C46A","#38598C","#FDE725","#433E85","#38598C","#38598C","#440154","#440154","#2BB07F","#1E9B8A","#482173","#FDE725","#85D54A","#2D708E","#85D54A"],"weight":5,"opacity":0.5,"fill":true,"fillColor":["#25858E","#85D54A","#2BB07F","#25858E","#C2DF23","#51C46A","#38598C","#FDE725","#433E85","#38598C","#38598C","#440154","#440154","#2BB07F","#1E9B8A","#482173","#FDE725","#85D54A","#2D708E","#85D54A"],"fillOpacity":0.9},null,null,null,null,["Humble Rays","Tipo 00","Rice Paper Scissors","Shanklin Cafe","Minamishima","Dexter","Le Petit Gateau","Vue de monde","Lune Croissanterie","Bibelot","Beatrix","Agathé Pâtisserie","Patricia Coffee Brewers","Aka Siro","Hinoki Japanese Pantry","La Belle Miette","Attica","Shira Nui","The Proud Peacock","Punch Lane"],{"interactive":false,"permanent":true,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"14px","textOnly":true,"className":"","sticky":true},null]},{"method":"addLegend","args":[{"colors":["#440154","#482173","#433E85","#38598C","#2D708E","#25858E","#1E9B8A","#2BB07F","#51C46A","#85D54A","#C2DF23","#FDE725"],"labels":["$15","$20","$25","$30","$45","$50","$55","$80","$110","$150","$450","$600"],"na_color":null,"na_label":"NA","opacity":1,"position":"topright","type":"factor","title":"Average Cost for Two","extra":null,"layerId":null,"className":"info legend","group":null}]},{"method":"addRectangles","args":[-37.86,144.915218,-37.786092,145.067654,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"transparent","fillOpacity":0.2,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[-37.8788198823,-37.736195646],"lng":[144.915218,145.165768303]},"setView":[[-37.846302,145.05457],12.44,[]]},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-93b3ea70d4fa50ea20e7" style="width:624px;height:384px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-93b3ea70d4fa50ea20e7">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addProviderTiles","args":["CartoDB",null,null,{"errorTileUrl":"","noWrap":false,"opacity":1,"detectRetina":false}]},{"method":"addCircleMarkers","args":[[-37.8048177217,-37.814313,-37.8135277429,-37.8331123984,-37.8163464526,-37.8198314176,-37.736195646,-37.8189544974,-37.7960258682,-37.8023673299,-37.8325692889,-37.8147135635,-37.8325827938,-37.8005961095,-37.8051562667,-37.814007159,-37.8769242618,-37.8788198823,-37.8108116997,-37.8759680969],[144.9615536258,144.961402,144.9619733915,145.0473296642,144.9596324936,145.005193837,145.0044562295,144.9579336494,144.9799244106,144.9444753304,144.95820757,144.9582602084,144.9569066986,144.9838920683,144.9855748192,144.9614460021,144.9973121658,145.165768303,144.9713500589,145.1287893578],[6,6,10,6,10,10,10,10,10,10,6,10,10,10,6,6,6,6,6,6],null,null,{"interactive":true,"className":"","stroke":false,"color":["#25858E","#2BB07F","#85D54A","#25858E","#38598C","#C2DF23","#51C46A","#FDE725","#433E85","#38598C","#38598C","#440154","#440154","#1E9B8A","#2BB07F","#482173","#FDE725","#85D54A","#85D54A","#2D708E"],"weight":5,"opacity":0.5,"fill":true,"fillColor":["#25858E","#2BB07F","#85D54A","#25858E","#38598C","#C2DF23","#51C46A","#FDE725","#433E85","#38598C","#38598C","#440154","#440154","#1E9B8A","#2BB07F","#482173","#FDE725","#85D54A","#85D54A","#2D708E"],"fillOpacity":0.9},null,null,null,null,["Humble Rays","Rice Paper Scissors","Tipo 00","Shanklin Cafe","Le Petit Gateau","Minamishima","Dexter","Vue de monde","Lune Croissanterie","Beatrix","Bibelot","Patricia Coffee Brewers","Agathé Pâtisserie","Hinoki Japanese Pantry","Aka Siro","La Belle Miette","Attica","Shira Nui","Punch Lane","The Proud Peacock"],{"interactive":false,"permanent":true,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"14px","textOnly":true,"className":"","sticky":true},null]},{"method":"addLegend","args":[{"colors":["#440154","#482173","#433E85","#38598C","#2D708E","#25858E","#1E9B8A","#2BB07F","#51C46A","#85D54A","#C2DF23","#FDE725"],"labels":["$15","$20","$25","$30","$45","$50","$55","$80","$110","$150","$450","$600"],"na_color":null,"na_label":"NA","opacity":1,"position":"topright","type":"factor","title":"Average Cost for Two","extra":null,"layerId":null,"className":"info legend","group":null}]},{"method":"addRectangles","args":[-37.86,144.915218,-37.786092,145.067654,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"transparent","fillOpacity":0.2,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[-37.8788198823,-37.736195646],"lng":[144.915218,145.165768303]},"setView":[[-37.846302,145.05457],12.44,[]]},"evals":[],"jsHooks":[]}</script>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="figure" style="text-align: center"><span id="fig:maps"></span>
@@ -1604,8 +1606,8 @@ Figure 6: Best of Melbourne
 <p>Regarding the average price and location of the restaurants, figure <a href="#fig:maps">6</a> shows the map plot of these highest-rated restaurants with their attribute of average food price for two person. The average price for two persons is differentiated by color, while larger circle indicates higher rating (4.9).</p>
 <p>It is seen from the figure <a href="#fig:maps">6</a> that three restaurants are located in CBD, which is not surprising given the nature of CBD as the epicenter of Melbourne. Other restaurants are relatively still located close to CBD like Fitzroy, North Melbourne, Carlton and Hawthorn where eight restaurants base in. One outlier from the list is Shira Nui restaurant, where its location is quite far away from other restaurants in the group. This Japanese-sushi restaurant is located in Glen Waverley suburb which is about one and half hour driving from the CBD.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div id="htmlwidget-0dd4ade114f543e30f12" style="width:624px;height:384px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0dd4ade114f543e30f12">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addProviderTiles","args":["CartoDB",null,null,{"errorTileUrl":"","noWrap":false,"opacity":1,"detectRetina":false}]},{"method":"addMarkers","args":[-37.8048177217,144.9615536258,{"iconUrl":{"data":"https://i.imgur.com/bkvbKSQ.png","index":0},"iconWidth":25,"iconHeight":30,"iconAnchorX":22,"iconAnchorY":40},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[-37.8135277429,144.9619733915,{"iconUrl":{"data":"https://i.imgur.com/7KibpoF.png","index":0},"iconWidth":25,"iconHeight":30,"iconAnchorX":22,"iconAnchorY":40},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,"Tipo 00",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[-37.814313,144.961402,{"iconUrl":{"data":"https://i.imgur.com/xFmLqpO.png","index":0},"iconWidth":25,"iconHeight":30,"iconAnchorX":22,"iconAnchorY":70},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,"Rice Paper Scissors",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[-37.8331123984,145.0473296642,{"iconUrl":{"data":"https://i.imgur.com/xFmLqpO.png","index":0},"iconWidth":25,"iconHeight":30,"iconAnchorX":22,"iconAnchorY":70},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,"Shanklin Cafe",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[-37.8198314176,145.005193837,{"iconUrl":{"data":"https://i.imgur.com/CarRew0.png","index":0},"iconWidth":25,"iconHeight":30,"iconAnchorX":22,"iconAnchorY":40},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,"Minamishima",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[-37.736195646,145.0044562295,{"iconUrl":{"data":"https://i.imgur.com/CarRew0.png","index":0},"iconWidth":25,"iconHeight":30,"iconAnchorX":22,"iconAnchorY":40},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,"Dexter",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[-37.8163464526,144.9596324936,{"iconUrl":{"data":"https://i.imgur.com/7KibpoF.png","index":0},"iconWidth":25,"iconHeight":30,"iconAnchorX":22,"iconAnchorY":40},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,"Le Petit Gateau",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[-37.8189544974,144.9579336494,{"iconUrl":{"data":"https://i.imgur.com/7KibpoF.png","index":0},"iconWidth":25,"iconHeight":30,"iconAnchorX":22,"iconAnchorY":40},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,"Vue de monde",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[-37.7960258682,144.9799244106,{"iconUrl":{"data":"https://i.imgur.com/P7yAbFI.png","index":0},"iconWidth":25,"iconHeight":30,"iconAnchorX":22,"iconAnchorY":40},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,"Lune Croissanterie",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[-37.8325692889,144.95820757,{"iconUrl":{"data":"https://i.imgur.com/P7yAbFI.png","index":0},"iconWidth":25,"iconHeight":30,"iconAnchorX":22,"iconAnchorY":40},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,"Bibelot",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[-37.8023673299,144.9444753304,{"iconUrl":{"data":"https://i.imgur.com/xFmLqpO.png","index":0},"iconWidth":25,"iconHeight":30,"iconAnchorX":22,"iconAnchorY":70},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,"Beatrix",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[-37.8325827938,144.9569066986,{"iconUrl":{"data":"https://i.imgur.com/7KibpoF.png","index":0},"iconWidth":25,"iconHeight":30,"iconAnchorX":22,"iconAnchorY":40},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,"Agathé Pâtisserie",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[-37.8331123984,-37.736195646],"lng":[144.9444753304,145.0473296642]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-6524f5854a8077b2847c" style="width:624px;height:384px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6524f5854a8077b2847c">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addProviderTiles","args":["CartoDB",null,null,{"errorTileUrl":"","noWrap":false,"opacity":1,"detectRetina":false}]},{"method":"addMarkers","args":[-37.8048177217,144.9615536258,{"iconUrl":{"data":"https://i.imgur.com/bkvbKSQ.png","index":0},"iconWidth":25,"iconHeight":30,"iconAnchorX":22,"iconAnchorY":40},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[-37.814313,144.961402,{"iconUrl":{"data":"https://i.imgur.com/7KibpoF.png","index":0},"iconWidth":25,"iconHeight":30,"iconAnchorX":22,"iconAnchorY":40},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,"Rice Paper Scissors",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[-37.8135277429,144.9619733915,{"iconUrl":{"data":"https://i.imgur.com/xFmLqpO.png","index":0},"iconWidth":25,"iconHeight":30,"iconAnchorX":22,"iconAnchorY":70},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,"Tipo 00",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[-37.8331123984,145.0473296642,{"iconUrl":{"data":"https://i.imgur.com/xFmLqpO.png","index":0},"iconWidth":25,"iconHeight":30,"iconAnchorX":22,"iconAnchorY":70},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,"Shanklin Cafe",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[-37.8163464526,144.9596324936,{"iconUrl":{"data":"https://i.imgur.com/CarRew0.png","index":0},"iconWidth":25,"iconHeight":30,"iconAnchorX":22,"iconAnchorY":40},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,"Le Petit Gateau",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[-37.8198314176,145.005193837,{"iconUrl":{"data":"https://i.imgur.com/CarRew0.png","index":0},"iconWidth":25,"iconHeight":30,"iconAnchorX":22,"iconAnchorY":40},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,"Minamishima",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[-37.736195646,145.0044562295,{"iconUrl":{"data":"https://i.imgur.com/7KibpoF.png","index":0},"iconWidth":25,"iconHeight":30,"iconAnchorX":22,"iconAnchorY":40},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,"Dexter",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[-37.8189544974,144.9579336494,{"iconUrl":{"data":"https://i.imgur.com/7KibpoF.png","index":0},"iconWidth":25,"iconHeight":30,"iconAnchorX":22,"iconAnchorY":40},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,"Vue de monde",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[-37.7960258682,144.9799244106,{"iconUrl":{"data":"https://i.imgur.com/P7yAbFI.png","index":0},"iconWidth":25,"iconHeight":30,"iconAnchorX":22,"iconAnchorY":40},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,"Lune Croissanterie",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[-37.8023673299,144.9444753304,{"iconUrl":{"data":"https://i.imgur.com/P7yAbFI.png","index":0},"iconWidth":25,"iconHeight":30,"iconAnchorX":22,"iconAnchorY":40},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,"Beatrix",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[-37.8325692889,144.95820757,{"iconUrl":{"data":"https://i.imgur.com/xFmLqpO.png","index":0},"iconWidth":25,"iconHeight":30,"iconAnchorX":22,"iconAnchorY":70},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,"Bibelot",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[-37.8147135635,144.9582602084,{"iconUrl":{"data":"https://i.imgur.com/7KibpoF.png","index":0},"iconWidth":25,"iconHeight":30,"iconAnchorX":22,"iconAnchorY":40},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,"Patricia Coffee Brewers",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[-37.8331123984,-37.736195646],"lng":[144.9444753304,145.0473296642]}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="figure" style="text-align: center"><span id="fig:map-icon"></span>
@@ -1690,7 +1692,7 @@ CBD
 4.6
 </td>
 <td style="text-align:right;">
-2143
+2142
 </td>
 </tr>
 <tr>
@@ -1718,7 +1720,7 @@ South Melbourne
 4.6
 </td>
 <td style="text-align:right;">
-1989
+1990
 </td>
 </tr>
 <tr>
@@ -1859,10 +1861,30 @@ Jinda Thai Restaurant
 1036
 </td>
 <td style="text-align:right;">
-2477
+2478
 </td>
 <td style="text-align:left;">
 Abbotsford
+</td>
+<td style="text-align:left;">
+4.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mr Hendricks Cafe
+</td>
+<td style="text-align:right;">
+25.0
+</td>
+<td style="text-align:right;">
+472
+</td>
+<td style="text-align:right;">
+1063
+</td>
+<td style="text-align:left;">
+Balwyn
 </td>
 <td style="text-align:left;">
 4.7
@@ -1936,7 +1958,7 @@ The Hardware Societe
 30.0
 </td>
 <td style="text-align:right;">
-2107
+2108
 </td>
 <td style="text-align:right;">
 4229
@@ -1946,6 +1968,26 @@ CBD
 </td>
 <td style="text-align:left;">
 4.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Rice Paper Scissors
+</td>
+<td style="text-align:right;">
+40.0
+</td>
+<td style="text-align:right;">
+993
+</td>
+<td style="text-align:right;">
+2891
+</td>
+<td style="text-align:left;">
+CBD
+</td>
+<td style="text-align:left;">
+4.8
 </td>
 </tr>
 <tr>
@@ -1960,26 +2002,6 @@ Chin Chin
 </td>
 <td style="text-align:right;">
 3270
-</td>
-<td style="text-align:left;">
-CBD
-</td>
-<td style="text-align:left;">
-4.6
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Dodee Paidang
-</td>
-<td style="text-align:right;">
-37.5
-</td>
-<td style="text-align:right;">
-483
-</td>
-<td style="text-align:right;">
-1007
 </td>
 <td style="text-align:left;">
 CBD
@@ -2010,22 +2032,22 @@ CBD
 </tr>
 <tr>
 <td style="text-align:left;">
-Rice Paper Scissors
+Dodee Paidang
 </td>
 <td style="text-align:right;">
-40.0
+37.5
 </td>
 <td style="text-align:right;">
-992
+483
 </td>
 <td style="text-align:right;">
-2884
+1007
 </td>
 <td style="text-align:left;">
 CBD
 </td>
 <td style="text-align:left;">
-4.8
+4.6
 </td>
 </tr>
 <tr>
@@ -2110,22 +2132,22 @@ CBD
 </tr>
 <tr>
 <td style="text-align:left;">
-Hakata Gensuke Ramen Professionals
+Le Petit Gateau
 </td>
 <td style="text-align:right;">
-25.0
+15.0
 </td>
 <td style="text-align:right;">
-845
+352
 </td>
 <td style="text-align:right;">
-1189
+519
 </td>
 <td style="text-align:left;">
 CBD
 </td>
 <td style="text-align:left;">
-4.7
+4.9
 </td>
 </tr>
 <tr>
@@ -2150,22 +2172,22 @@ CBD
 </tr>
 <tr>
 <td style="text-align:left;">
-Le Petit Gateau
+Hakata Gensuke Ramen Professionals
 </td>
 <td style="text-align:right;">
-15.0
+25.0
 </td>
 <td style="text-align:right;">
-351
+845
 </td>
 <td style="text-align:right;">
-517
+1189
 </td>
 <td style="text-align:left;">
 CBD
 </td>
 <td style="text-align:left;">
-4.9
+4.7
 </td>
 </tr>
 <tr>
@@ -2250,86 +2272,6 @@ CBD
 </tr>
 <tr>
 <td style="text-align:left;">
-Patricia Coffee Brewers
-</td>
-<td style="text-align:right;">
-7.5
-</td>
-<td style="text-align:right;">
-364
-</td>
-<td style="text-align:right;">
-292
-</td>
-<td style="text-align:left;">
-CBD
-</td>
-<td style="text-align:left;">
-4.9
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Shimbashi Soba &amp; Sake Bar
-</td>
-<td style="text-align:right;">
-27.5
-</td>
-<td style="text-align:right;">
-368
-</td>
-<td style="text-align:right;">
-923
-</td>
-<td style="text-align:left;">
-CBD
-</td>
-<td style="text-align:left;">
-4.6
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Maha Restaurant
-</td>
-<td style="text-align:right;">
-150.0
-</td>
-<td style="text-align:right;">
-931
-</td>
-<td style="text-align:right;">
-1240
-</td>
-<td style="text-align:left;">
-CBD
-</td>
-<td style="text-align:left;">
-4.7
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-La Belle Miette
-</td>
-<td style="text-align:right;">
-10.0
-</td>
-<td style="text-align:right;">
-477
-</td>
-<td style="text-align:right;">
-427
-</td>
-<td style="text-align:left;">
-CBD
-</td>
-<td style="text-align:left;">
-4.8
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 Little Rogue
 </td>
 <td style="text-align:right;">
@@ -2370,22 +2312,82 @@ CBD
 </tr>
 <tr>
 <td style="text-align:left;">
-Pastuso
+Patricia Coffee Brewers
 </td>
 <td style="text-align:right;">
-62.5
+7.5
 </td>
 <td style="text-align:right;">
-444
+365
 </td>
 <td style="text-align:right;">
-1048
+292
+</td>
+<td style="text-align:left;">
+CBD
+</td>
+<td style="text-align:left;">
+4.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Shimbashi Soba &amp; Sake Bar
+</td>
+<td style="text-align:right;">
+27.5
+</td>
+<td style="text-align:right;">
+368
+</td>
+<td style="text-align:right;">
+923
 </td>
 <td style="text-align:left;">
 CBD
 </td>
 <td style="text-align:left;">
 4.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Maha Restaurant
+</td>
+<td style="text-align:right;">
+150.0
+</td>
+<td style="text-align:right;">
+932
+</td>
+<td style="text-align:right;">
+1240
+</td>
+<td style="text-align:left;">
+CBD
+</td>
+<td style="text-align:left;">
+4.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+La Belle Miette
+</td>
+<td style="text-align:right;">
+10.0
+</td>
+<td style="text-align:right;">
+477
+</td>
+<td style="text-align:right;">
+427
+</td>
+<td style="text-align:left;">
+CBD
+</td>
+<td style="text-align:left;">
+4.8
 </td>
 </tr>
 <tr>
@@ -2426,6 +2428,26 @@ CBD
 </td>
 <td style="text-align:left;">
 4.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Pastuso
+</td>
+<td style="text-align:right;">
+62.5
+</td>
+<td style="text-align:right;">
+444
+</td>
+<td style="text-align:right;">
+1048
+</td>
+<td style="text-align:left;">
+CBD
+</td>
+<td style="text-align:left;">
+4.6
 </td>
 </tr>
 <tr>
@@ -2656,10 +2678,10 @@ Shanklin Cafe
 25.0
 </td>
 <td style="text-align:right;">
-529
+530
 </td>
 <td style="text-align:right;">
-1242
+1244
 </td>
 <td style="text-align:left;">
 Hawthorn
@@ -2676,7 +2698,7 @@ The Proud Peacock
 22.5
 </td>
 <td style="text-align:right;">
-630
+631
 </td>
 <td style="text-align:right;">
 481
@@ -2916,7 +2938,27 @@ Journeyman
 27.5
 </td>
 <td style="text-align:right;">
-838
+839
+</td>
+<td style="text-align:right;">
+1535
+</td>
+<td style="text-align:left;">
+Windsor
+</td>
+<td style="text-align:left;">
+4.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Journeyman
+</td>
+<td style="text-align:right;">
+27.5
+</td>
+<td style="text-align:right;">
+839
 </td>
 <td style="text-align:right;">
 1535

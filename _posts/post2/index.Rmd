@@ -59,6 +59,9 @@ summary(african_names)
 
 ```
 
+# Git Repository 
+
+Access the git repository for this project via the following [link](https://github.com/etc5521-2020/assignment-1-quokka)
 
 # Introduction and motivation
 

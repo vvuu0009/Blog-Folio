@@ -32,6 +32,11 @@ library(bookdown)
 library(plotly)
 ```
 
+# Git Repository 
+
+Access the git repository for this project via the following [link](https://github.com/etc5521-2020/assignment-1-koala/tree/original)
+
+
 # Introduction and motivation
 
 In today's day and age there has been a strong push for the reduction in production and use of fossil fuels. Per Peninsula Energy fossil fuels "produce a significant amount of greenhouse gas emissions, including carbon dioxide methane," @peninsula_2018 These greenhouse gas emissions are known to be a main contributor to the ‘greenhouse effect’ “the warming of climate that results when the atmosphere traps heat radiating from Earth towards space,” @twardy_greenhouse_2007 Not only does thermal power produced by fossil fuels emit greenhouse gases, it is not renewable, meaning it cannot be “replaced naturally in a short period of time” resulting in long-term price volatility and unsustainability.

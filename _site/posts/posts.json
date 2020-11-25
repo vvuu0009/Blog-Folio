@@ -28,8 +28,8 @@
     "date": "2020-11-16",
     "categories": [],
     "preview": {},
-    "last_modified": "2020-11-23T16:22:47+11:00",
-    "input_file": {}
+    "last_modified": "2020-11-25T19:28:35+11:00",
+    "input_file": "post5.utf8.md"
   },
   {
     "path": "posts/post 4/",
@@ -45,22 +45,6 @@
     "categories": [],
     "preview": {},
     "last_modified": "2020-11-23T16:11:59+11:00",
-    "input_file": {}
-  },
-  {
-    "path": "posts/post2/",
-    "title": "Exploration of the History of Black Slavery",
-    "description": "This project explores the history of black slavery around the world with a focus on the US written for ETC5521: Exploratory Data Analysis",
-    "author": [
-      {
-        "name": "Vinny Vu, Dea Avega Editya, Siyi Li, Aryan Jain",
-        "url": "https://www.linkedin.com/in/vinny-vu-809bb1139/"
-      }
-    ],
-    "date": "2020-09-18",
-    "categories": [],
-    "preview": "posts/post2/index_files/figure-html5/demo1-1.png",
-    "last_modified": "2020-11-23T16:36:33+11:00",
     "input_file": {}
   },
   {
@@ -80,9 +64,25 @@
     "input_file": "project.utf8.md"
   },
   {
+    "path": "posts/post2/",
+    "title": "Exploration of the History of Black Slavery",
+    "description": "This project explores the history of black slavery around the world with a focus on the US written for ETC5521: Exploratory Data Analysis",
+    "author": [
+      {
+        "name": "Vinny Vu, Dea Avega Editya, Siyi Li, Aryan Jain",
+        "url": "https://www.linkedin.com/in/vinny-vu-809bb1139/"
+      }
+    ],
+    "date": "2020-09-18",
+    "categories": [],
+    "preview": "posts/post2/index_files/figure-html5/demo1-1.png",
+    "last_modified": "2020-11-25T19:02:12+11:00",
+    "input_file": "index.utf8.md"
+  },
+  {
     "path": "posts/post1/",
     "title": "How sustainable is the energy production in Europe?",
-    "description": "This project explores the current state of sustainable energy production in Europe written for ETC5521:Exploratory Data Analysis",
+    "description": "This project explores the current state of sustainable energy production in Europe written for ETC5521: Exploratory Data Analysis",
     "author": [
       {
         "name": "Vinny Vu, Putu Saputra",
@@ -92,8 +92,8 @@
     "date": "2020-08-28",
     "categories": [],
     "preview": "posts/post1/index_files/figure-html5/export-import-plot-1.png",
-    "last_modified": "2020-11-23T15:48:38+11:00",
-    "input_file": {}
+    "last_modified": "2020-11-25T19:03:25+11:00",
+    "input_file": "index.utf8.md"
   },
   {
     "path": "posts/post 3/",
@@ -108,7 +108,7 @@
     "date": "2020-06-12",
     "categories": [],
     "preview": "posts/post 3/index_files/figure-html5/price-ranges-1.png",
-    "last_modified": "2020-11-23T17:01:25+11:00",
-    "input_file": {}
+    "last_modified": "2020-11-25T19:06:32+11:00",
+    "input_file": "index.utf8.md"
   }
 ]
