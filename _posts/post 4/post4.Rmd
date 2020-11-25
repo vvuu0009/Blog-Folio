@@ -20,6 +20,8 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```
 
+### Click [here](https://vinny-vu.shinyapps.io/coronavirus-application/) to access the application 
+
 # Corona Shiny Application 
 
 Coronavirus disease (COVID-19) is an infectious disease caused by a newly discovered coronavirus [@WHO] first reported in December 2019 in Wuhan City in China [@aus-health] Currently there are no specific vaccines or treatments for the disease, [@aus-health] causing many countries to enter quarantines and lockdowns to prevent the spread of the disease. In the blog post I will introducing and reviewing the shiny application I have made to discuss the current state of coronavirus around the world as of 31st July 2020 [@shiny]. 

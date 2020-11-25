@@ -20,7 +20,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```
 
-
+### Click [here](https://vinny-vu.shinyapps.io/Application/) to access the application 
 
 In today's it is common belief that we are becoming increasingly unhealthy because of the move in diets towards convenient often unhealthy foods and increased inactivity @physical-inactivity. To assess this statement we will be looking into the following health factors, height, body mass index, blood pressure and cholesterol and their changes across time. 
 
