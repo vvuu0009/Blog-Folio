@@ -64,6 +64,22 @@
     "input_file": {}
   },
   {
+    "path": "posts/post 6/",
+    "title": "World Health Data Visualiation Project",
+    "description": "This project explores the trends of world health data made for FIT5147: Data Exploration and Visualisation",
+    "author": [
+      {
+        "name": "Vinny Vu",
+        "url": "https://www.linkedin.com/in/vinny-vu-809bb1139/"
+      }
+    ],
+    "date": "2020-09-18",
+    "categories": [],
+    "preview": "posts/post 6/project_files/figure-html5/BP-world-1.png",
+    "last_modified": "2020-11-25T18:43:54+11:00",
+    "input_file": "project.utf8.md"
+  },
+  {
     "path": "posts/post1/",
     "title": "How sustainable is the energy production in Europe?",
     "description": "This project explores the current state of sustainable energy production in Europe written for ETC5521:Exploratory Data Analysis",

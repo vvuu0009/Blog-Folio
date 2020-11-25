@@ -1,0 +1,612 @@
+---
+title: "World Health Data Visualiation Project"
+description: |
+  This project explores the trends of world health data made for FIT5147: Data Exploration and Visualisation
+author:
+  - name: Vinny Vu 
+    url: https://www.linkedin.com/in/vinny-vu-809bb1139/
+date: 09-18-2020
+output:
+  distill::distill_article:
+    self_contained: false
+bibliography: references.bib  
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      message = FALSE,
+                      warning = FALSE,
+                      fig.align="center",
+                      fig.width = 12,
+                      fig.height = 4)
+
+library(tidyverse)
+library(countrycode)
+library(kableExtra)
+library(broom)
+library(plotly)
+library(patchwork)
+```
+
+# Introduction 
+
+In today's it is common belief that we are becoming increasingly unhealthy because of the move in diets towards convenient often unhealthy foods and increased inactivity @physical-inactivity. To assess this statement we will be looking into the following health factors, height, body mass index, blood pressure and cholesterol and their changes across time. 
+
+It is common belief that due to the better access to quality food, nutrients and wealth humans are growing taller over time and therefore it is of interest to analysis the changes in height data. 
+
+Per the World Health Organization @BP Hypertension or raised blood pressure is the condition in which the blood vessels have persistently raised pressure and the higher the pressure, the harder the heart must pump. Hypertension is a serious medical condition and can increase the risk of heart, brain, kidney, and other diseases being one of the major causes of premature deaths worldwide. Therefore, it is of interest to assess the trends of raised blood pressure data. 
+
+Body mass index or BMI for short, is a measure for indicating nutritional status in adults defined as a person's weight in kilograms divided by the square of the person's height in meters (kg/m2) @BMI. BMI was developed as a risk indicator of diseases, the higher the BMI is often resulted in a higher level of excessive body fat resulting the increased risk of some diseases such as premature death, cardiovascular diseases, blood pressure, osteoarthritis, some cancers and diabetes @BMI. Therefore, it is of interest to assess the trends in BMI levels. 
+
+Per betterhealth @Chol Cholesterol is defined as a type of fat that is part of all animal cells that is essential for many of the body's metabolic processes, including the production of hormones, bile and vitamin D. Specifically Low-density lipoprotein (LDL) cholesterol, carries most of the cholesterol that is delivered to cells and is often referred to as "bad" cholesterol as when its level in the bloodstream is high, it can clog up your arteries. High cholesterol leads to fatty deposits developing in the arteries which causes the vessel to narrow eventually becoming blocked leading to heart disease and stroke. Therefore, it is of interest to assess the trends in LDL cholesterol levels.
+
+Specifically we will be analyzing world health data to answer the following questions:
+      
+* What is the trend in the world health data across time and what are the specific trends for each country (BMI, Height, Blood Pressure and Cholesterol)?
+* Is there a relationship between BMI and other health factors (Height, Blood Pressure and Cholesterol) and what is it?
+* Do countries within the same continent or with similar cultures share similar results and trends and what are these results/trends?
+
+
+# Data Wrangling 
+
+```{r read-data }
+height_country <- read.csv("Project/coutnry data/NCD_RisC_eLife_2016_height_age18_countries.txt")
+BP_country <- read.csv("Project/coutnry data/NCD_RisC_Lancet_2016_BP_age_standardised_countries.txt")
+BMI_country <- read.csv("Project/coutnry data/NCD_RisC_Lancet_2017_BMI_age_standardised_country.txt")
+colesteral_country <- read.csv("Project/coutnry data/NCD_RisC_Nature_2020_Cholesterol_age_standardised_countries.txt")
+
+country_status <- read.csv("country.csv") %>%
+  mutate(Status = as.factor(Status))
+```
+
+Description of the data sources with links if available, the steps in data wrangling (including data cleaning and data transformations), and tools that you used.
+
+Data for the analysis has been taken from the NCD Risk Factor COllaboration (NCD-RisC) a network of health scientist around the world that provides rigorous and timely data on risk factors for non-communicable diseases (NCDs) for 200 countries and territories @data. 
+
+The data sets used include the following: 
+
+Body-Mas Index data
+This data set measures the yearly average national adult body-mass index for all countries from 1975 to 2016. The first 3 rows of the data set is shown below.
+The variables include the country, sex, year, mean BMI with the lower and upper 95% uncertainty intervals, and the prevalence of individuals falling into each BMI level with the lower and upper 95% uncertainty intervals. For the purposes of analysis we will only be looking at the mean BMI for each country.
+
+```{r BMI-head, include=FALSE}
+BMI_country %>%
+  head(3) %>%
+  kable() %>%
+  kable_styling()
+```
+Height data
+This data set measures the yearly mean height for adults (age 18) for all countries from 1896 to 1996 . The first 3 rows of the data set is shown below.
+The variables include the country, sex, year of birth, mean height in cm with the lower and upper 95% uncertainty intervals. 
+
+```{r height-head , include=FALSE}
+height_country %>%
+  head(3) %>%
+  kable() %>%
+  kable_styling()
+```
+
+Blood Pressure data
+This data set measures the yearly mean blood pressure readings (systolic, diastolic and prevalence of raised blood pressure) for adults for all countries from 1975 to 2015. The first 3 rows of the data set is shown below. The variables include the country, sex, year, mean systolic blood pressure reading (in mmHg) with the upper and lower 95% uncertainty interval, mean diastolic blood pressure reading (in mmHg) with the upper and lower 95% uncertainty interval and the prevalence of raised blood pressure with the upper and lower 95% uncertainty interval.  
+
+```{r BP-head, include=FALSE}
+BP_country %>%
+  head(3) %>%
+  kable() %>%
+  kable_styling()
+```
+Cholesterol data 
+This data set measures the yearly mean cholesterol readings (total cholesterol, non HDL cholesterol, HDL cholesterol) for adults for all countries from 1980 to 2018. The first 3 rows of the ddata set is shown below. The variables include the country, sex, year, mean total cholesterol reading (in mmol.L) with the upper and lower 95% uncertainty interval, mean non HDL cholesterol reading (in mmol.L) with the upper and lower 95% uncertainty interval and the mean HDL cholesterol reading (in mmol.L) with the upper and lower 95% uncertainty interval.  
+
+```{r col-head, include= FALSE}
+colesteral_country %>%
+  head(3) %>%
+  kable() %>%
+  kable_styling()
+```
+
+For the analysis of question 3 we are interested in analyzing reading across each continent and developed/developing countries. To obtain which countries fall into each continent the r package countrycode was used and to obtain which countries fall into the developed/developing categories the list was obtained from the Australian Government Department of Foreign Affairs and Trade website. The developed/developing countries list was converted into excel form to allow importing into R. A left join was used to add the continent and wealth status to each data set. To compare the relationship between BMI with height, blood pressure and cholesterol all data sets were joined using an inner join.    
+
+```{r data-wrangling}
+
+height <- height_country %>%
+  mutate(continent = countrycode(sourcevar = Country,
+                                 origin = "country.name",
+                                 destination = "continent")) %>%
+  select(Country,continent,ISO,Sex,Year.of.birth,Mean.height..cm.) %>%
+  rename(height = Mean.height..cm.)
+
+BP <- BP_country %>%
+  select(Country.Region.World,ISO,Sex,Year,Mean.diastolic.blood.pressure..mmHg.,Mean.systolic.blood.pressure..mmHg.,Prevalence.of.raised.blood.pressure)
+
+BP_ID <- BP %>%
+  mutate(ID = paste(Country.Region.World,Sex,Year)) %>%
+  select(-Country.Region.World,-ISO,-Sex,-Year)
+
+
+BMI <- BMI_country %>%
+  select(Country.Region.World,ISO,Sex,Year,Mean.BMI)
+
+BMI_ID <- BMI %>%
+  mutate(ID = paste(Country.Region.World,Sex,Year))%>%
+  select(-Country.Region.World,-ISO,-Sex,-Year)
+
+Col <- colesteral_country %>%
+  select(Country.Region.World,ISO,Sex,Year,Mean.total.cholesterol..mmol.L.,Mean.non.HDL.cholesterol..mmol.L.,Mean.HDL.cholesterol..mmol.L.)
+
+Col_ID <- Col %>%
+  mutate(ID = paste(Country.Region.World,Sex,Year))%>%
+  select(-Country.Region.World,-ISO,-Sex,-Year)
+
+height_join <- height %>%
+  mutate(ID = paste(Country,Sex,Year.of.birth))
+
+Joined <- height_join %>%
+  inner_join(BP_ID,
+             by = "ID") %>%
+  inner_join(BMI_ID,
+             by = "ID") %>%
+  inner_join(Col_ID,
+             by = "ID") %>%
+  rename(Year = Year.of.birth)
+```
+
+
+
+# Data Checking 
+
+```{r}
+library(visdat)
+```
+
+The visdat R package was the main tool used in data checking @visdat. After checking the NCD-RisC data for completeness it was found there was no missing data. As all the health data was compiled by NCD-RisC naming conventions of countries, country codes and years were all the same and therefore no modifications were needed to variables to allow joining data sets. However, the joined data used for the analysis in section 2 was reduced between the years of 1980-1996 being the only common years across all data sets. 
+
+Adding the continents with the countrycode package @countrycode was able to be used without any missing values and therefore, manipulation of the input countries was not needed. However, naming conventions of countries between differ between the NDC-RisC data and the Developing/Developed country list obtained from Australian Government Department of Foreign Affairs and Trade website @dfat. The Developing/Developed country excel list was therefore modified to ensure same naming conventions between both data sets.   
+
+# Data Exploration 
+
+Description of the data exploration process with details of the statistical tests and visualizations you used, what you discovered, and tools that you used.
+
+## What is the trend in the world health data across time and what are the specific trends for each country (BMI, Height, Blood Pressure and Cholesterol)?
+
+### World and Country Height trends 
+
+To assess the trend in the world average height the height data set was used to calculate the average height across all countries for males and females to be used to develop the line graph in Figure \@ref(fig:height-world).From the graph we can see there is an upward trend in average height that plateaus and slightly dips around 1975. The average difference in men and women height appear to be fairly constant each year being around 10-15cm. 
+
+To look at the trend in individual country average height the height data set was again used to produce a line graph, however, now grouped by country in Figure \@ref(fig:height-country). From the graph we can see an overall upward in average country height with several countries stabilizing around 1975. Across several countries, however, we see a dip in average height in later years. The plot is very crowded though plotting 200 countries and is difficult to see individual trends. Sub-grouping of countries in section 4.3 improves this reducing the plotted lines for ease of analysis.    
+
+```{r height-world, fig.cap= "World average height line graph with year on the x-axis and average world average height in centermeters on the y-axis for men and women."}
+ggplotly(height %>%
+  group_by(Sex,Year.of.birth) %>%
+  summarise(height = mean(height)) %>%
+  ggplot(aes(x = Year.of.birth, y = height, color = Sex)) +
+  geom_line() +
+  geom_point() +
+  labs(x = "",
+       y = "Average Height - cm",
+       title = "Trend in World Average Height") +
+  theme_bw() +
+  theme(legend.position = "none")) %>%
+  config(displayModeBar = F)
+```
+
+```{r height-country, fig.cap= "Country average height line graph with year on the x-axis and average height in centermeters for each country on the y-axis for men and women."}
+ggplotly(height %>%
+  ggplot(aes(x = Year.of.birth,
+             y = height,
+             group = Country)) +
+  geom_line(alpha = 1/3) +
+  facet_wrap(~Sex) +
+  labs(x = "",
+       y = "Average Height - cm",
+       title = "Trend in World Average Height")+
+  theme_bw() +
+  theme(legend.position = "none")) %>%
+  config(displayModeBar = F)
+```
+
+### World and Country Body Mass Index trends
+
+To assess the trend in the world average BMI levels the BMI data set was used to calculate the average BMI across all countries for males and females to be used to develop the line graph in Figure \@ref(fig:BMI-world). For the purposes of analysis we will only be looking at the average BMI not the prevalence of each BMI level. From the graph we can see there is an upward trend in average BMI across all years. The average difference in men and women height appear to be fairly constant each year being around 5-8 kg/m2 with women being higher than men across all years.
+
+To look at the trend in individual country average height the height data set was again used to produce a line graph, however, now grouped by country in Figure \@ref(fig:BMI-country). From the graph we can see an overall upward trend in several countries. However, for several countries with high initial BMI an initial upward trend followed by dipping around 1995 can be seen. Several countries do see the opposite trend however, trending downwards each year, this is especially prominent in the women plot. The plot is very crowded though plotting 200 countries and is difficult to see individual trends. Sub-grouping of countries in section 4.3 improves this reducing the plotted lines for ease of analysis. 
+
+```{r BMI-world, fig.cap= "World average BMI line graph with year on the x-axis and average world average BMI in kilograms per meter square on the y-axis for men and women."}
+ggplotly(BMI %>%
+  group_by(Sex, Year) %>%
+  summarise(BMI = mean(Mean.BMI)) %>%
+  ggplot(aes(x = Year,
+             y = BMI,
+             color = Sex)) +
+  geom_line() +
+  labs(y = "BMI - kg/m2",
+       title = "Trend in World Average BMI",
+       x = "")+
+  theme_bw() +
+  theme(legend.position = "none")) %>%
+  config(displayModeBar = F)
+```
+
+```{r BMI-country, fig.cap= "Country average BMI line graph with year on the x-axis and average BMI in kilograms per meter squared for each country on the y-axis for men and women."}
+ggplotly(BMI %>%
+  ggplot(aes(x = Year,
+             y = Mean.BMI,
+             group = Country.Region.World)) +
+  geom_line(alpha = 1/3) +
+  facet_wrap(~Sex) +
+  labs(y = "BMI - kg/m2",
+       title = "Trend in Country Average BMI",
+       x = "")+
+  theme_bw() +
+  theme(legend.position = "none")) %>%
+  config(displayModeBar = F)
+```
+
+### World and Country Blood Pressure trends
+
+To assess the trend in the world average blood pressure levels the blood pressure data set was used to calculate the average blood pressure for each type across all countries for males and females to be used to develop the line graph in Figure \@ref(fig:BP-world). From the graph we can see mean systolic and diastolic blood pressure remains fairly constant with a slight downward trend for women. We do see a larger downward trend in the prevalence of raised blood pressure however.
+
+For the purposes of analysis we will only be looking at the prevalence of raised blood pressure. To look at the trend in individual country prevalence of raised blood pressure the blood pressure data set was again used to produce a line graph, however, now grouped by country in Figure \@ref(fig:BP-country).  From this graph is it harder to assess the individual trends of each country. We do however, see an overall average downward trend. We do however see several countries with a downward trend, upward trend of all magnitudes.The plot is very crowded though plotting 200 countries and is difficult to see individual trends. Sub-grouping of countries in section 4.3 improves this reducing the plotted lines for ease of analysis.
+
+```{r BP-world, fig.cap= "World average Blood Pressure line graph with year on the x-axis and average world blood pressure readings in mmHg on the y-axis for men and women."}
+BP1 <- BP_country %>%
+  group_by(Sex, Year) %>%
+  summarise("mean systolic blood pressure" = mean(Mean.systolic.blood.pressure..mmHg.),
+            "mean diastolic blood pressure" = mean(Mean.diastolic.blood.pressure..mmHg.),
+            "mean prevalence of raised blood pressure" = mean(Prevalence.of.raised.blood.pressure)) %>%
+  ggplot(aes(x = Year, color = Sex)) +
+  geom_line(aes(y = `mean systolic blood pressure`)) +
+  labs(y = "" , title = "Mean systolic blood pressure in mmHg", x = "")+
+  theme_bw() +
+  theme(legend.position = "none")
+
+BP2 <- BP_country %>%
+  group_by(Sex, Year) %>%
+  summarise("mean systolic blood pressure" = mean(Mean.systolic.blood.pressure..mmHg.),
+            "mean diastolic blood pressure" = mean(Mean.diastolic.blood.pressure..mmHg.),
+            "mean prevalence of raised blood pressure" = mean(Prevalence.of.raised.blood.pressure)) %>%
+  ggplot(aes(x = Year, color = Sex)) +
+  geom_line(aes(y = `mean diastolic blood pressure`)) +
+  labs(y = "" , title = "Mean diastolic blood pressure in mmHg", x = "")+
+  theme_bw() +
+  theme(legend.position = "none")
+
+BP3 <- BP_country %>%
+  group_by(Sex, Year) %>%
+  summarise("mean systolic blood pressure" = mean(Mean.systolic.blood.pressure..mmHg.),
+            "mean diastolic blood pressure" = mean(Mean.diastolic.blood.pressure..mmHg.),
+            "mean prevalence of raised blood pressure" = mean(Prevalence.of.raised.blood.pressure)) %>%
+  ggplot(aes(x = Year, color = Sex)) +
+  geom_line(aes(y = `mean prevalence of raised blood pressure`)) +
+  labs(y = "" , title = "Mean prevalence of raised blood pressure", x = "")+
+  theme_bw() +
+  theme(legend.position = "none")
+
+BP1+BP2+BP3
+```
+
+```{r BP-country, fig.cap= "Country prevelence of raised blood pressure line graph with year on the x-axis and prevalence of rasied blood pressure on the y-axis for men and women."}
+ggplotly(BP %>%
+  ggplot(aes(x = Year,
+             y = Prevalence.of.raised.blood.pressure,
+             group = Country.Region.World)) +
+  geom_line(alpha = 1/3) +
+  facet_wrap(~Sex) +
+  labs(y = "Prevalence of raised blood pressure",
+       title = "Trend in prevalence of raised blood pressure by country",
+       x = "")+
+  theme_bw() +
+  theme(legend.position = "none")) %>%
+  config(displayModeBar = F)
+```
+
+### World and Country Low-density lipoprotein (LDL) cholesterol reading trends   
+
+To assess the trend in the world average cholesterol levels the cholesterol data set was used. For purposes of analysis only the trend in non HDL or Low-density lipoprotein (LDL) cholesterol was assessed. To calculate the average non HDL cholesterol across all countries for males and females to be used to develop the line graph in Figure \@ref(fig:col-world). From the graph we can see an upward trend from 1980 peaking in 1990 followed by a downward trend after. The levels between men and women appear fairly similar across all years.
+
+To look at the trend in individual country non HDL cholesterol the cholesterol data set was again used to produce a line graph, however, now grouped by country in Figure \@ref(fig:col-country). From this graph is it harder to assess the individual trends of each country. We do however see several countries with a downward trend, upward trend of all magnitudes .The plot is very crowded though plotting 200 countries and is difficult to see individual trends. Sub-grouping of countries in section 4.3 improves this reducing the plotted lines for ease of analysis.
+
+```{r col-world, fig.cap= "World average non HDL cholesterol line graph with year on the x-axis and average world average non HDL cholesterol in mmol.L on the y-axis for men and women."}
+ggplotly(Col %>%
+  group_by(Sex, Year) %>%
+  summarise(non.HDL = mean(Mean.non.HDL.cholesterol..mmol.L.)) %>%
+  ggplot(aes(x = Year,
+             y = non.HDL,
+             color = Sex)) +
+  geom_line() +
+  labs(y = "mean non HDL cholesterol - mmol.L",
+       x = "")+
+  theme_bw() +
+  theme(legend.position = "none")) %>%
+  config(displayModeBar = F)
+```
+```{r col-country, fig.cap= "Country average non HDL cholesterol line graph with year on the x-axis and average non HDL cholesterol in mmol.L on the y-axis for men and women."}
+ggplotly(Col %>%
+  ggplot(aes(x = Year,
+             y = Mean.non.HDL.cholesterol..mmol.L.,
+             group = Country.Region.World)) +
+  geom_line(alpha = 1/3) +
+  facet_wrap(~Sex) +
+  labs(y = "mean non HDL cholesterol - mmol.L",
+       x = "")+
+  theme_bw() +
+  theme(legend.position = "none")) %>%
+  config(displayModeBar = F)
+```
+
+## Is there a relationship between BMI and other health factors (Height, Blood Pressure and Cholesterol) and what is it?
+
+### Height and BMI relationship 
+
+To assess the relationship between height and BMI plots in Figure \@ref(fig:BMI-Height) shows on the left the regression line for BMI vs Height facet by gender and continent and the dot plot of all BMI and height with the linear regression line added on the right. Summary of the R squared value of the regression is shown in Table \@ref(tab:BMI-height-tab). From the plot we can see there doesn't appear to be much of a relationship between height and BMI. This is further supported by the small R squared value shown in Table  \@ref(tab:BMI-height-tab). 
+
+```{r BMI-Height, fig.cap= "Height and BMI regression plot with mean BMI in kilograms per meter squared on the x-axis and mean height in cm on the y axis"}
+height.reg.1 <- Joined %>%
+  ggplot(aes(y = height,
+             x = Mean.BMI)) +
+  geom_point() +
+  geom_smooth() +
+  facet_grid(continent~Sex) +
+  labs(x = "Mean BMI")+
+  theme_bw() +
+  theme(legend.position = "none")
+
+
+height.reg.2 <- Joined %>%
+  ggplot(aes(y = height,
+             x = Mean.BMI)) +
+  geom_point() +
+  geom_smooth(method = 'lm') +
+  labs(x = "Mean BMI")+
+  theme_bw() +
+  theme(legend.position = "none")
+
+height.reg.1 + height.reg.2
+```
+
+
+```{r BMI-height-tab, fig.cap = "Height and BMI linear regression R squared value"}
+height.BMI <- lm(height ~ Mean.BMI, data = Joined)
+height.BMI %>% glance() %>% select(r.squared, adj.r.squared) %>% kable(caption = "Height and BMI linear regression R squared value") %>% kable_styling(bootstrap_options = c("bordered", "striped"))  
+```
+
+### BP and BMI
+
+To assess the relationship between the prevalence of raised blood pressure and BMI plots in Figure \@ref(fig:BMI-BP) shows on the left the regression line for BMI vs Prevalence of raised blood pressure facet by gender and continent and the dot plot of all blood pressure and height points with the linear regression line added on the right. Summary of the R squared value of the regression is shown in Table \@ref(tab:BMI-BP-tab). From the plot there appears to be a weak positive relationship between BMI and raised blood pressure, however, this trend is not prominent in the Americas men plot. This is further supported by the small R squared value shown in Table  \@ref(tab:BMI-BP-tab). 
+
+```{r BMI-BP, fig.cap= "Prevalence of raised blood pressure and BMI regression plot with mean BMI in kilograms per meter squared on the x-axis and prevalence of raised blood pressure on the y axis"}
+BP1 <- Joined %>%
+  ggplot(aes(x = Mean.BMI,
+             y = Prevalence.of.raised.blood.pressure)) +
+  geom_point() +
+  geom_smooth() +
+  facet_grid(continent~Sex) +
+  labs(y = "Prevalence of raised blood pressure",
+       x = "Mean BMI")+
+  theme_bw() +
+  theme(legend.position = "none")
+
+
+BP2 <- Joined %>%
+  ggplot(aes(x = Mean.BMI,
+             y = Prevalence.of.raised.blood.pressure)) +
+  geom_point() +
+  geom_smooth(method = 'lm') +
+  labs(y = "Prevalence of raised blood pressure",
+       x = "Mean BMI")+
+  theme_bw() +
+  theme(legend.position = "none")
+
+
+BP1+BP2
+```
+
+```{r BMI-BP-tab, fig.cap = "Prevalence of raised blook pressure and BMI linear regression R squared value"}
+height.BMI <- lm(Prevalence.of.raised.blood.pressure ~ Mean.BMI, data = Joined)
+height.BMI %>% glance() %>% select(r.squared, adj.r.squared) %>% kable(caption = "Prevalence of raised blook pressure and BMI linear regression R squared value") %>% kable_styling(bootstrap_options = c("bordered", "striped"))
+```
+
+### Cholesterol and BMI
+
+To assess the relationship between the mean non HDL cholesterol and BMI plots in Figure \@ref(fig:BMI-Col) shows on the left the regression line for mean BMI vs mean non HDL facet by gender and continent and the dot plot of all mean BMI and mean Cholesterol readings with the linear regression line added on the right. Summary of the R squared value of the regression is shown in Table \@ref(tab:BMI-Col-tab). From the plot there appears to be a positive relationship between BMI. This trend is prominent across all the plots for men and women across all continents. We can see a stronger relationship compared to that of in  Figure \@ref(fig:BMI-Height) and Figure \@ref(fig:BMI-BP) This is further supported by the larger R squared value shown in Table  \@ref(tab:BMI-Col-tab). 
+
+
+```{r BMI-Col, fig.cap= "Mean non HDL cholesterol and BMI regression plot with mean BMI in kilograms per meter squared on the x-axis and mean non HDL cholesterol in mmol.L on the y axis"}
+chol1 <- Joined %>%
+  ggplot(aes(x = Mean.BMI,
+             y = Mean.non.HDL.cholesterol..mmol.L.)) +
+  geom_point() +
+  geom_smooth() +
+  facet_grid(continent~Sex) +
+  labs(y = "mean non HDL cholesterol - mmol.L",
+       x = "Mean BMI")+
+  theme_bw() +
+  theme(legend.position = "none")
+
+
+chol2 <- Joined %>%
+  ggplot(aes(x = Mean.BMI,
+             y = Mean.non.HDL.cholesterol..mmol.L.)) +
+  geom_point() +
+  geom_smooth(method = 'lm') +
+  labs(y = "mean non HDL cholesterol - mmol.L",
+       x = "Mean BMI")+
+  theme_bw() +
+  theme(legend.position = "none")
+
+
+chol1+chol2
+```
+
+```{r BMI-Col-tab, fig.cap = "Mean non HDL Cholesterol and BMI linear regression R squared value", tab.width= 8, tab.height= 2}
+height.BMI <- lm(Mean.non.HDL.cholesterol..mmol.L. ~ Mean.BMI, data = Joined)
+height.BMI %>% glance() %>% select(r.squared, adj.r.squared) %>% kable(caption = "Mean non HDL Cholesterol and BMI linear regression R squared value") %>%   kable_styling(bootstrap_options = c("bordered", "striped"))
+```
+
+##  Do countries within the same continent or with similar cultures share similar results and trends and what are these results/trends?
+
+To further expand the analysis done in section 4.1 we will look into further details of the trends between different continents and wealth levels. The main continents assessed for analysis is Africa, the Americas, Asia, Europe and Oceania obtained through the coutnrycode R package. Further countries have been broken up into developing vs developed categories with guidance from The Australian Government Department of Foreign Affairs and Trade. 
+
+
+### Height trends across continents and wealth levels 
+
+In Figure \@ref(fig:height-continent) shows the trend in average height between different continents by gender. From the plot we can see there is a clear upward trend in average from 1900 to around 1960. From this point most continents begin to stabilize whereas Africa and Oceania appear to trend downwards. This trend is apparent across both men and women. For both men and women Europe dominates in average height followed by Oceania. Asia appears to have the lowest average across most years, however, for men the average overtakes Africa around 1980.  
+
+```{r height-continent, fig.cap= "Trend and average height by continent with year on the x-axis and average height in cm"}
+height %>%
+  group_by(continent,Year.of.birth,Sex) %>%
+  summarise(height = mean(height)) %>%
+  ggplot(aes(x = Year.of.birth, y = height,color = continent)) +
+  geom_line() +
+  facet_wrap(~Sex) +
+  labs(x = "Year",
+       y = "Average Height - cm",
+       title = "Trend in Average Height by Continent")+
+  theme_bw()
+
+```
+Figure \@ref(fig:height-status) shows the trend in average height between wealth levels (developed and developing.) From the graph we can see developed countries dominate in average height across all years for both men in women. There is a clear upward trend in average height from 1900 to around 1960 across both genders and wealth levels. For the developed countries the average height appears to stabilize from 1960 onward. For the developing countries however, there appears to be a dip from 1960 onward increasing the gap between developed and developing countries. 
+
+```{r height-status, fig.cap= "Trend in Average Height Between Wealth Levels with year on the x-axis and average height in cm on the y-axis"}
+height %>%
+  left_join(country_status,
+            by = "Country") %>%
+  group_by(Status,Year.of.birth,Sex) %>%
+  summarise(height = mean(height)) %>%
+  ggplot(aes(x = Year.of.birth, y = height,color = Status)) +
+  geom_line() +
+  facet_wrap(~Sex) +
+  labs(x = "Year",
+       y = "Average Height - cm",
+       title = "Trend in Average Height between Wealth Levels")+
+  theme_bw()
+```
+
+### BMI trend across continents and wealth levels
+
+Figure \@ref(fig:BMI-continent) shows the trend in average BMI across each continent. From the plot we can see there is a clear upward trend in average BMI cross all continent for men and women. Oceania dominates with the highest average across all years for both genders. For men Africa has the lowest average, followed by Asia, then the Americas and Europe across all years. For women however, the upward trend for Europe is much smaller as we see the Americas average overtaking women in in the late 1980s.  
+
+```{r BMI-continent, fig.cap= "Trend in Average BMI across continents with year on the x-axis and average BMI in kilograms per meter square on the y-axis."}
+BMI %>%
+  mutate(continent = countrycode(sourcevar = Country.Region.World,
+                                 origin = "country.name",
+                                 destination = "continent")) %>%
+  group_by(Sex, Year, continent) %>%
+  summarise(BMI = mean(Mean.BMI)) %>%
+  ggplot(aes(x = Year,
+             y = BMI,
+             color = continent)) +
+  geom_line() +
+  facet_wrap(~Sex) +
+  labs(y = "BMI - kg/m2",
+       title = "Trend in Average BMI across continents")+
+  theme_bw()
+```
+
+Figure \@ref(fig:BMI-status) shows the trend in average BMI across wealth levels. From the plot we can see a clear upward trend in BMI fro both genders and wealth levels with developed countries dominating with the higher average BMI across both genders for all years. The upward trend in BMI for men appear fairly similar between developed and developing countries maintaining a similar gap across all years. For women however, there is a sharper increase in average BMI for developing compared to developed countries closing in on the gap between the two averages.  
+
+```{r BMI-status, fig.cap= "Treand in Average BMI across Wealth Levels with year on the x-axis and average BMI in kilogram per meter square on the y-axis"}
+BMI %>%
+  left_join(country_status,
+            by = c("Country.Region.World"= "Country")) %>%
+  group_by(Status,Year,Sex) %>%
+  summarise(BMI = mean(Mean.BMI)) %>%
+  ggplot(aes(x = Year,
+             y = BMI,
+             color = Status )) +
+  geom_line() +
+  facet_wrap(~Sex) +
+  labs(y = "BMI - kg/m2",
+       title = "Trend in Average BMI across Wealth Levels") +
+  theme_bw()
+```
+
+### Blood Pressure Trend Across Continents and Wealth Levels 
+
+Figure \@ref(fig:BP-continent) shows the trend in the prevalence of raised blood pressure across continents. From the plot we can see a clear downward trend in raised blood pressure across both genders for all continents accept Africa which has an increasing trend from from 1975 to 1995 followed by a downward trend after. Europe begins with the highest level across both genders and the largest reduction. For men they are still at the highest level in 2015 but for women reaches the second lowest continent.   
+
+```{r BP-continent, fig.cap= "Trend in the prevalence of rasied blood pressure by continent with year on the x-axis and prevalance of raised blood pressure on the y-axis"}
+BP %>%
+  mutate(continent = countrycode(sourcevar = Country.Region.World,
+                                 origin = "country.name",
+                                 destination = "continent")) %>%
+  group_by(Sex, Year, continent) %>%
+  summarise(Prevalence.of.raised.blood.pressure = mean(Prevalence.of.raised.blood.pressure)) %>%
+  ggplot(aes(x = Year,
+             y = Prevalence.of.raised.blood.pressure,
+             color = continent)) +
+  geom_line() +
+  facet_wrap(~Sex) +
+  labs(y = "Prevalence of raised blood pressure",
+       title = "Trend in prevalence of raised blood pressure by continent")+
+  theme_bw()
+```
+
+
+Figure \@ref(fig:BP-status) shows the trend in the prevalence of raised blood pressure by wealth level. From the plot we can see there is a clear downward trend in raised blood pressure across both genders and wealth levels. The downward trend is more prominent for developed countries. We can see the developing country line crossing over overtaking the developed countries for both genders at some point.  
+
+```{r BP-status, fig.cap= "Trend in the prevalence of rasied blood pressure by wealth level with year on the x-axis and prevalance of raised blood pressure on the y-axis"}
+BP %>%
+  left_join(country_status,
+            by = c("Country.Region.World"= "Country")) %>%
+  group_by(Sex, Year, Status) %>%
+  summarise(Prevalence.of.raised.blood.pressure = mean(Prevalence.of.raised.blood.pressure)) %>%
+  ggplot(aes(x = Year,
+             y = Prevalence.of.raised.blood.pressure,
+             color = Status)) +
+  geom_line() +
+  facet_wrap(~Sex) +
+  labs(y = "Prevalence of raised blood pressure",
+       title = "Trend in prevalence of raised blood pressure by wealth level") +
+  theme_bw()
+```
+
+### Cholesterol Trend Across Continents and Welath Levels
+
+Figure \@ref(fig:Col-continent) shows the trend in mean non HDL Cholesterol across continents. From the plot we can see a clear downward trend for both men and women for Europe and a clear upward trend for both genders for Africa. The trend for the other three continents appear fairly constant. We can see the mean non HDL cholesterol for European women crossing over all continents except Africa in the later years. 
+
+```{r Col-continent, fig.cap= "Trend in mean non HDL cholesterol across continents with year on the x-axis and mean non HDL cholesterol in mmol.L on the y-axis"}
+Col %>%
+  mutate(continent = countrycode(sourcevar = Country.Region.World,
+                                 origin = "country.name",
+                                 destination = "continent")) %>%
+  group_by(Sex, Year, continent) %>%
+  summarise(Mean.non.HDL.cholesterol..mmol.L. = mean(Mean.non.HDL.cholesterol..mmol.L.)) %>%
+  ggplot(aes(x = Year,
+             y = Mean.non.HDL.cholesterol..mmol.L.,
+             color = continent)) +
+  geom_line() +
+  facet_wrap(~Sex) +
+  labs(y = "mean non HDL cholesterol - mmol.L")+
+  theme_bw()
+```
+
+Figure \@ref(fig:Col-status) shows the trend in mean non HDL cholesterol across wealth level. From the plot we can see a clear downward trend for developed countries across both genders and upward trend for developing countries across both genders. The gap between developed and developing countries reduces reaching it's lowest level in 2018.
+
+```{r Col-status, fig.cap= "Trend in mean non HDL cholesterol across wealth levels with year on the x-axis and mean non HDL cholesterol in mmol.L on the y-axis", out.width= "200%"}
+Col %>%
+  left_join(country_status,
+            by = c("Country.Region.World"= "Country")) %>%
+  group_by(Sex, Year, Status) %>%
+  summarise(Mean.non.HDL.cholesterol..mmol.L. = mean(Mean.non.HDL.cholesterol..mmol.L.)) %>%
+  ggplot(aes(x = Year,
+             y = Mean.non.HDL.cholesterol..mmol.L.,
+             color = Status)) +
+  geom_line() +
+  facet_wrap(~Sex) +
+  labs(y = "mean non HDL cholesterol - mmol.L",
+       x = "") +
+  theme_bw()
+```
+
+# Conclusion
+Summary of what you learned from the data and how your data exploration process answered (or didn’t) your original questions.
+
+From the analysis conducted we are able to analyze the the world health data to explore the trends in country and world height, BMI, blood pressure and cholesterol. In section 4.1 we can see there is an overall upward trend in world height, BMI but an overall downward trend in high blood pressure and cholesterol. However, due to the large amount of countries analyzed we were unable to assess individual country trends but look at use stacked line graphs to assess the overall trend and differences between countries. From section 4.2 we can see there is not a strong relationship between BMI and height or blood pressure, however, there appears to be a strong positive relationship between BMI and Cholesterol. In section 4.3 we were able to analyse the trends in health data between different continents and wealth levels. From the analysis we can see there is an overall lower wealth levels appear to record better health health readings having lower BMI, blood pressure and Cholesterol readings. However, over time lower wealth countries experience worsening reading whereas, higher wealth countries experience improvements in averages.     
+
+# Reflection
+
+From this analysis I was able to use to use @tidyverse, @gridExtra, @countrycode, @kableExtra and @broom to analyze the world health data using various line graphs, dot plots, regression lines and analyses using ordinary least squares. To further improve this report however, specific countries could have been chosen for analysis as comparing 200 countries on one graph did not reveal much information. Further, other models could be used to assess the relationship between BMI and other health factors could be used given the weak outputs obtained.
+
+
+
