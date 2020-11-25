@@ -5,7 +5,7 @@ description: |
 author:
   - name: Vinny Vu 
     url: https://www.linkedin.com/in/vinny-vu-809bb1139/
-date: 11-23-2020
+date: 10-23-2020
 output:
   distill::distill_article:
     self_contained: false

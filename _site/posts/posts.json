@@ -16,22 +16,6 @@
     "input_file": {}
   },
   {
-    "path": "posts/post 7/",
-    "title": "Coronavirus Application R Package",
-    "description": "This R package contants the application that explores the current state of coronavirus made for ETC5523: Communicating with Data",
-    "author": [
-      {
-        "name": "Vinny Vu",
-        "url": "https://www.linkedin.com/in/vinny-vu-809bb1139/"
-      }
-    ],
-    "date": "2020-11-23",
-    "categories": [],
-    "preview": "posts/post 7/post7_files/figure-html5/unnamed-chunk-1-1.png",
-    "last_modified": "2020-11-25T22:21:44+11:00",
-    "input_file": "post7.utf8.md"
-  },
-  {
     "path": "posts/post 5/",
     "title": "World Health Data Application",
     "description": "This application explores the trends of world health data made for FIT5147: Data Exploration and Visualisation",
@@ -46,6 +30,22 @@
     "preview": {},
     "last_modified": "2020-11-25T22:11:53+11:00",
     "input_file": "post5.utf8.md"
+  },
+  {
+    "path": "posts/post 7/",
+    "title": "Coronavirus Application R Package",
+    "description": "This R package contants the application that explores the current state of coronavirus made for ETC5523: Communicating with Data",
+    "author": [
+      {
+        "name": "Vinny Vu",
+        "url": "https://www.linkedin.com/in/vinny-vu-809bb1139/"
+      }
+    ],
+    "date": "2020-10-23",
+    "categories": [],
+    "preview": "posts/post 7/post7_files/figure-html5/unnamed-chunk-1-1.png",
+    "last_modified": "2020-11-25T22:23:43+11:00",
+    "input_file": "post7.utf8.md"
   },
   {
     "path": "posts/post 4/",
