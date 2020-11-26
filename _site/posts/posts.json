@@ -64,22 +64,6 @@
     "input_file": "post4.utf8.md"
   },
   {
-    "path": "posts/post2/",
-    "title": "Exploration of the History of Black Slavery",
-    "description": "This project explores the history of black slavery around the world with a focus on the US written for ETC5521: Exploratory Data Analysis",
-    "author": [
-      {
-        "name": "Vinny Vu, Dea Avega Editya, Siyi Li, Aryan Jain",
-        "url": "https://www.linkedin.com/in/vinny-vu-809bb1139/"
-      }
-    ],
-    "date": "2020-09-18",
-    "categories": [],
-    "preview": "posts/post2/index_files/figure-html5/demo1-1.png",
-    "last_modified": "2020-11-25T19:02:12+11:00",
-    "input_file": "index.utf8.md"
-  },
-  {
     "path": "posts/post 6/",
     "title": "World Health Data Visualiation Project",
     "description": "This project explores the trends of world health data made for FIT5147: Data Exploration and Visualisation",
@@ -94,6 +78,22 @@
     "preview": "posts/post 6/project_files/figure-html5/BP-world-1.png",
     "last_modified": "2020-11-25T22:11:17+11:00",
     "input_file": "project.utf8.md"
+  },
+  {
+    "path": "posts/post2/",
+    "title": "Exploration of the History of Black Slavery",
+    "description": "This project explores the history of black slavery around the world with a focus on the US written for ETC5521: Exploratory Data Analysis",
+    "author": [
+      {
+        "name": "Vinny Vu, Dea Avega Editya, Siyi Li, Aryan Jain",
+        "url": "https://www.linkedin.com/in/vinny-vu-809bb1139/"
+      }
+    ],
+    "date": "2020-09-18",
+    "categories": [],
+    "preview": "posts/post2/index_files/figure-html5/demo1-1.png",
+    "last_modified": "2020-11-26T11:54:10+11:00",
+    "input_file": "index.utf8.md"
   },
   {
     "path": "posts/post1/",

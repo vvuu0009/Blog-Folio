@@ -141,7 +141,8 @@ Therefore, using all of these mentioned data sets this report will find a brief 
 **What can we learn from the history of slavery in the USA and its prominence in today's issues surrounding racism towards African-Americans?** 
 
 
-To answer the main question, we will first look at these secondary questions:
+To answer the main question, we will first look at these secondary questions:  
+
 1. What is the demographic of black slaves? 
 2. Which region of the USA that had most exploited the practice? 
 3. Which region is unfriendly to black people?
@@ -149,10 +150,11 @@ To answer the main question, we will first look at these secondary questions:
 5. Which subjects were more relevant in the slavery and post slavery era 
 6. Which states were more active in spreading awareness after the abolition of slavery?
 
-References of data sets sources:
-\newline 1. Tidytuesday (https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-06-16/readme.md) (@data),
-\newline 2. Blackpast (https://www.blackpast.org/african-american-history-timeline/) (@blackpast)
-\newline 3. US census data (https://www.census.gov/content/dam/Census/library/working-papers/2002/demo/POP-twps0056.pdf)
+References of data sets sources:  
+
+1. Tidytuesday (https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-06-16/readme.md) (@data),
+2. Blackpast (https://www.blackpast.org/african-american-history-timeline/) (@blackpast)
+3. US census data (https://www.census.gov/content/dam/Census/library/working-papers/2002/demo/POP-twps0056.pdf)
 
 # Analysis and findings
 
