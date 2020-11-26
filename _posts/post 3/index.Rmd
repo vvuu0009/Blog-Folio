@@ -31,6 +31,7 @@ library(viridis)
 library(kableExtra)
 library(knitr)
 library(plotly)
+library(DT)
 ```
 
 
@@ -53,16 +54,12 @@ melb_top100 <- melb %>%
 ```
 
 
-```{r , include=FALSE}
+```{r}
 # viewing "Best of Melbourne" data
 melb_top100_filter <- melb_top100 %>%  
   select(name, cuisines, average_cost_for_two, price_range, establishment,all_reviews_count, locality, aggregate_rating, rating_text, address) %>%
   mutate(establishment = as.character(establishment))
 
-
-melb_top100_filter %>%
-  arrange(desc(aggregate_rating)) %>% 
-  head(20)
 ```
 
 \clearpage
@@ -71,7 +68,8 @@ melb_top100_filter %>%
 
 # Git Repository 
 
-Access the git repository for this project via the following [link](https://github.com/dedi0003/assignment4_etc5513)
+Access the git repository for this project via the following [link](https://github.com/dedi0003/assignment4_etc5513)  
+The Full PDF report can be found via the following [link](https://github.com/dedi0003/assignment4_etc5513/blob/master/index.pdf)
 
 # Introduction  
 
@@ -183,11 +181,12 @@ From Figure \@ref(fig:price-ratings) we can see the median aggregate rating for 
 ```{r cost-rating-relationship, fig.cap= "Average Cost for Two to Aggregate Rating Relationship", echo = FALSE, warning= FALSE, message= FALSE}
 
 melb_top100_filter %>%
-  select(name, average_cost_for_two,aggregate_rating) %>%
-  mutate(average_cost_for_two = as.numeric(average_cost_for_two)) %>%
+  select(name, average_cost_for_two,aggregate_rating, price_range) %>%
+  mutate(average_cost_for_two = as.numeric(average_cost_for_two),
+         price_range = as.factor(price_range)) %>%
   ggplot(aes(x = average_cost_for_two,
              y = aggregate_rating)) +
-  geom_point() +
+  geom_point(aes(colour = price_range)) +
   geom_smooth(se = FALSE) +
   labs(title = "Average Cost for Two to Aggregate Rating Relationship",
        x = "Average Cost for Two",
@@ -198,7 +197,7 @@ melb_top100_filter %>%
 From Figure \@ref(fig:cost-rating-relationship) we can see there is not a strong relationship between the average cost for two and the aggregate ratings suggesting there is no relationship between price and food quality. We see a slight upwards trend at the higher price levels. However, this is only based on 5 restaurants with drastically higher prices. We see most of the restaurants fall below the $200 price point. This might even suggest lower priced restaurants out rank the higher priced restaurants due to the higher count.
 
 
-```{r include = FALSE}
+```{r }
 rating <- melb_top100_filter %>%
   group_by(rating_text) %>%
   summarise(Maximum = max(aggregate_rating),
@@ -232,8 +231,7 @@ melb_top100_filter %>%
        x = "Average Rating",
        y = "Count",
        fill = "Price Range") +
-  theme_bw() +
-  theme(legend.position = "none")
+  theme_bw()
 ```
 
 From Figure \@ref(fig:rating-count) we can see restaurants in the second and fourth price category all rank in either the very good or excellent category. 3 has the highest count in all categories, however, this may be due to the higher count. We see all price levels have restaurants with high ratings. 
@@ -243,7 +241,7 @@ From Figure \@ref(fig:rating-count) we can see restaurants in the second and fou
  
 # Finding The Very Best Restaurants of Melbourne
 
-This section is covering composition and distribution of the very best restaurants in Melbourne-Victoria. In order to find the very best restaurant, this report will filter out 100 restaurants which are listed in **"Best of Melbourne"** category on Zomato's website. The very best restaurants are described as one which has rating equals to or more than 4.8 out of 5.
+This section covers the composition and distribution of the very best restaurants in Melbourne-Victoria. In order to find the very best restaurant, this report will filter out 100 restaurants which are listed in **"Best of Melbourne"** category on Zomato's website. The very best restaurants are described as one which has rating equals to or more than 4.8 out of 5.
 After filtered out the dataset, several highest-rated restaurants fill the top list as shown in table \@ref(tab:best-restaurant).
 
 ```{r include=FALSE}
@@ -256,21 +254,25 @@ summary(melb_best)
 ```
 
 
-```{r best-restaurant, echo=FALSE}
+```{r include= FALSE}
 melb_best_resto <- melb_best %>% 
   select(name, cuisines, locality, price_for_two = average_cost_for_two, rating = aggregate_rating) %>% 
   filter(rating >= 4.8) %>% 
-  arrange(desc(rating)) %>% 
-  kable(caption = "The Very Best Restaurants in Melbourne According to Zomato Rating") %>% 
-  kableExtra::kable_styling(latex_options = c("striped", "hold_position"), stripe_color  = "pink", font_size = 8)
-
+  arrange(desc(rating))
 melb_best_resto
 ```
 
 
-From table \@ref(tab:best-restaurant) above, there are twelve restaurants which have minimum rating 4.8 out of 5 hence can be described as the very best restaurants in Melbourne. The prices, cuisines and locations in the top list are vary but with some patterns that will be further explored in the following paragraphs.
+```{r best-restaurant, echo=FALSE, fig.cap="The Very Best Restaurants in Melbourne According to Zomato Rating"}
+melb_best_resto %>%
+  datatable() %>%
+  DT::formatStyle(columns = c(0,1,2,3,4,5,6), fontSize = '60%')
+```
 
-```{r create-map}
+
+From table \@ref(fig:best-restaurant) above, there are twelve restaurants which have minimum rating 4.8 out of 5 hence can be described as the very best restaurants in Melbourne. The prices, cuisines and locations in the top list vary but with some patterns that will be further explored in the following section.
+
+```{r create-map, include=FALSE}
 
 pal <- colorFactor(palette = "viridis", melb_best$average_cost_for_two)
 
@@ -324,7 +326,7 @@ melb_icon
 ```
 
 
-```{r}
+```{r, include= FALSE}
 
 sushicon <- icons(
   iconUrl = "https://i.imgur.com/7KibpoF.png",
@@ -417,8 +419,8 @@ mapshot(mapico, file = paste0(getwd(), "/map_icon.jpeg"))
 knitr::include_graphics("map_icon.jpeg")
 ```
 
-Furthermore, 4 out of 12 highest-rated restaurants in Melbourne are Japanese-Sushi Restaurants, three are coffee shops, while the rest are french and australian food restaurants as shown by figure \@ref(fig:map-icon).
-This fact support an opinion that "japanese food is still growing since UNESCO declared Japanese cuisine to be an Intangible Cultural Heritage in 2013" @sushi.
+Furthermore, 4 out of 12 highest-rated restaurants in Melbourne are Japanese-Sushi Restaurants, three are coffee shops, while the rest are French and Australian food restaurants as shown by figure \@ref(fig:map-icon).
+This fact support the opinion that "Japanese food is still growing since UNESCO declared Japanese cuisine to be an Intangible Cultural Heritage in 2013" @sushi.
 
 \clearpage
   
@@ -456,16 +458,18 @@ cuisines_melb <- melb_top100 %>%
   arrange(desc(n))
 
 cuisines_melb %>%
-  ggplot(aes(x = n, y = Types_of_cuisine))+
+  ggplot(aes(x = n, y = reorder(Types_of_cuisine, n),fill = Types_of_cuisine))+
            geom_bar(stat = "identity")+
   xlab("Count") +
-  ylab("Types of Cuisine") +
-  theme_bw()
+  ylab("") +
+  theme_bw() +
+  theme(legend.position = "none")
+
 ```
 
-From Figure \@ref(fig:Cuisine-Type), we can see that Japanese cuisine dominates the Melbourne CBD area, with more than 25 restaurants. Korean and Chinese cuisine are second popular with more than 10 restaurants serving these cuisine in the CBD Area. Also we see that CBD has lots of Cafes which can be related to the nature of the area given that CBD is a business hub with a fast pace environment. According to @Coffee while many people still rely on a quick takeaway on their way to work or on a break from the office, many cafe’s have transformed into restaurants and dining spaces where people can enjoy their hot beverage over a meal or even just to sit down with friends or work colleagues.
+From Figure \@ref(fig:Cuisine-Type), we can see that Japanese cuisine dominates the Melbourne CBD area, with more than 25 restaurants. Korean and Chinese cuisine are the second most popular with more than 10 restaurants serving these cuisine in the CBD Area. Also we see that CBD has lots of Cafes which can be related to the nature of the area given that CBD is a business hub with a fast pace environment. According to @Coffee while many people still rely on a quick takeaway on their way to work or on a break from the office, many cafe’s have transformed into restaurants and dining spaces where people can enjoy their hot beverage over a meal or even just to sit down with friends or work colleagues.
 
-```{r}
+```{r ,include = FALSE}
 #glimpse(melb_top100)
 melb_top100$votes <- as.double(melb_top100$votes)
 
@@ -480,11 +484,12 @@ cuisines_melb_ratings <- melb_top100 %>%
 
 ```{r Cuisine-Votes, echo = FALSE, fig.cap = "Number of Votes for different Cuisines in Melbourne"}
 cuisines_melb_ratings %>%
-  ggplot(aes(x = Total_Votes, y = Types_of_cuisine))+
-           geom_bar(stat = "identity", fill= "blue") +
+  ggplot(aes(x = Total_Votes, y = reorder(Types_of_cuisine,Total_Votes), fill = Types_of_cuisine))+
+           geom_bar(stat = "identity") +
   labs(x = "Total Votes",
-      y = "Types of Cuisine") +
-  theme_bw()
+      y = "") +
+  theme_bw() +
+  theme(legend.position = "none")
 ```
 
 From Figure \@ref(fig:Cuisine-Votes), we can look at the number of votes for different cuisine types. The popularity of a cuisine can largely be explained the number of votes it gets. Japanese cuisine is very popular. According to @ATR, 'Chefs and restaurant owners agree diners have become more discerning and want healthy, sustainable and honest food'. The growing popularity has made Japanese restaurants a regular feature on the top restaurants list. 
@@ -499,25 +504,32 @@ japanese_restro <- melb_top100 %>% filter(Types_of_cuisine == "Japanese") %>%
   head(10)
 ```
 
-```{r top10-Jap, echo=FALSE}
+```{r  include = FALSE}
 kable(japanese_restro, caption = "Top 10 voted Japanese restaurants in Melbourne", booktabs = T) %>%
-kable_styling(latex_options = c("striped", "hold_position"))
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+```{r top10-Jap, echo=FALSE, fig.cap= "Top 10 voted Japanese restaurants in Melbourne"}
+japanese_restro %>%
+  datatable()%>%
+  DT::formatStyle(columns = c(0,1,2,3,4,5,6), fontSize = '60%')
+  
 ```
 
-In Table \@ref(tab:top10-Jap) we can look at the top ten popular Japanese restaurants with votes count and the locality they are in.
+
+In Table \@ref(fig:top10-Jap) we can look at the top 10 popular Japanese restaurants in Melbourne along with their location and rating. 'Don-Don' is a very popular Japanese restaurant with 3168 votes. 'Shira Nui' is the highest rated restaurant with an aggregated rating of 4.8 out of 5.
 
 \clearpage
 
 
 # Exploring gluten free food/restaurants in Melbourne
 
-In this section we will be looking into restaurants with gluten free food.  
+In this section we will be looking at restaurants with gluten free food.    
 
-We will explore high end restaurants which offer gluten free food.
-To look for a good restaurant we will be using aggregate ratings.
-Popular restaurants will have more then 500 reviews. 
-Being realistic, calculating average cost for one person's meal.
-Most Instagramable place.
+* We will explore high end restaurants which offer gluten free food.
+* To look for a good restaurant we will be using aggregate ratings.
+* Popular restaurants will have more then 500 reviews. 
+* Being realistic, calculating average cost for one person's meal.
+* Most Instagramable place.
 
 
 
@@ -543,7 +555,7 @@ glut <- glu %>% select(name,
 ## Making an easy to understand table!
 
 
-```{r rest-gluten-free, echo = FALSE, fig.align= "left"}
+```{r include=FALSE}
 
 glute <- glut %>% filter(aggregate_rating > 4.5) %>% 
   select(name, 
@@ -564,7 +576,14 @@ glute_kable
 
 ```
 
-The Table \@ref(tab:rest-gluten-free) shows the name of the restarunts in Melbourne, their locality, number of reviews recieved, aggregate ratings, photo count and how much it costs for one persons gluten free meal on average. 
+```{r rest-gluten-free, echo = FALSE, fig.cap= "Top Options"}
+glute %>%
+  datatable()%>%
+  DT::formatStyle(columns = c(0,1,2,3,4,5,6), fontSize = '60%')
+```
+
+
+The Table \@ref(fig:rest-gluten-free) shows the name of the restaurants in Melbourne, their locality, number of reviews received, aggregate ratings, photo count and how much it costs for one persons gluten free meal on average. 
 
 ## Visualizing findings!
 
@@ -589,7 +608,8 @@ gluten <- ggplot(glute,
         legend.title = element_text(size = 5))
 
 
-gluten
+ggplotly(gluten)%>% 
+config(displayModeBar = F)
 ```
 
 The graph Figure \@ref(fig:review-price-relation) shows top restaurants in Melbourne, using the category "gluten free", with an intercept at 500 reviews count. In the highest rating of 4.9, Lune Croissanterie is the best restaurant with very reasonable average price of 12.50 AUD per person. While, Vue de monde is second on the list with a rating of 4.8 but very pricy at an average cost of 300 AUD.
@@ -614,14 +634,12 @@ glutenf <- ggplot(glute,
         legend.text = element_text(size = 5),
         legend.title = element_text(size = 5))
 
-glutenf
+ggplotly(glutenf)%>% 
+config(displayModeBar = F)
 ```
 
-The graph Figure \@ref(fig:instagrammable-plot) visualizes restaurants with good reviews and potential of each restaurant on how much instagrammable it is. Lune Croissanterie has the best review rating with a high photo count of 1813. While, The Hardware Societe has the highest photo count at 4224, with a good rating of 4.6.
+The graph Figure \@ref(fig:instagrammable-plot) visualizes photo count against review counts for each restaurants potentially highlighting how "instagrammable" a potential restaurant is. Lune Croissanterie has the best review rating with a high photo count of 1813. While, The Hardware Societe has the highest photo count at 4224, with a good rating of 4.6.
 
-In Table \@ref(tab:top10-Jap) we can look at the top 10 popular Japanese restaurants in Melbourne along with their location and rating. 'Don-Don' is a very popular Japanese restaurant with 3168 votes. 'Shira Nui' is the highest rated restaurant with an aggregated rating of 4.8 out of 5.
-
-The graph Figure \@ref(fig:instagrammable-plot) visualizes restaurants with good reviews and potential of each restaurant on how much instagrammable it is. Lune Crissantete has the best review rating with a high photo count of 1813. While, The Hardware Societe has the highest photo count at 4224, with a good rating of 4.6.
 
 
 \clearpage 
@@ -629,8 +647,8 @@ The graph Figure \@ref(fig:instagrammable-plot) visualizes restaurants with good
 # Conclusion
 
 * From this analysis we find there is no real relationship between restaurant prices and quality suggesting expensive food is not better than cheap. 
-* Melbourne has a strong multicultural cuisines options for people to choose from. Japanese being the most popular has the highest number of restaurants. Popularity of Cafes are also high.
+* Melbourne has a strong multicultural cuisines options for people to choose from. Japanese being the most popular having the highest count of restaurants. Popularity of Cafes are also high.
 * Most of the very best restaurants in Melbourne is located near CBD. 
-* Melbourne has quite a few good restaurants which serve gluten free food with a high review count. Most of the the same restaurants have a high photo count as well hence it is instagrammable in my opinion.
+* Melbourne has quite a few good restaurants that serve gluten free food with a high review count. Most of the the same restaurants have a high photo count suggesting they are also "instagramable" 
 
 \clearpage
